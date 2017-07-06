@@ -1,0 +1,480 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="/Content/css/MyCSS.css" rel="stylesheet" />
+<link href="/Content/css/simple-line-icons.css" rel="stylesheet" />
+@using Models.ViewModel
+@using Models;
+@using Services;
+@model TicketModel
+<style>
+      .panel-heading a:hover{
+    text-decoration: none;
+</style>
+@*@using (@Html.BeginForm("Index", "Dashboard", FormMethod.Post, new { @id = "frmDash", enctype = "multipart/form-data" }))
+{    
+
+    *@<!-- **Breadcrumb Section** -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <h1>Dashboard</h1>
+        <div class="breadcrumb">
+            <a href="/Dashboard/Index" title="">Home</a> / <span>Dashboard</span>
+        </div>
+    </div>
+</div>
+<!-- **Breadcrumb Section Ends** -->
+
+<!-- **Content Main** -->
+<section class="content-main">
+    <!-- **Container** -->
+    <div class="container">
+        <div class="panel panel-info" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+            <div class="panel-heading" style="position: relative;">
+                Dashboard
+            </div>
+            @{
+                int uid = 0;
+                int compID = 0;
+                int rid = 0;
+                int totalOpenTicket = 0;
+                int replied = 0;
+                int unreplied = 0;
+                if (Session["UID"] != null)
+                {
+                    uid = Convert.ToInt32(Session["UID"].ToString());
+
+                }
+                if(Session["CompID"]!=null)
+                {
+                    compID = Convert.ToInt32(Session["CompID"].ToString());   
+                }
+                if(Session["Role"]!=null)
+                {
+                    rid = Convert.ToInt32(Session["Role"].ToString());
+                }
+                techflowEntities Dbcontext = new techflowEntities();
+                int resTicket=0;
+                resTicket= Dbcontext.TicketMasters.Where(m => m.CreatedBy == (rid == 1 ? m.CreatedBy : uid) && m.TicketStatusID == 2).Count();
+                totalOpenTicket = Dbcontext.TicketMasters.Where(m => m.CreatedBy == (rid == 1 ? m.CreatedBy : uid) && m.TicketStatusID != 2 && m.TicketStatusID!=null).Count();
+                int TotalTicket = 0;
+                TotalTicket = Dbcontext.TicketMasters.Where(m => m.CreatedBy == (rid == 1 ? m.CreatedBy : uid)).Count();
+                replied = (from tm in Dbcontext.TicketMasters
+                           join tt in Dbcontext.TicketTrans on tm.TicketID equals tt.TicketID
+                           where tm.CreatedBy == (rid == 1 ? tm.CreatedBy : uid) && tt.ReplayBy == 1 && tm.TicketStatusID!=null && tm.TicketStatusID!=2
+                           select new TicketModel()
+                           {
+                               TicketID = tm.TicketID
+                           }).GroupBy(m => m.TicketID).Count();
+
+
+                unreplied = totalOpenTicket - replied;
+
+                int AccReq = 0;
+                
+                AccReq = (from am in Dbcontext.AccessMasters
+                          join um in Dbcontext.UserMasters on am.CreatedBy equals um.UID                        
+                          join cm in Dbcontext.CompanyMasters on um.CompID equals cm.CompID into cc
+                          from c in cc.DefaultIfEmpty()
+                          where c.CompID == (rid == 1 ? c.CompID : compID) && am.IsActive==true
+                          select new AccessModel()
+                          {
+                              BAID = am.BAID
+
+                          }).Count();
+
+                int Quo = 0;
+
+                Quo = (from qm in Dbcontext.QuotationMasters
+                       
+                       where qm.CreatedBy == (rid == 1 ? qm.CreatedBy : uid) 
+                       //&& qm.IsActive==(id==1?qm.IsActive : true)
+                       select new QuotationModel()
+                       {
+                           QID = qm.QID
+                       }).Count();
+                int del = 0;
+                del = (from dm in Dbcontext.DeliveryMasters                  
+                       where dm.CreatedBy == (rid == 1 ? dm.CreatedBy : uid)
+                       select new DeliveryModel()
+                       {
+                           BDID = dm.BDID,
+                       }).Count();                   
+               
+            }
+            <div class="panel-body">
+                <div class="row">
+            @*         <a href="/Ticket/Index"><div class="col-lg-3 col-sm-6">
+                        <!-- START widget-->
+                        <div class="panel widget bg-info">
+                            <div class="row row-table">
+                                <div class="col-xs-4 text-center bg-info-dark pv-lg">
+                                    <em class="fa fa-ticket fa-3x"></em>
+                                </div>
+                                <div class="col-xs-8 pv-lg">
+                                    <div class="h2 mt0">@TotalTicket</div>
+                                    <div class="text-uppercase">Total Tickets</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>*@
+                    
+                    <a href="/Ticket/Index"><div class="col-lg-4 col-sm-6">
+                        <!-- START widget-->
+                        <div class="panel widget bg-info">
+                            <div class="row row-table">
+                                <div class="col-xs-4 text-center bg-info-dark pv-lg">
+                                    <em class="fa fa-ticket fa-3x"></em>
+                                </div>
+                                <div class="col-xs-8 pv-lg">
+                                    <div class="h2 mt0">@totalOpenTicket/<small>@TotalTicket</small></div>
+                                    <div class="text-uppercase">Tickets</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>
+             @*       
+                    <a href="/Ticket/Index"><div class="col-lg-3 col-sm-6">
+                        <!-- START widget-->
+                        <div class="panel widget bg-info">
+                            <div class="row row-table">
+                                <div class="col-xs-4 text-center bg-info-dark pv-lg">
+                                    <em class="fa fa-ticket fa-3x"></em>
+                                </div>
+                                <div class="col-xs-8 pv-lg">
+                                    <div class="h2 mt0">@resTicket</div>
+                                    <div class="text-uppercase">Resolved Tickets</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>*@
+
+                    <a href="/Ticket/Index"><div class="col-lg-4 col-sm-6">
+                        <!-- START widget-->
+                        <div class="panel widget bg-purple">
+                            <div class="row row-table">
+                                <div class="col-xs-4 text-center bg-purple-dark pv-lg">
+                                    <em class="icon-bubbles fa-3x"></em>
+                                </div>
+                                <div class="col-xs-8 pv-lg">
+                                    <div class="h2 mt0">
+                                        @replied
+                                        @*<small>GB</small>*@
+                                    </div>
+                                    <div class="text-uppercase">Replied</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>
+                    <a href="/Ticket/Index"><div class="col-lg-4 col-md-6 col-sm-12">
+                        <!-- START widget-->
+                        <div class="panel widget bg-green">
+                            <div class="row row-table">
+                                <div class="col-xs-4 text-center bg-green-dark pv-lg">
+
+                                    <i class="fa fa-reply fa-3x" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-xs-8 pv-lg">
+                                    <div class="h2 mt0">@unreplied</div>
+                                    <div class="text-uppercase">UnReplied</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>
+                    <a href="/Request/Access"><div class="col-lg-4 col-md-6 col-sm-12">
+                        <!-- START widget-->
+                        <div class="panel widget bg-primary">
+                            <div class="row row-table">
+                                <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+                                    <em class="icon-login fa-3x"></em>
+                                </div>
+                                <div class="col-xs-8 pv-lg">
+                                    <div class="h2 mt0">@AccReq</div>
+                                    <div class="text-uppercase">Access Requests</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>
+                    <a href="/Request/Delivery"><div class="col-lg-4 col-md-6 col-sm-12">
+                        <!-- START widget-->
+                        <div class="panel widget bg-gray">
+                            <div class="row row-table">
+                                <div class="col-xs-4 text-center bg-gray-dark pv-lg">
+                                    @*<em class="icon-globe fa-3x"></em>*@
+                                    <i class="fa fa-truck fa-3x" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-xs-8 pv-lg">
+                                    <div class="h2 mt0">@del</div>
+                                    <div class="text-uppercase">Delievery Requests</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>
+                    <a href="/Request/Quotation"><div class="col-lg-4 col-md-6 col-sm-12">
+                        <!-- START widget-->
+                        <div class="panel widget bg-inverse">
+                            <div class="row row-table">
+                                <div class="col-xs-4 text-center bg-inverse-dark pv-lg">
+                                    <em class="icon-doc fa-3x"></em>
+                                </div>
+                                <div class="col-xs-8 pv-lg">
+                                    <div class="h2 mt0">@Quo</div>
+                                    <div class="text-uppercase">Quotations</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></a>
+                    @*    <div class="col-lg-3 col-md-6 col-sm-12">
+                  <!-- START date widget-->
+                  <div class="panel widget">
+                     <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-green pv-lg">
+                           <!-- See formats: https://docs.angularjs.org/api/ng/filter/date-->
+                           <div data-now="" data-format="MMMM" class="text-sm">November</div>
+                           <br>
+                           <div data-now="" data-format="D" class="h2 mt0">19</div>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                           <div data-now="" data-format="dddd" class="text-uppercase">Saturday</div>
+                           <br>
+                           <div data-now="" data-format="h:mm" class="h2 mt0">12:30</div>
+                           <div data-now="" data-format="a" class="text-muted text-sm">pm</div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- END date widget    -->
+               </div>*@
+                </div>
+                @{
+                 
+                  if (rid == 1)
+                  {
+                     
+
+                    <div class="panel panel-info" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                        <div class="panel-heading" style="position: relative;">
+                            Tickets
+                                <div style="float: right; display: block;"><span class="label label-primary">UNREPLIED</span>&nbsp;<span class="label label-info">REPLIED</span>&nbsp;</div>
+
+                        </div>
+                        <div class="panel-body table-responsive">
+                            <div class="panel-group" id="accordion">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: none;">Tickets</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var i in Model.ListTicket)
+                                        {
+                                            var IsRead = Dbcontext.TicketTrans.Where(m => m.TicketID == i.TicketID && m.ReplayBy == 1).ToList();
+                                            <tr>
+                                                <td>
+                                                    @if (IsRead.Count() > 0)
+                                                    {
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#@i.TicketID">ID : <span class="label label-success">@i.Prefix@i.TicketID</span>&nbsp;<span class="badge badge-info">@i.CreatedDate.Value.ToString("dd/MM/yyyy")</span>&nbsp; Subject : <span class="label label-info">@i.Subject </span>(@i.UserDetails.Title @i.UserDetails.FirstName @i.UserDetails.LastName)</a>
+                                                                </h4>
+
+                                                                <div style="display: block; float: right; Position: relative; top: -20px;">
+                                                                    @if (@i.Priority == 1)
+                                                                    {
+                                                                        <span class="label label-danger">P1</span>
+                                                                    }
+                                                                    else if (@i.Priority == 2)
+                                                                    {
+                                                                        <span class="label label-danger">P2</span>
+                                                                    }
+                                                                    else if (@i.Priority == 3)
+                                                                    {
+                                                                        <span class="label label-success">P3</span>   
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="label label-info">P4</span>   
+                                                                    }
+                                                                </div>
+                                                                <div style="display: block; float: right; Position: relative; top: -20px;">
+                                                                    @if (@i.TStatusDetails != null)
+                                                                    {
+                                                                        <span class="label label-success">@i.TStatusDetails.TicketStatus</span>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div id="@i.TicketID" class="panel-collapse collapse">
+                                                                <div class="panel-body table-responsive">
+                                                                    <form method="post" action="/Dashboard/Index">
+                                                                        <table class="table">
+                                                                            <tr>
+                                                                                <td><b>Company : </b></td>
+                                                                                <td>@i.CompDetails.Name</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><b>Type : </b></td>
+                                                                                <td>@i.TTypeDetails.TicketType</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><b>Description : </b></td>
+                                                                                <td>@i.Description</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <b>Status : </b>
+                                                                                </td>
+                                                                                <td>
+                                                                                    @Html.DropDownListFor(m => m.TicketStatusID, new SelectList(Model.ListTstatus, "TicketStatusID", "TicketStatus", @i.TicketStatusID), "--Select Status--", new { @class = "form-control col-sm-4" })
+                                                                                    @Html.ValidationMessageFor(m => m.TicketStatusID)
+
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input type="hidden" value="@i.TicketID" name="TicketID"/>
+                                                                                    <a href="/Ticket/Replay/@i.TicketID?uid=@i.CreatedBy" class="btn btn-success">
+                                                                                        <i class="fa fa-mail-forward" aria-hidden="true"></i>&nbsp;Details
+                                                                                    </a>
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="submit" class="btn btn-primary" value="Change Status" /></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </form>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="panel panel-primary">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#@i.TicketID">ID : <span class="label label-success">@i.Prefix@i.TicketID</span>&nbsp;<span class="badge badge-info">@i.CreatedDate.Value.ToString("dd/MM/yyyy")</span>&nbsp; Subject : <span class="label label-info">@i.Subject </span>(@i.UserDetails.Title @i.UserDetails.FirstName @i.UserDetails.LastName)</a>
+                                                                </h4>
+                                                                <div style="display: block; float: right; Position: relative; top: -20px;">
+                                                                    @if (@i.Priority == 1)
+                                                                    {
+                                                                        <span class="label label-danger">P1</span>
+                                                                    }
+                                                                    else if (@i.Priority == 2)
+                                                                    {
+                                                                        <span class="label label-danger">P2</span>
+                                                                    }
+                                                                    else if (@i.Priority == 3)
+                                                                    {
+                                                                        <span class="label label-success">P3</span>   
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="label label-info">P4</span>   
+                                                                    }
+                                                                </div>
+                                                                <div style="display: block; float: right; Position: relative; top: -20px;">
+                                                                    @if (@i.TStatusDetails != null)
+                                                                    {
+                                                                        <span class="label label-success">@i.TStatusDetails.TicketStatus</span>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div id="@i.TicketID" class="panel-collapse collapse">
+                                                                <div class="panel-body">
+                                                                    <form method="post" action="/Dashboard/Index">
+                                                                        <table class="table">
+                                                                            <tr>
+                                                                                <td><b>Company : </b></td>
+                                                                                <td>@i.CompDetails.Name</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><b>Type : </b></td>
+                                                                                <td>@i.TTypeDetails.TicketType</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><b>Description : </b></td>
+                                                                                <td>@i.Description</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <b>Status : </b>
+                                                                                </td>
+                                                                                <td>
+                                                                                    @Html.DropDownListFor(m => m.TicketStatusID, new SelectList(Model.ListTstatus, "TicketStatusID", "TicketStatus", @i.TicketStatusID), "--Select Status--", new { @class = "form-control col-sm-4", @name = "ddlStatus" })
+                                                                                    @Html.ValidationMessageFor(m => m.TicketStatusID)
+
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input type="hidden" value="@i.TicketID" name="TicketID"/>
+                                                                                    <a href="/Ticket/Replay/@i.TicketID?uid=@i.CreatedBy" class="btn btn-success">
+                                                                                        <i class="fa fa-mail-forward" aria-hidden="true"></i>&nbsp;Details
+                                                                                    </a>
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="submit" class="btn btn-primary" value="Change Status" /></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>   
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                  }
+                }
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        var table = $('.table').DataTable({
+            "ordering": false
+            //"paging": false
+        });
+
+    });
+</script>

@@ -1,0 +1,47 @@
+﻿@model   Models.ViewModel.Class1
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "TestingDemo", FormMethod.Post))
+{
+    <div>
+       @Html.DropDownListFor(model => model.CityName, Enumerable.Empty<SelectListItem>(), 
+       new { htmlAttributes = new { @class = "form-control" } })  
+       <input type="submit" name ="Button" value="Save" id="btnSave" />
+    </div>
+}
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>  
+      
+    $(document).ready(function ()  
+    {    //call the CityList json result method  
+        $.getJSON("/TestingDemo/CityList", function (data)
+        {        
+            $.each(data, function (i, data)  
+            {      // bind the dropdown list using json result              
+                 $('<option>',  
+                    {  
+                        value: data.Id,  
+                        text: data.CityName  
+                    }).html(data.CityName).appendTo("#CityName");
+                });  
+        })  
+        //Get the selected text on button click  
+        $("#btnSave").click(function () {  
+  
+            var txt = $("#CityName option:selected").val();
+            alert(txt);
+            // assign the selected value to span to   
+            //show to the end user  
+           // $("#Spnmsg").text("Your Selected City is " + txt);  
+  
+            return false;  
+  
+        })  
+  
+    });  
+</script>  

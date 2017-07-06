@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="techflowModelStoreContainer" CdmEntityContainer="techflowEntities">
+    <EntitySetMapping Name="AccessMasters">
+      <EntityTypeMapping TypeName="techflowModel.AccessMaster">
+        <MappingFragment StoreEntitySet="AccessMaster">
+          <ScalarProperty Name="BAID" ColumnName="BAID" />
+          <ScalarProperty Name="DataCenter" ColumnName="DataCenter" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="StDateTime" ColumnName="StDateTime" />
+          <ScalarProperty Name="StTime" ColumnName="StTime" />
+          <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccessPassMasters">
+      <EntityTypeMapping TypeName="techflowModel.AccessPassMaster">
+        <MappingFragment StoreEntitySet="AccessPassMaster">
+          <ScalarProperty Name="APID" ColumnName="APID" />
+          <ScalarProperty Name="CompID" ColumnName="CompID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="AccessPassID" ColumnName="AccessPassID" />
+          <ScalarProperty Name="SwipeDate" ColumnName="SwipeDate" />
+          <ScalarProperty Name="SwipeTime" ColumnName="SwipeTime" />
+          <ScalarProperty Name="DoorID" ColumnName="DoorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyMasters">
+      <EntityTypeMapping TypeName="techflowModel.CompanyMaster">
+        <MappingFragment StoreEntitySet="CompanyMaster">
+          <ScalarProperty Name="CompID" ColumnName="CompID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LegalName" ColumnName="LegalName" />
+          <ScalarProperty Name="ACType" ColumnName="ACType" />
+          <ScalarProperty Name="Industry" ColumnName="Industry" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="AltPhone" ColumnName="AltPhone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email1" ColumnName="Email1" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="BStreet" ColumnName="BStreet" />
+          <ScalarProperty Name="BCity" ColumnName="BCity" />
+          <ScalarProperty Name="BState" ColumnName="BState" />
+          <ScalarProperty Name="BPostCode" ColumnName="BPostCode" />
+          <ScalarProperty Name="BCountry" ColumnName="BCountry" />
+          <ScalarProperty Name="SStreet" ColumnName="SStreet" />
+          <ScalarProperty Name="SCity" ColumnName="SCity" />
+          <ScalarProperty Name="SState" ColumnName="SState" />
+          <ScalarProperty Name="SPostCode" ColumnName="SPostCode" />
+          <ScalarProperty Name="SCountry" ColumnName="SCountry" />
+          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+          <ScalarProperty Name="ABN" ColumnName="ABN" />
+          <ScalarProperty Name="BHour" ColumnName="BHour" />
+          <ScalarProperty Name="ServiceStatus" ColumnName="ServiceStatus" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataCenterMasters">
+      <EntityTypeMapping TypeName="techflowModel.DataCenterMaster">
+        <MappingFragment StoreEntitySet="DataCenterMaster">
+          <ScalarProperty Name="DCID" ColumnName="DCID" />
+          <ScalarProperty Name="DataCenter" ColumnName="DataCenter" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuotationMasters">
+      <EntityTypeMapping TypeName="techflowModel.QuotationMaster">
+        <MappingFragment StoreEntitySet="QuotationMaster">
+          <ScalarProperty Name="QID" ColumnName="QID" />
+          <ScalarProperty Name="DataCenter" ColumnName="DataCenter" />
+          <ScalarProperty Name="CableSource" ColumnName="CableSource" />
+          <ScalarProperty Name="CableDest" ColumnName="CableDest" />
+          <ScalarProperty Name="CableType" ColumnName="CableType" />
+          <ScalarProperty Name="TerminationSource" ColumnName="TerminationSource" />
+          <ScalarProperty Name="TerminationDest" ColumnName="TerminationDest" />
+          <ScalarProperty Name="ReqDelDate" ColumnName="ReqDelDate" />
+          <ScalarProperty Name="IsPremium" ColumnName="IsPremium" />
+          <ScalarProperty Name="IsPatchPanel" ColumnName="IsPatchPanel" />
+          <ScalarProperty Name="PatchPanel" ColumnName="PatchPanel" />
+          <ScalarProperty Name="IsMediaConverter" ColumnName="IsMediaConverter" />
+          <ScalarProperty Name="MediaConverter" ColumnName="MediaConverter" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="ServiceReq" ColumnName="ServiceReq" />
+          <ScalarProperty Name="DateForQuote" ColumnName="DateForQuote" />
+          <ScalarProperty Name="DateForService" ColumnName="DateForService" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketMasters">
+      <EntityTypeMapping TypeName="techflowModel.TicketMaster">
+        <MappingFragment StoreEntitySet="TicketMaster">
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SenderEmail" ColumnName="SenderEmail" />
+          <ScalarProperty Name="TicketTypeID" ColumnName="TicketTypeID" />
+          <ScalarProperty Name="TicketStatusID" ColumnName="TicketStatusID" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketStatusMasters">
+      <EntityTypeMapping TypeName="techflowModel.TicketStatusMaster">
+        <MappingFragment StoreEntitySet="TicketStatusMaster">
+          <ScalarProperty Name="TicketStatusID" ColumnName="TicketStatusID" />
+          <ScalarProperty Name="TicketStatus" ColumnName="TicketStatus" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketTypeMasters">
+      <EntityTypeMapping TypeName="techflowModel.TicketTypeMaster">
+        <MappingFragment StoreEntitySet="TicketTypeMaster">
+          <ScalarProperty Name="TicketTypeID" ColumnName="TicketTypeID" />
+          <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserMasters">
+      <EntityTypeMapping TypeName="techflowModel.UserMaster">
+        <MappingFragment StoreEntitySet="UserMaster">
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="CompID" ColumnName="CompID" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ReqQ" ColumnName="ReqQ" />
+          <ScalarProperty Name="Power" ColumnName="Power" />
+          <ScalarProperty Name="Access" ColumnName="Access" />
+          <ScalarProperty Name="Tickets" ColumnName="Tickets" />
+          <ScalarProperty Name="Portal" ColumnName="Portal" />
+          <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccessTrans">
+      <EntityTypeMapping TypeName="techflowModel.AccessTran">
+        <MappingFragment StoreEntitySet="AccessTran">
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="BAID" ColumnName="BAID" />
+          <ScalarProperty Name="BATranID" ColumnName="BATranID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketAttachments">
+      <EntityTypeMapping TypeName="techflowModel.TicketAttachment">
+        <MappingFragment StoreEntitySet="TicketAttachment">
+          <ScalarProperty Name="TTranID" ColumnName="TTranID" />
+          <ScalarProperty Name="ReplayDate" ColumnName="ReplayDate" />
+          <ScalarProperty Name="ReplayBy" ColumnName="ReplayBy" />
+          <ScalarProperty Name="FileURL" ColumnName="FileURL" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="TAID" ColumnName="TAID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketTrans">
+      <EntityTypeMapping TypeName="techflowModel.TicketTran">
+        <MappingFragment StoreEntitySet="TicketTran">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ReplayDate" ColumnName="ReplayDate" />
+          <ScalarProperty Name="ReplayBy" ColumnName="ReplayBy" />
+          <ScalarProperty Name="FileURL" ColumnName="FileURL" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="TTranID" ColumnName="TTranID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeliveryMasters">
+      <EntityTypeMapping TypeName="techflowModel.DeliveryMaster">
+        <MappingFragment StoreEntitySet="DeliveryMaster">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="RemoteHands" ColumnName="RemoteHands" />
+          <ScalarProperty Name="Storage" ColumnName="Storage" />
+          <ScalarProperty Name="ProjectRef" ColumnName="ProjectRef" />
+          <ScalarProperty Name="TrackingNo" ColumnName="TrackingNo" />
+          <ScalarProperty Name="Boxes" ColumnName="Boxes" />
+          <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+          <ScalarProperty Name="StDateTime" ColumnName="StDateTime" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="DataCenter" ColumnName="DataCenter" />
+          <ScalarProperty Name="BDID" ColumnName="BDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceMasters">
+      <EntityTypeMapping TypeName="techflowModel.InvoiceMaster">
+        <MappingFragment StoreEntitySet="InvoiceMaster">
+          <ScalarProperty Name="FileURL" ColumnName="FileURL" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CompID" ColumnName="CompID" />
+          <ScalarProperty Name="IID" ColumnName="IID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PowerUsageMasters">
+      <EntityTypeMapping TypeName="techflowModel.PowerUsageMaster">
+        <MappingFragment StoreEntitySet="PowerUsageMaster">
+          <ScalarProperty Name="LastReading" ColumnName="LastReading" />
+          <ScalarProperty Name="OverUnder" ColumnName="OverUnder" />
+          <ScalarProperty Name="PowerUsed" ColumnName="PowerUsed" />
+          <ScalarProperty Name="PowerContracted" ColumnName="PowerContracted" />
+          <ScalarProperty Name="AmpereRating" ColumnName="AmpereRating" />
+          <ScalarProperty Name="PowerFeeds" ColumnName="PowerFeeds" />
+          <ScalarProperty Name="RackID" ColumnName="RackID" />
+          <ScalarProperty Name="DataSuite" ColumnName="DataSuite" />
+          <ScalarProperty Name="CompID" ColumnName="CompID" />
+          <ScalarProperty Name="PUID" ColumnName="PUID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

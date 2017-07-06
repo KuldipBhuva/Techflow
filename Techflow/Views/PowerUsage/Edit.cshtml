@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Power Usage Master";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@model PowerUsageModel
+@using (@Html.BeginForm("Edit", "PowerUsage", FormMethod.Post, new { @id = "frmPU", enctype = "multipart/form-data" }))
+{    
+    @Html.HiddenFor(m=>m.PUID)
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Power Usage</h1>
+            <div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Power Usage</span>
+            </div>
+        </div>
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">
+
+
+            <div class="panel panel-info" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    Power Usage Details
+                 
+                </div>
+                <div class="panel-body">
+                    @Html.Label("* Company", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.CompID, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.CompID)
+                            </div>
+                    <div class="col-sm-12" style="height: 5px;"></div>
+                    @Html.Label("Data Suite", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.DataSuite, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.DataSuite)
+
+                            </div>
+                    @Html.Label("Rack ID", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.RackID, new { @class = "form-control"})
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                           @Html.Label("Power Feeds", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.PowerFeeds, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PowerFeeds)
+
+                            </div>
+                           @Html.Label("Ampere Rating", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.AmpereRating, new { @class = "form-control"})
+                                @Html.ValidationMessageFor(m => m.AmpereRating)
+
+                            </div>
+                    <div class="col-sm-12" style="height: 5px;"></div>
+                      @Html.Label("Power Contracted", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.PowerContracted, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PowerContracted)
+
+                            </div>
+                           @Html.Label("Power Used", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.PowerUsed, new { @class = "form-control"})
+                                @Html.ValidationMessageFor(m => m.PowerUsed)
+
+                            </div>
+                    <div class="col-sm-12" style="height: 5px;"></div>
+                      @Html.Label("Over/Under", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.OverUnder, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.OverUnder)
+
+                            </div>
+                           @Html.Label("Last Reading", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.LastReading,"{0:dd/MM/yyyy}", new { @class = "form-control datepicker"})
+                                @Html.ValidationMessageFor(m => m.LastReading)
+
+                            </div>
+              
+                    <div class="col-sm-12" style="height: 5px;"></div>
+                    <div class="col-sm-3">
+                        <input type="Submit" value="Update" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </section>
+}
+

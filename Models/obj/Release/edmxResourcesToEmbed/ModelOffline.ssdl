@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="techflowModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="techflowModelStoreContainer">
+    <EntitySet Name="AccessMaster" EntityType="techflowModel.Store.AccessMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccessPassMaster" EntityType="techflowModel.Store.AccessPassMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccessTran" EntityType="techflowModel.Store.AccessTran" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CompanyMaster" EntityType="techflowModel.Store.CompanyMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DataCenterMaster" EntityType="techflowModel.Store.DataCenterMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DeliveryMaster" EntityType="techflowModel.Store.DeliveryMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InvoiceMaster" EntityType="techflowModel.Store.InvoiceMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PowerUsageMaster" EntityType="techflowModel.Store.PowerUsageMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuotationMaster" EntityType="techflowModel.Store.QuotationMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TicketAttachment" EntityType="techflowModel.Store.TicketAttachment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TicketMaster" EntityType="techflowModel.Store.TicketMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TicketStatusMaster" EntityType="techflowModel.Store.TicketStatusMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TicketTran" EntityType="techflowModel.Store.TicketTran" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TicketTypeMaster" EntityType="techflowModel.Store.TicketTypeMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserMaster" EntityType="techflowModel.Store.UserMaster" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="AccessMaster">
+    <Key>
+      <PropertyRef Name="BAID" />
+    </Key>
+    <Property Name="BAID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DataCenter" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="350" />
+    <Property Name="LastName" Type="varchar" MaxLength="350" />
+    <Property Name="Company" Type="varchar" MaxLength="450" />
+    <Property Name="StDateTime" Type="datetime" />
+    <Property Name="StTime" Type="time" />
+    <Property Name="EndDateTime" Type="datetime" />
+    <Property Name="EndTime" Type="time" />
+    <Property Name="Reason" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="date" />
+  </EntityType>
+  <EntityType Name="AccessPassMaster">
+    <Key>
+      <PropertyRef Name="APID" />
+    </Key>
+    <Property Name="APID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CompID" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="150" />
+    <Property Name="LastName" Type="varchar" MaxLength="150" />
+    <Property Name="AccessPassID" Type="numeric" />
+    <Property Name="SwipeDate" Type="date" />
+    <Property Name="SwipeTime" Type="datetime" />
+    <Property Name="DoorID" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AccessTran">
+    <Key>
+      <PropertyRef Name="BATranID" />
+    </Key>
+    <Property Name="BATranID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="BAID" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="350" />
+    <Property Name="LastName" Type="varchar" MaxLength="350" />
+  </EntityType>
+  <EntityType Name="CompanyMaster">
+    <Key>
+      <PropertyRef Name="CompID" />
+    </Key>
+    <Property Name="CompID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="250" />
+    <Property Name="LegalName" Type="varchar" MaxLength="250" />
+    <Property Name="ACType" Type="varchar" MaxLength="150" />
+    <Property Name="Industry" Type="varchar" MaxLength="250" />
+    <Property Name="Description" Type="varchar" MaxLength="250" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="AltPhone" Type="varchar" MaxLength="50" />
+    <Property Name="Fax" Type="varchar" MaxLength="50" />
+    <Property Name="Email1" Type="varchar" MaxLength="150" />
+    <Property Name="Email2" Type="varchar" MaxLength="150" />
+    <Property Name="Website" Type="varchar" MaxLength="150" />
+    <Property Name="BStreet" Type="varchar" MaxLength="150" />
+    <Property Name="BCity" Type="varchar" MaxLength="150" />
+    <Property Name="BState" Type="varchar" MaxLength="150" />
+    <Property Name="BPostCode" Type="varchar" MaxLength="50" />
+    <Property Name="BCountry" Type="varchar" MaxLength="50" />
+    <Property Name="SStreet" Type="varchar" MaxLength="150" />
+    <Property Name="SCity" Type="varchar" MaxLength="150" />
+    <Property Name="SState" Type="varchar" MaxLength="150" />
+    <Property Name="SPostCode" Type="varchar" MaxLength="50" />
+    <Property Name="SCountry" Type="varchar" MaxLength="50" />
+    <Property Name="ContactPerson" Type="varchar" MaxLength="150" />
+    <Property Name="ABN" Type="varchar" MaxLength="50" />
+    <Property Name="BHour" Type="varchar" MaxLength="50" />
+    <Property Name="ServiceStatus" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="DataCenterMaster">
+    <Key>
+      <PropertyRef Name="DCID" />
+    </Key>
+    <Property Name="DCID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DataCenter" Type="varchar" MaxLength="350" />
+    <Property Name="Description" Type="varchar" MaxLength="450" />
+    <Property Name="Location" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="DeliveryMaster">
+    <Key>
+      <PropertyRef Name="BDID" />
+    </Key>
+    <Property Name="BDID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DataCenter" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="450" />
+    <Property Name="LastName" Type="varchar" MaxLength="450" />
+    <Property Name="Company" Type="varchar" MaxLength="450" />
+    <Property Name="StDateTime" Type="datetime" />
+    <Property Name="EndDateTime" Type="datetime" />
+    <Property Name="Boxes" Type="decimal" Scale="2" />
+    <Property Name="TrackingNo" Type="varchar" MaxLength="50" />
+    <Property Name="ProjectRef" Type="varchar" MaxLength="450" />
+    <Property Name="Storage" Type="bit" />
+    <Property Name="RemoteHands" Type="bit" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="InvoiceMaster">
+    <Key>
+      <PropertyRef Name="IID" />
+    </Key>
+    <Property Name="IID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CompID" Type="int" />
+    <Property Name="Amount" Type="decimal" Scale="2" />
+    <Property Name="DueDate" Type="date" />
+    <Property Name="Status" Type="int" />
+    <Property Name="FileName" Type="varchar" MaxLength="450" />
+    <Property Name="FileURL" Type="varchar" MaxLength="550" />
+  </EntityType>
+  <EntityType Name="PowerUsageMaster">
+    <Key>
+      <PropertyRef Name="PUID" />
+    </Key>
+    <Property Name="PUID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CompID" Type="int" />
+    <Property Name="DataSuite" Type="varchar" MaxLength="250" />
+    <Property Name="RackID" Type="varchar" MaxLength="50" />
+    <Property Name="PowerFeeds" Type="varchar" MaxLength="50" />
+    <Property Name="AmpereRating" Type="varchar" MaxLength="50" />
+    <Property Name="PowerContracted" Type="decimal" Scale="2" />
+    <Property Name="PowerUsed" Type="decimal" Scale="2" />
+    <Property Name="OverUnder" Type="varchar" MaxLength="50" />
+    <Property Name="LastReading" Type="date" />
+  </EntityType>
+  <EntityType Name="QuotationMaster">
+    <Key>
+      <PropertyRef Name="QID" />
+    </Key>
+    <Property Name="QID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DataCenter" Type="int" />
+    <Property Name="CableSource" Type="varchar" MaxLength="450" />
+    <Property Name="CableDest" Type="varchar" MaxLength="450" />
+    <Property Name="CableType" Type="varchar" MaxLength="450" />
+    <Property Name="TerminationSource" Type="varchar" MaxLength="450" />
+    <Property Name="TerminationDest" Type="varchar" MaxLength="450" />
+    <Property Name="ReqDelDate" Type="date" />
+    <Property Name="IsPremium" Type="bit" />
+    <Property Name="IsPatchPanel" Type="bit" />
+    <Property Name="PatchPanel" Type="varchar" MaxLength="450" />
+    <Property Name="IsMediaConverter" Type="bit" />
+    <Property Name="MediaConverter" Type="varchar" MaxLength="450" />
+    <Property Name="Comments" Type="varchar(max)" />
+    <Property Name="ServiceReq" Type="varchar" MaxLength="550" />
+    <Property Name="DateForQuote" Type="date" />
+    <Property Name="DateForService" Type="date" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="date" />
+  </EntityType>
+  <EntityType Name="TicketAttachment">
+    <Key>
+      <PropertyRef Name="TAID" />
+    </Key>
+    <Property Name="TAID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TTranID" Type="int" />
+    <Property Name="FileName" Type="varchar" MaxLength="550" />
+    <Property Name="FileURL" Type="varchar" MaxLength="550" />
+    <Property Name="ReplayBy" Type="int" />
+    <Property Name="ReplayDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TicketMaster">
+    <Key>
+      <PropertyRef Name="TicketID" />
+    </Key>
+    <Property Name="TicketID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="varchar" MaxLength="150" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="AssignTo" Type="int" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="SenderEmail" Type="varchar" MaxLength="150" />
+    <Property Name="TicketTypeID" Type="int" />
+    <Property Name="TicketStatusID" Type="int" />
+    <Property Name="Priority" Type="int" />
+  </EntityType>
+  <EntityType Name="TicketStatusMaster">
+    <Key>
+      <PropertyRef Name="TicketStatusID" />
+    </Key>
+    <Property Name="TicketStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TicketStatus" Type="varchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="TicketTran">
+    <Key>
+      <PropertyRef Name="TTranID" />
+    </Key>
+    <Property Name="TTranID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TicketID" Type="int" />
+    <Property Name="AssignTo" Type="int" />
+    <Property Name="Comment" Type="varchar" MaxLength="250" />
+    <Property Name="FileName" Type="varchar" MaxLength="550" />
+    <Property Name="FileURL" Type="varchar" MaxLength="550" />
+    <Property Name="ReplayBy" Type="int" />
+    <Property Name="ReplayDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TicketTypeMaster">
+    <Key>
+      <PropertyRef Name="TicketTypeID" />
+    </Key>
+    <Property Name="TicketTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TicketType" Type="varchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserMaster">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CompID" Type="int" />
+    <Property Name="Role" Type="int" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="250" />
+    <Property Name="LastName" Type="varchar" MaxLength="250" />
+    <Property Name="UserName" Type="varchar" MaxLength="350" />
+    <Property Name="Password" Type="varchar" MaxLength="150" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="250" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="City" Type="varchar" MaxLength="150" />
+    <Property Name="PostCode" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="150" />
+    <Property Name="Status" Type="int" />
+    <Property Name="ReqQ" Type="bit" />
+    <Property Name="Power" Type="bit" />
+    <Property Name="Access" Type="bit" />
+    <Property Name="Tickets" Type="bit" />
+    <Property Name="Portal" Type="bit" />
+    <Property Name="Invoice" Type="bit" />
+  </EntityType>
+</Schema>

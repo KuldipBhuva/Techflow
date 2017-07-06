@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{26AE8207-9907-4155-AD7C-6CBB7823FA6D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Models</RootNamespace>
+    <AssemblyName>Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccessPassMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccessTran.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCenterMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelOnline.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOnline.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelOnline.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelOnline.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOnline.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="PowerUsageMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuotationMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketStatusMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketTran.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketTypeMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserMaster.cs">
+      <DependentUpon>ModelOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AccessModel.cs" />
+    <Compile Include="ViewModel\AccessPassModel.cs" />
+    <Compile Include="ViewModel\Class1.cs" />
+    <Compile Include="ViewModel\CompanyModel.cs" />
+    <Compile Include="ViewModel\TicketModelAPI.cs" />
+    <Compile Include="ViewModel\DataCenterModel.cs" />
+    <Compile Include="ViewModel\DeliveryModel.cs" />
+    <Compile Include="ViewModel\InvoiceModel.cs" />
+    <Compile Include="ViewModel\PowerUsageModel.cs" />
+    <Compile Include="ViewModel\QuotationModel.cs" />
+    <Compile Include="ViewModel\TicketAttachmentModel.cs" />
+    <Compile Include="ViewModel\TicketModel.cs" />
+    <Compile Include="ViewModel\TicketStatusModel.cs" />
+    <Compile Include="ViewModel\TicketTranModel.cs" />
+    <Compile Include="ViewModel\TicketTypeModel.cs" />
+    <Compile Include="ViewModel\UserModel.cs" />
+    <Compile Include="ViewModel\UserModelAPI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="ModelOnline.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelOnline.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelOnline.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelOnline.edmx</DependentUpon>
+      <LastGenOutput>ModelOnline.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ModelOnline.edmx.diagram">
+      <DependentUpon>ModelOnline.edmx</DependentUpon>
+    </None>
+    <None Include="ModelOnline.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelOnline.edmx</DependentUpon>
+      <LastGenOutput>ModelOnline.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

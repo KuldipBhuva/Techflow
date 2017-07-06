@@ -1,0 +1,221 @@
+﻿@{
+    ViewBag.Title = "Ticket Log " + @System.DateTime.Now;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@model TicketModel
+@using (@Html.BeginForm("TicketLog", "Report", FormMethod.Post, new { @id = "frmPU", enctype = "multipart/form-data" }))
+{    
+
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Ticket Log</h1>
+            <div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Power Usage</span>
+            </div>
+        </div>
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Refine</legend>
+                @Html.Label("* From Date", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(m => m.FromDate)
+
+                </div>
+                @Html.Label("* To Date", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(m => m.ToDate)
+
+                </div>
+                <div class="col-sm-12" style="height: 5px;"></div>
+                @Html.Label("Company", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-4">
+                    @*@Html.DropDownListFor(m => m.DataCenter, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Data Center--", Value = "" }, new SelectListItem() { Text = "Global Switch", Value = "1" }, new SelectListItem() { Text = "NextDC S1", Value = "2" }, new SelectListItem() { Text = "NextDC M1", Value = "3" }, new SelectListItem() { Text = "NextDC B1", Value = "4" } }, new { @class = "form-control" })*@
+                    @Html.DropDownListFor(m => m.comp, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control" })
+
+                </div>
+                @Html.Label("User", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-4">
+                    @Html.DropDownListFor(m => m.CreatedBy, new SelectList(Model.UserList, "UID", "FirstName"), "--Select User--", new { @class = "form-control" })
+
+                </div>
+                <div class="col-sm-12" style="height: 5px;"></div>
+                <input type="submit" name="btnsend" value="Go" class="dt-sc-button small" />
+            </fieldset>
+
+
+
+           @* <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Graphical Representation</legend>
+                @if (Model.ListTicket != null)
+                {
+                    <div id="chartContainer" style="height: 300px; width: 100%;">
+                    </div>
+                }
+                else
+                {
+                    <center><div><span class="label label-danger">No Data Available</span></div>   </center>
+                }
+            </fieldset>*@
+              @if(Model.ListTicket!=null)
+                    {
+            <div class="panel panel-info" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    Ticket Log
+
+                       
+                       @*         <div class="col-sm-4" style="display: block; float: right; right: 620px; margin-top: -5px;">
+
+                                    @Html.DropDownListFor(m => m.year, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Year--", Value = "" }, new SelectListItem() { Text = "2014", Value = "2014" }, new SelectListItem() { Text = "2015", Value = "2015" }, new SelectListItem() { Text = "2016", Value = "2016" } }, new { @class = "form-control" })
+                                </div>
+                    <div class="col-sm-4" style="display: block; float: right; right: -100px; margin-top: -5px;">
+
+                        @Html.DropDownListFor(m => m.month, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Month--", Value = "" }, new SelectListItem() { Text = "January", Value = "1" }, new SelectListItem() { Text = "February", Value = "2" }, new SelectListItem() { Text = "March", Value = "3" }, new SelectListItem() { Text = "April", Value = "4" }, new SelectListItem() { Text = "May", Value = "5" }, new SelectListItem() { Text = "June", Value = "6" }, new SelectListItem() { Text = "July", Value = "7" }, new SelectListItem() { Text = "August", Value = "8" }, new SelectListItem() { Text = "September", Value = "9" }, new SelectListItem() { Text = "October", Value = "10" }, new SelectListItem() { Text = "November", Value = "11" }, new SelectListItem() { Text = "December", Value = "12" } }, new { @class = "form-control" })
+                    </div>
+                    @{if (Session["Role"] != null)
+                      {
+                          if (Session["Role"].ToString() == "1")
+                          {<input type="button" id="btnAdd" value="Add New" class="btnAdd btn btn-primary" />}
+                      }
+                    }*@
+                </div>
+                
+                <div class="panel-body table-responsive">
+                  
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Total Ticket</th>
+                                <th>Open</th>
+                                <th>Resolved</th>
+                                <th>OnHold</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><h3><span class="label label-primary">@Model.ListTicket.Count()</span></h3></td>
+                                <td><h3><span class="label label-info">@Model.ListTicket.Where(m => m.TicketStatusID == 1).Count()</span></h3></td>
+                                <td><h3><span class="label label-success">@Model.ListTicket.Where(m => m.TicketStatusID == 2).Count()</span></h3></td>
+                                <td><h3><span class="label label-danger">@Model.ListTicket.Where(m => m.TicketStatusID == 3).Count()</span></h3></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                  
+            </div>
+              }
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+    window.onload = function () {
+        debugger;
+        
+        var chart = new CanvasJS.Chart("chartContainer",
+		{
+		    
+		    theme: "theme2",
+		    exportEnabled: true,
+		    animationEnabled: true,
+		    title: {
+		        text: "Ticket Log",
+		        fontSize: 30
+		    },
+		    toolTip: {
+		        shared: true
+		    },
+		    axisY: {
+		        title: "Tickets"
+		    },
+		    axisY2: {
+		        title: "million barrels/day"
+		    },
+		    data: [
+         {
+			   @* url: '@Url.Action("getPowerUsageData", "PowerUsage")',
+			    type: 'POST',
+			    data: {*@
+			    type: "column",
+			    name: "Open Tickets",
+			    legendText: "Tickets Open",
+			    showInLegend: true,
+			    dataPoints: @Html.Raw(ViewBag.TicketOpen)
+			        //dataPoints: [                
+                    //{ label: "Saudi", y: 262 },
+                    //{ label: "Venezuela", y: 211 },
+                    //{ label: "Canada", y: 175 },
+                    //{ label: "Iran", y: 137 },
+                    //{ label: "Iraq", y: 115 },
+                    //{ label: "Kuwait", y: 104 },
+                    //{ label: "UAE", y: 97.8 },
+                    //{ label: "Russia", y: 60 },
+                    //{ label: "US", y: 23.3 },
+                    //{ label: "China", y: 20.4 }
+
+
+			          //  ]
+
+			    //},
+			    //error: function () {
+			    //    alert('there was an error while fetching data!');
+			    //},
+
+			    //success: function () {
+
+			    //}
+
+			        },
+			{
+			    type: "column",
+			    name: "Resolved Tickets",
+			    legendText: "Tickets Resolved",
+			    //axisYType: "secondary",
+			    showInLegend: true,
+			    dataPoints: @Html.Raw(ViewBag.TicketResolved)
+			    //dataPoints: [
+				//{ label: "Saudi", y: 11.15 },
+				//{ label: "Venezuela", y: 2.5 },
+				//{ label: "Canada", y: 3.6 },
+				//{ label: "Iran", y: 4.2 },
+				//{ label: "Iraq", y: 2.6 },
+				//{ label: "Kuwait", y: 2.7 },
+				//{ label: "UAE", y: 3.1 },
+				//{ label: "Russia", y: 10.23 },
+				//{ label: "US", y: 10.3 },
+				//{ label: "China", y: 4.3 }
+
+
+			    //]
+			    }
+
+		       ],
+		    legend: {
+		        cursor: "pointer",
+		        itemclick: function (e) {
+		            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		                e.dataSeries.visible = false;
+		            }
+		            else {
+		                e.dataSeries.visible = true;
+		            }
+		            chart.render();
+		        }
+		    },
+		});
+
+        chart.render();
+    }
+</script>
+@*<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>*@
+<script src="/Content/js/canvasjs.min.js"></script>

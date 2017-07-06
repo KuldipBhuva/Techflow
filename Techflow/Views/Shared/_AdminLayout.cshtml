@@ -1,0 +1,955 @@
+﻿<!DOCTYPE html>
+@using Models.ViewModel;
+@using Services;
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>@ViewBag.Title - Techflow</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/Content/favicon.png" type="image/ico">
+
+    <!-- CSS Stylesheets -->
+    <link id="default-css" rel="stylesheet" href="/Content/style.css" type="text/css">
+    <link id="shortcodes-css" rel="stylesheet" href="/Content/css/shortcodes.css" type="text/css">
+    <link id="responsive-css" rel="stylesheet" href="/Content/css/responsive.css" type="text/css">
+    <link id="skin-css" rel="stylesheet" href="/Content/skins/electricblue/style.css" type="text/css">
+
+    <!-- Additional Stylesheets -->
+    <link rel="stylesheet" href="/Content/css/component.css" type="text/css">
+    <link href="/Content/css/pace-theme-loading-bar.css" rel="stylesheet" media="all" />
+
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/Content/css/font-awesome.min.css" type="text/css">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+    <link rel="stylesheet" id="rs-plugin-settings-css" href="/Content/css/settings.css" type="text/css" media="all" />
+
+    <script type="text/javascript" src="/Content/js/modernizr-2.6.2.min.js"></script>
+
+    <script type="text/javascript">
+        var mytheme_urls = {
+            scroll: 'disable'
+        };
+	</script>
+
+    <link href="/Content/css/animate.css" rel="stylesheet" />
+    @*    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+    <link href="/content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <script src="/content/bootstrap/jquery.min.js"></script>
+    <script src="/content/bootstrap/bootstrap.min.js"></script>
+
+    <script src="/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        jQuery.validator.methods["date"] = function (value, element) { return true; }
+    </script>
+    <style>
+        .no-js #loader
+        {
+            display: none;
+        }
+
+        .js #loader
+        {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con
+        {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(/Content/images/Preloader_2.gif) center no-repeat #fff;
+        }
+    </style>
+ 
+</head>
+<body>
+    <div class="se-pre-con"></div>
+
+    <!-- **Wrapper** -->
+    <div class="wrapper">
+
+   @*     <div id="loader-wrapper">
+            <div class="loader">
+                <!-- the component -->
+                <div class="pre-loader"></div>
+            </div>
+        </div>*@
+        <div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: #666666; z-index: 30001; opacity: .8; filter: alpha(opacity=70); display: none">
+            <p style="position: absolute; top: 30%; left: 45%; color: White;">
+                <img src="/Content/Images/ajax-loading.gif">
+            </p>
+            @*<p style="position: absolute; top: 30%; left: 45%; color: White;">Data is Loading, Please Wait...</p>*@
+        </div>
+        <!-- **Header Top Bar** -->
+        <div id="bbar-wrapper">
+            <div class="container">
+                <div class="column dt-sc-one-half first">
+                    <!-- **Logo** -->
+                    <div>
+                        <a href="/Home/Index">
+                            <img src="/Content/images/logo.png" style="margin-top: 20px;width: 180px;" alt="logo">
+                        </a>
+                        @*            <span style="float: right; margin-top: 25px; color: green;">@if (TempData["Msg"] != null)
+                                                                                    {@TempData["Msg"].ToString()}</span>*@
+                    </div>
+
+                    <!-- **Logo Ends** -->
+                    @*<p class="contact"> Call-us on : <span>9999999999</span> </p>*@
+                </div>
+
+                <div class="column dt-sc-one-half alignright" style="margin-top: 22px;">
+                    @*<div class="buttons">*@
+                    @{int role = 0;
+                      if (Session["Role"] != null)
+                      {
+                          role = Convert.ToInt32(Session["Role"].ToString());
+                      }
+                    
+                    }
+                    @if (role == 1)
+                    {
+                        <span class="label label-success">&nbsp;You Are Administrator</span>
+                    }
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            Welcome : <i class="fa fa-user"></i>&nbsp;@if (Session["Name"] != null)
+                                                                      { @Session["Name"].ToString()}
+                                                                      else { Response.Redirect("/Login/Index"); }
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a data-toggle="modal" data-target="#ModalCP" href="#"><i class="fa fa-cogs"></i>&nbsp;Change Password</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Login/Index" title=""><i class="fa fa-sign-out"></i>Logout</a></li>
+                        </ul>
+                    </div>
+
+
+                    @*<a href="register.html" title="">Register <i class="fa fa-caret-right"></i></a>*@
+                    @*</div>*@
+                </div>
+            </div>
+        </div>
+        <!-- **Header Top Bar Ends** -->
+
+        <!-- **Header Wrapper** -->
+        <div id="header-wrapper">
+            <!-- **Header** -->
+            <header id="header" class="header5">
+                <div class="container">
+                    @*	<!-- **Logo** -->
+                    <div id="logo">
+                        <a href="/Home/Index"> <img src="/Content/images/logo.png" alt="logo"> </a>
+                    </div><!-- **Logo Ends** -->*@
+
+
+                    <!-- **Main-Menu Navigation** -->
+                    <div id="primary-menu">
+                        <div class="dt-menu-toggle" id="dt-menu-toggle">Menu<span class="dt-menu-toggle-icon"></span></div>
+                        <nav id="main-menu">
+                            @{
+                                int uid = 0;
+                                if (Session["UID"] != null)
+                                {
+                                    uid = Convert.ToInt32(Session["UID"].ToString());
+                                }
+                                UserService objService = new UserService();
+                                UserModel objModel = new UserModel();
+
+                                objModel = objService.getByID(uid);
+                                if (objModel != null)
+                                {   
+                                <input type="hidden" id="hdnMenu">
+                                <ul id="menu-main-menu" class="menu">
+                                    <li class="current_page_item menu-item-simple-parent menu-item-depth-0"><a id="aDB" href="/Dashboard/Index" title=""><span class="menu-icon fa fa-home"></span>Dashboard </a>
+
+                                    </li>
+                                    @if (objModel.Role == 1 || objModel.Role == 2)
+                                    {
+                                        <li id="aCON" class="menu-item-simple-parent menu-item-depth-0"><a href="#" title=""><span class="menu-icon fa fa-home"></span>Contacts</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="/User/Index" title="">Manage User</a></li>
+                                                @if (objModel.Role == 1)
+                                                {
+                                                    <li><a href="/Company/Index" title="">Manage Company</a></li>
+                                                }
+                                            </ul>
+                                            <a class="dt-menu-expand">+</a>
+                                        </li>
+                                    }
+@*<li class="menu-item-simple-parent menu-item-depth-0"><a id="aCL" href="/Contact/Index" title=""><span class="menu-icon fa fa-book"></span>Clients </a></li>*@
+@*<li class="menu-item-simple-parent menu-item-depth-0"><a id="aAU" href="/Contact/Index" title=""><span class="menu-icon fa fa-book"></span>Authorized User</a></li>*@
+                                    @if (objModel.ReqQ == true)
+                                    {
+                                        <li id="aREQ" class="menu-item-simple-parent menu-item-depth-0"><a href="#" title=""><span class="menu-icon fa fa-home"></span>Request</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="/Request/Access" title="">New Access</a></li>
+                                                <li><a href="/Request/Delivery" title="">New Delivery</a></li>
+                                                <li><a href="/Request/Quotation" title="">New Quotation</a></li>
+                                                @*<li><a href="/Services/Index?service=NET" title="">New Support</a></li>*@
+                                            </ul>
+                                            <a class="dt-menu-expand">+</a>
+                                        </li>
+                                    }
+                                    @if (objModel.Power == true || objModel.Access == true)
+                                    {
+                                        <li id="aMU" class="menu-item-simple-parent menu-item-depth-0"><a href="#" title=""><span class="menu-icon fa fa-home"></span>Monitor Usage </a>
+                                            <ul class="sub-menu">
+                                                @if (objModel.Power == true)
+                                                {
+                                                    <li><a href="/PowerUsage/Index" title="">Power Monitoring </a></li>
+                                                }
+                                                @if (objModel.Access == true)
+                                                {
+                                                    <li><a href="/AccessPass/Index" title="">Access Monitoring </a></li>
+                                                }
+
+                                            </ul>
+                                            <a class="dt-menu-expand">+</a>
+                                        </li>
+                                    }
+
+@*<li class="menu-item-simple-parent menu-item-depth-0"><a id="aRES" href="/Resources/Index" title=""><span class="menu-icon fa fa-book"></span>Parameter </a></li>*@
+                                    @if (objModel.Tickets == true)
+                                    {
+                                        <li id="aTK" class="menu-item-simple-parent menu-item-depth-0"><a href="/Ticket/Index" title=""><span class="menu-icon fa fa-book"></span>Tickets</a></li>
+                                    }
+                                    @if (objModel.Invoice == true)
+                                    {
+                                        <li id="aINV" class="menu-item-simple-parent menu-item-depth-0"><a href="/Invoice/Index" title=""><span class="menu-icon fa fa-book"></span>Invoices</a></li>
+                                    }
+                                    @if (role == 1)
+                                    {
+                                        <li id="aREP" class="menu-item-simple-parent menu-item-depth-0"><a href="#" title=""><span class="menu-icon fa fa-home"></span>Reports</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="/Report/Index" title="">Ticket</a></li>
+                                                <li><a href="/Report/TicketLog" title="">Ticket Log</a></li>                                                
+                                            </ul>
+                                            <a class="dt-menu-expand">+</a>
+                                        </li>
+                                    }
+                                   
+
+@*  <li class="menu-item-megamenu-parent fullwidth megamenu-5-columns-group menu-item-depth-0"><a href="blog-three-column.html">Blog</a>
+                                    <div class="megamenu-child-container">
+                                        <ul class="sub-menu">
+                                            <li class="first"> <a href="blog-three-column.html" title=""> Three Column </a>                             
+                                                <ul class="sub-menu">
+                                                    <li> <a href="blog-three-column.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="blog-three-column-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="blog-three-column-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="blog-two-column.html" title=""> Two Column </a>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="blog-two-column.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="blog-two-column-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="blog-two-column-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="blog-fullwidth.html" title=""> Fullwidth image </a>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="blog-fullwidth.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="blog-fullwidth-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="blog-fullwidth-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="blog-thumb.html" title=""> Thumb image </a>  
+                                                <ul class="sub-menu">
+                                                    <li> <a href="blog-thumb.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="blog-thumb-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="blog-thumb-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>    
+                                            <li> <a href="blog-single.html" title=""> Blog Single </a>  
+                                                <ul class="sub-menu">
+                                                    <li> <a href="blog-single.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="blog-single-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="blog-single-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>                                                                                    
+                                        </ul>
+                                    </div>                                
+                                    <a class="dt-menu-expand">+</a>
+                                </li>                     
+                                
+                                <li class="menu-item-megamenu-parent megamenu-4-columns-group menu-item-depth-0"><a href="portfolio-four-column.html">Portfolio</a>
+                                    <div class="megamenu-child-container">
+                                        <ul class="sub-menu">
+                                            <li class="first"> <a href="portfolio-four-column.html" title=""> Four Column </a>                             
+                                                <ul class="sub-menu">
+                                                    <li> <a href="portfolio-four-column.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="portfolio-four-column-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="portfolio-four-column-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="portfolio-three-column.html" title=""> Three Column </a> 
+                                                <ul class="sub-menu">
+                                                    <li> <a href="portfolio-three-column.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="portfolio-three-column-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="portfolio-three-column-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="portfolio-two-column.html" title=""> Two Column </a>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="portfolio-two-column.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="portfolio-two-column-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="portfolio-two-column-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="portfolio-single.html" title=""> Portfolio Single </a>   
+                                                <ul class="sub-menu">
+                                                    <li> <a href="portfolio-single.html" title=""> Fullwidth Gallery </a> </li>
+                                                    <li> <a href="portfolio-single-left-gallery.html" title=""> Left Gallery </a> </li>
+                                                    <li> <a href="portfolio-single-right-gallery.html" title=""> Right Gallery </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>                                                                                    
+                                        </ul>
+                                    </div>                                
+                                    <a class="dt-menu-expand">+</a>
+                                </li>                                                  
+                                                                                                                   
+                                <li class="menu-item-megamenu-parent megamenu-3-columns-group menu-item-depth-0 hasImage-bg right-aligned"><a href="#">Websites</a>
+                                    <div class="megamenu-child-container">
+                                        <ul class="sub-menu">
+                                            <li class="first"> <a href="#">Domain Services</a>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="#"> Single user Domains </a> </li>
+                                                    <li> <a href="#"> Multi-user Domains </a> </li>
+                                                    <li> <a href="#"> Reseller Domains </a> </li>
+                                                    <li> <a href="#"> Promos and Services </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <span class="nolink-menu">Web Hosting</span>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="#"> Dedicated Servers </a> </li>
+                                                    <li> <a href="#"> Shared Hosting </a> </li>
+                                                    <li> <a href="#"> Wordpress Hosting </a> </li>
+    
+                                                    <li> <a href="#"> NextGen VPS Hosting </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="#">Cloud Servers</a>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="#"> Ensured Speed Plans </a> </li>   
+                                                    <li> <a href="#"> Instant FTP Setup </a> </li>     
+                                                    <li> <a href="#"> Cloud Hosting Objects </a> </li>
+                                                    <li> <a href="#"> Safe & Highly Secured </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                        </ul>
+                                    </div>                                
+                                    <a class="dt-menu-expand">+</a>
+                                </li>
+                                                                
+                                <li class="menu-item-simple-parent menu-item-depth-0"> <a href="contact.html" title=""> <span class="menu-icon fa fa-envelope"> </span> Contact </a>
+                                    <ul class="sub-menu">
+                                        <li> <a href="contact.html" title=""> Layout 1 </a> </li>
+                                        <li> <a href="contact2.html" title=""> Layout 2 </a> </li>
+                                    </ul>                            
+                                </li>*@
+
+                                </ul>
+                                }
+                            }
+                        </nav>
+
+                    </div>
+                    <!-- **Main-Menu Navigation Ends** -->
+                    <div style="float: right; color: white; padding-top: 25px;">Call-us on : <span>1300 954 955</span></div>
+                </div>
+
+            </header>
+            <!-- **Header Ends** -->
+        </div>
+        <!-- **Header Wrapper Ends** -->
+        <!-- **Main** -->
+
+
+        <div id="main">
+            <div style="display: block; position: absolute; left: 570px; font-size: 20px;">
+                <span style="float: right; margin-top: 40px; color: green;">@if (TempData["Msg"] != null)
+                                                                            {@TempData["Msg"].ToString()}</span>
+            </div>
+            @RenderBody()
+
+            @Scripts.Render("~/bundles/jquery")
+            @RenderSection("scripts", required: false)
+        </div>
+
+
+        <!-- **Footer** -->
+        <footer id="footer">
+            <div class="container">
+                <div class="column dt-sc-one-fourth first">
+                    <aside class="widget textwidget">
+                        <h3 class="widgettitle">About Techflow<span></span></h3>
+                        <p><strong>Techflow Services Pty Limited</strong> is a premier provider of data centre services to deliver and enhance your cloud based services, while still realising the investment in your existing infrastructure or colocation.</p>
+                    </aside>
+                </div>
+
+                <div class="column dt-sc-one-fourth">
+                    <aside class="widget widget_links">
+                        <h3 class="widgettitle">Services<span></span></h3>
+                        <ul>
+                            <li><a href="/Services/Index?service=CL" title="">Colocation</a></li>
+                            <li><a href="/Services/Index?service=NET" title="">Internet</a></li>
+                            <li><a href="/Services/Index?service=DCS" title="">Data Centre Services</a></li>
+                            <li><a href="/Services/Index?service=MS" title="">Managed Services</a></li>
+                            @*<li><a href="#" title=""></a></li>
+                            <li><a href="#" title="">Theme Help Videos</a></li>  *@
+                        </ul>
+                    </aside>
+                </div>
+                <div class="column dt-sc-one-fourth">
+                    <aside class="widget widget_recent_entries">
+                        <h3 class="widgettitle">Contact Us<span></span></h3>
+                        <div class="dt-sc-one-two column">
+
+                            <div class="contact-info">
+
+
+                                <p>55 Pyrmont Bridge Road, Pyrmont, NSW, Australia – 2009</p>
+                                <p><i class="fa fa-phone"></i><span>Phone</span> : 1300 954 955 </p>
+                                @*<p><i class="fa fa-print"></i><span>Fax</span> : +1 100 458 2345 </p>*@
+                                <p><i class="fa fa-envelope"></i><span>Email</span> : <a href="mailto:admin@techflow.com.au">admin@techflow.com.au</a> </p>
+                                <p><i class="fa fa-globe"></i><span>Website</span> : <a href="http://www.techflow.com.au/">www.techflow.com.au</a> </p>
+                            </div>
+                        </div>
+                        @*<ul>
+                            <li>
+                                <h4 class="entry-title"><a href="#">Raven's Hello World !</a></h4>
+                                <p class="show-meta">
+                                    <span class="date-info"><i class="fa fa-clock-o"></i>29 Apr 2013</span>
+                                    <a class="comments" href="#"><i class="fa fa-comment"></i>14 Comments</a>
+                                </p>
+                            </li>
+                            
+                            <li>
+                                <h4 class="entry-title"><a href="#">Our Celebration</a></h4>
+                                <p class="show-meta">
+                                    <span class="date-info"><i class="fa fa-clock-o"></i>29 Apr 2013</span>
+                                    <a class="comments" href="#"><i class="fa fa-comment"></i>14 Comments</a>
+                                </p>
+                            </li>
+                            
+                            <li>
+                                <h4 class="entry-title"><a href="#">The Real Steel</a></h4>
+                                <p class="show-meta">
+                                    <span class="date-info"><i class="fa fa-clock-o"></i>29 Apr 2013</span>
+                                    <a class="comments" href="#"><i class="fa fa-comment"></i>14 Comments</a>
+                                </p>
+                            </li>                                                          
+                        </ul>*@
+                    </aside>
+                </div>
+
+                <div class="column dt-sc-one-fourth">
+                    <aside class="widget widget_newsletter">
+                        <h3 class="widgettitle">Social Connect<span></span></h3>
+                        <p>Sign up for the latest news about Australian Data Centres and be notified of any new blogs, press release and much more!</p>
+                        @*       <form name="frmnewsletter" action="http://wedesignthemes.com/html/multihost/php/subscribe.php" method="post">
+                            <input type="email" required="" placeholder="Your Email ID" name="mc_email">
+                            <input type="submit" value="Submit" class="dt-sc-button" name="btnsubscribe">
+                        </form>
+                        <div id="ajax_subscribe_msg"></div>*@
+                        <form name="frmnewsletter" action="/Contact/NewsLetter" method="post">
+                            <div class="input-group">
+                                <input type="email" required class="form-control" name="email" placeholder="Your Email ID">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </span>
+                            </div>
+                        </form>
+
+
+                    </aside>
+
+                    <div class="widget textwidget">
+                        <ul class="dt-sc-social-icons">
+                            @*<li class="facebook"><a class="fa fa-facebook" href="#" target="_blank"></a></li>
+                             <li class="google"><a class="fa fa-google-plus" href="#"></a></li>*@
+                            @*<li class="dribbble"><a class="fa fa-dribbble" href="#"></a></li>*@
+
+                            @*<li class="twitter"><a class="fa fa-twitter" href="https://twitter.com/ac3ptyltd" target="_blank"></a></li>*@
+                            <li class="linkedin"><a class="fa fa-linkedin" href="https://www.linkedin.com/company/techflow-services-pty-limited?trk=biz-companies-cym" target="_blank"></a></li>
+                            <li class="facebook"><a class="fa fa-facebook" href="https://www.facebook.com/techflowservices/?ref=aymt_homepage_panel" target="_blank"></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="copyright">
+                <div class="container">
+                    <p>Copyright &copy; @System.DateTime.Now.Year <a href="#">Techflow Services Pty Limited</a>. All rights reserved. Powered by  <a href="http://newtechinfosoft.com/" target="_blank">Newtech Infosoft Pvt. Ltd.</a></p>
+                </div>
+            </div>
+        </footer>
+        <!-- **Footer Ends** -->
+
+    </div>
+    <!-- **Wrapper Ends** -->
+
+
+    <!-- **jQuery** -->
+    <!--For Tables Paging,Searching,Sorting-->
+    <link rel="stylesheet" href="/Content/dataTables/dataTables.bootstrap.css" />
+    @*<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+    <link href="/Content/dataTables/CSS/jquery.dataTables.min.css" rel="stylesheet" />
+    @*<link href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css" rel="stylesheet" />*@
+    <link href="/Content/dataTables/CSS/buttons.dataTables.min.css" rel="stylesheet" />
+    @*    <script src="//code.jquery.com/jquery-1.12.3.min.js"></script>*@
+    @*<script src="/Content/dataTables/jquery-1.12.3.min.js"></script>*@
+    @*<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>*@
+    <script src="/Content/dataTables/jquery.dataTables.min.js"></script>
+
+    @*<script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>*@
+    <script src="/Content/dataTables/Export/dataTables.buttons.min.js"></script>
+    <script src="/Content/dataTables/Export/buttons.flash.min.js"></script>
+    <script src="/Content/dataTables/Export/jszip.min.js"></script>
+    <script src="/Content/dataTables/Export/pdfmake.min.js"></script>
+    <script src="/Content/dataTables/Export/vfs_fonts.js"></script>
+    <script src="/Content/dataTables/Export/buttons.html5.min.js"></script>
+    <script src="/Content/dataTables/Export/buttons.print.min.js"></script>
+    <script src="/Content/dataTables/buttons.colVis.min.js"></script>
+
+    @*<script src="//cdn.datatables.net/buttons/1.2.1/js/buttons.flash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>*@
+    <!--end-->
+
+    <!--end-->
+    <script>
+        $(document).ready(function () {
+            debugger;
+            var table = $('#tbl').DataTable();
+
+        });
+
+    </script>
+
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">*@
+    <link href="/Content/DatePicker/jquery-ui.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="/resources/demos/style.css">*@
+    @*  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
+    @*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    <script src="/Content/DatePicker/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        $(function () { // will trigger when the document is ready
+            $('.datepicker').datepicker({ dateFormat: "dd/mm/yy", changeYear: "true", yearRange: "1930:2050" }); //Initialise any date pickers            
+        });
+
+    </script>
+    <link href="/Content/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="/Content/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker').datetimepicker({ format: "dd/mm/yyyy hh:ii" });
+        });
+    </script>
+    <script type="text/javascript" src="/Content/js/jquery.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery-migrate-1.2.1.min.js"></script>
+
+    <script type="text/javascript" src="/Content/js/pace.min.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.dlmenu.js"></script>
+    <script type="text/javascript" src="/Content/js/inview.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.tabs.min.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.tipTip.minified.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.donutchart.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.ui.totop.min.js"></script>
+    <script type="text/javascript" src="/Content/js/twitter/jquery.tweet.min.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery-easing-1.3.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.prettyPhoto.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery.carouFredSel-6.2.0-packed.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.bxslider.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery.animateNumber.min.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.parallax-1.1.3.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery.validate.min.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery.cookie.js"></script>
+    @*<script type="text/javascript" src="/Content/js/controlpanel.js"></script>           *@
+
+    <script type="text/javascript" src="/Content/js/custom.js"></script>
+
+    <script type="text/javascript" src="/Content/js/revslider/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="/Content/js/revslider/jquery.themepunch.revolution.min.js"></script>
+    <link href="/Content/bootstrap/datepicker/datepicker3.css" rel="stylesheet" />
+    <script src="/Content/bootstrap/datepicker/bootstrap-datepicker.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            debugger;
+            $("#dvGrid").show();
+            $("#dvAdd").hide();
+            $("#btnAdd").click(function () {
+                debugger;
+                $("#dvGrid").hide(1000);
+                $("#dvAdd").show().addClass("animated zoomIn", 1000);
+
+            });
+            $("#btnBack").click(function () {
+                $("#dvGrid").show().addClass("animated zoomIn", 1000);
+                $("#dvAdd").hide(1000);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            debugger;
+            var session = '@Request.RequestContext.HttpContext.Session["Role"]';
+            var edit = $(".fa-pencil-square");
+            var del = $(".fa-trash");
+            var compAdm = $(".ca");
+            if (session == 1) {
+                edit.show();
+                del.show();
+
+            }
+            else if (session == 2) {
+                edit.hide();
+                del.hide();
+                compAdm.show();
+            }
+            else {
+                edit.hide();
+                del.hide();
+                compAdm.hide();
+            }
+            //$(this).parent().find(".fa-pencil-square").hide();
+            //$(".fa-pencil-square").click(function () {
+
+            //    return false;
+            //});
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        /******************************************
+            -	PREPARE PLACEHOLDER FOR SLIDER	-
+        ******************************************/
+
+
+        var setREVStartSize = function () {
+            var tpopt = new Object();
+            tpopt.startwidth = 1170;
+            tpopt.startheight = 900;
+            tpopt.container = jQuery('#rev_slider_24_1');
+            tpopt.fullScreen = "on";
+            tpopt.forceFullWidth = "off";
+
+            tpopt.container.closest(".rev_slider_wrapper").css({ height: tpopt.container.height() }); tpopt.width = parseInt(tpopt.container.width(), 0); tpopt.height = parseInt(tpopt.container.height(), 0); tpopt.bw = tpopt.width / tpopt.startwidth; tpopt.bh = tpopt.height / tpopt.startheight; if (tpopt.bh > tpopt.bw) tpopt.bh = tpopt.bw; if (tpopt.bh < tpopt.bw) tpopt.bw = tpopt.bh; if (tpopt.bw < tpopt.bh) tpopt.bh = tpopt.bw; if (tpopt.bh > 1) { tpopt.bw = 1; tpopt.bh = 1 } if (tpopt.bw > 1) { tpopt.bw = 1; tpopt.bh = 1 } tpopt.height = Math.round(tpopt.startheight * (tpopt.width / tpopt.startwidth)); if (tpopt.height > tpopt.startheight && tpopt.autoHeight != "on") tpopt.height = tpopt.startheight; if (tpopt.fullScreen == "on") { tpopt.height = tpopt.bw * tpopt.startheight; var cow = tpopt.container.parent().width(); var coh = jQuery(window).height(); if (tpopt.fullScreenOffsetContainer != undefined) { try { var offcontainers = tpopt.fullScreenOffsetContainer.split(","); jQuery.each(offcontainers, function (e, t) { coh = coh - jQuery(t).outerHeight(true); if (coh < tpopt.minFullScreenHeight) coh = tpopt.minFullScreenHeight }) } catch (e) { } } tpopt.container.parent().height(coh); tpopt.container.height(coh); tpopt.container.closest(".rev_slider_wrapper").height(coh); tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(coh); tpopt.container.css({ height: "100%" }); tpopt.height = coh; } else { tpopt.container.height(tpopt.height); tpopt.container.closest(".rev_slider_wrapper").height(tpopt.height); tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(tpopt.height); }
+        };
+
+        /* CALL PLACEHOLDER */
+        setREVStartSize();
+
+
+        var tpj = jQuery;
+        tpj.noConflict();
+        var revapi24;
+
+        tpj(document).ready(function () {
+
+            if (tpj('#rev_slider_24_1').revolution == undefined)
+                revslider_showDoubleJqueryError('#rev_slider_24_1');
+            else
+                revapi24 = tpj('#rev_slider_24_1').show().revolution(
+                 {
+                     dottedOverlay: "none",
+                     delay: 9000,
+                     startwidth: 1170,
+                     startheight: 900,
+                     hideThumbs: 200,
+
+                     thumbWidth: 100,
+                     thumbHeight: 50,
+                     thumbAmount: 3,
+
+                     navigationType: "none",
+                     navigationArrows: "solo",
+                     navigationStyle: "round",
+
+                     touchenabled: "on",
+                     onHoverStop: "off",
+
+                     swipe_velocity: 0.7,
+                     swipe_min_touches: 1,
+                     swipe_max_touches: 1,
+                     drag_block_vertical: false,
+
+                     keyboardNavigation: "off",
+
+                     navigationHAlign: "center",
+                     navigationVAlign: "bottom",
+                     navigationHOffset: 0,
+                     navigationVOffset: 20,
+
+                     soloArrowLeftHalign: "left",
+                     soloArrowLeftValign: "center",
+                     soloArrowLeftHOffset: 20,
+                     soloArrowLeftVOffset: 0,
+
+                     soloArrowRightHalign: "right",
+                     soloArrowRightValign: "center",
+                     soloArrowRightHOffset: 20,
+                     soloArrowRightVOffset: 0,
+
+                     shadow: 0,
+                     fullWidth: "off",
+                     fullScreen: "on",
+
+                     spinner: "spinner0",
+
+                     stopLoop: "off",
+                     stopAfterLoops: -1,
+                     stopAtSlide: -1,
+                     shuffle: "off",
+
+                     forceFullWidth: "off",
+                     fullScreenAlignForce: "off",
+                     minFullScreenHeight: "",
+                     hideTimerBar: "on",
+                     hideThumbsOnMobile: "off",
+                     hideNavDelayOnMobile: 1500,
+                     hideBulletsOnMobile: "off",
+                     hideArrowsOnMobile: "off",
+                     hideThumbsUnderResolution: 0,
+
+                     fullScreenOffsetContainer: "",
+                     fullScreenOffset: "",
+                     hideSliderAtLimit: 0,
+                     hideCaptionAtLimit: 0,
+                     hideAllCaptionAtLilmit: 0,
+                     startWithSlide: 0
+                 });
+
+        });	/*ready*/
+
+    </script>
+
+    <script type="text/javascript">
+
+        jQuery(window).load(function () {
+
+            //PAGE SLIDER...
+            if (jQuery('.right-slide').length) {
+                jQuery('.right-slide').each(function () {
+                    var $this = jQuery(this).find('.page-slider');
+                    $this.carouFredSel({
+                        responsive: true,
+                        auto: false,
+                        width: '100%',
+                        height: 'auto',
+                        scroll: {
+                            fx: "uncover-fade",
+                            duration: 800
+                        },
+                        items: { width: $this.find("li").width(), visible: { min: 1, max: 1 } },
+                        pagination: {
+                            container: ".right-slide-nav-links",
+                            anchorBuilder: false
+                        }
+                    });
+                });
+            }
+
+        });
+
+	</script>
+       <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+
+
+    <script>
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#dvView :input').attr('disabled', true);
+
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".breadcrumb").hide();
+            $(function () {
+                debugger;
+                var url = window.location.pathname;
+                if (url == "/Dashboard/Index" || url == "/") {
+                    $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                    $("#aDB").parent("li").addClass("current_page_item");
+                }
+                else {
+                    var page = sessionStorage.getItem("page");
+                    if (page == "aDB") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aDB").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else if (page == "aREQ") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aREQ").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else if (page == "aMU") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aMU").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else if (page == "aTK") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aTK").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else if (page == "aINV") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aINV").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else if (page == "aCON") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aCON").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else if (page == "aREP") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aREP").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else { sessionStorage.removeItem("page"); }
+                }
+
+
+
+                $("#aDB").click(function () {
+                    sessionStorage.setItem("page", "aDB");
+                });
+                $("#aREQ>ul>li>a").click(function () {
+                    sessionStorage.setItem("page", "aREQ");
+                });
+                $("#aMU>ul>li>a").click(function () {
+                    sessionStorage.setItem("page", "aMU");
+                });
+                $("#aTK").click(function () {
+                    sessionStorage.setItem("page", "aTK");
+                });
+                $("#aINV").click(function () {
+                    sessionStorage.setItem("page", "aINV");
+                });
+                $("#aCON>ul>li>a").click(function () {
+                    sessionStorage.setItem("page", "aCON");
+                });
+                $("#aREP>ul>li>a").click(function () {
+                    sessionStorage.setItem("page", "aREP");
+                });
+            });
+        });
+    </script>
+
+    @{
+        var message = TempData["AMsg"] ?? string.Empty;
+    }
+    <script type="text/javascript">
+        var message = '@message';
+        if (message)
+            alert(message);
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ModalCP" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Change Password</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <form method="post" action="/Dashboard/ChangePwd">
+                            @Html.Label("* Old Password", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <input type="password" name="txtOpwd" class="form-control" required />
+                            </div>
+                            @Html.Label("* Email", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <input type="email" name="txtEmail" class="form-control" required />
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("* New Password", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <input type="password" name="txtNpwd" class="form-control" required />
+                            </div>
+                            @Html.Label("* Confirm New Password", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <input type="password" name="txtNCpwd" class="form-control" required />
+                            </div>
+                            <input type="submit" value="Change Password?" class="btn btn-primary" />
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border: none;">
+
+                    @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript"> _linkedin_data_partner_id = "38803";</script><script type="text/javascript">        (function () { var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript"; b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s); })(); </script>
+</body>
+</html>

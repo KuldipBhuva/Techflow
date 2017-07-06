@@ -1,0 +1,508 @@
+﻿@{
+    ViewBag.Title = "About";
+    }
+
+
+<!-- **Breadcrumb Section** -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <h1>About</h1>
+    @*    <div class="breadcrumb">
+            <a href="/Home/Index" title="">Home</a> / <span>About</span>
+        </div>*@
+    </div>
+</div>
+<!-- **Breadcrumb Section Ends** -->
+
+<!-- **Content Main** -->
+<section class="content-main">
+    <!-- **Container** -->
+    <div class="container">
+        <!-- **Primary** -->
+        <div class="content-full-width" id="primary">
+
+            <div class="column dt-sc-one-fourth first">
+                <!-- **Side Navigation** -->
+                <div class="side-nav-container">
+                    <ul>
+                        <li><a id="aAU" href="#" title=""><i class="fa fa-info-circle"></i>About Us </a></li>
+                        @*<li><a id="aPP" href="#" title=""><i class="fa fa-users"></i>Partner Program </a></li>*@
+                        <li><a id="aL" href="/About/Index?about=L" title=""><i class="fa fa-map-marker"><span></span></i>Locations </a></li>
+                        <li><a id="aN" href="#" title=""><i class="fa fa-newspaper-o"><span></span></i>News </a></li>
+                        <li><a id="aC" href="#" title=""><i class="fa fa-life-saver"><span></span></i>Careers </a></li>
+                        <li class="last"><a id="aP" href="#" title=""><i class="fa fa-user"></i>Partners </a></li>
+                        @* <li> <a href="feature-layouts.html" title=""> <i class="fa fa-flask"> </i> Boxed and Wide Versions </a> </li>
+                                    <li> <a href="feature-homepage.html" title=""> <i class="fa fa-home"> </i> 4 Home Page Options </a> </li>
+                                    <li> <a href="feature-fontawesome.html" title=""> <i class="fa fa-trophy"> </i> Font Awesome Icons </a> </li>
+                                    <li> <a href="feature-contact.html" title=""> <i class="fa fa-envelope"> </i> 2 Contact Page Layouts </a> </li>
+                                    <li> <a href="feature-blog.html" title=""> <i class="fa fa-pencil"> </i> Blog Page Options </a> </li>
+                                    <li> <a href="feature-shortcodes.html" title=""> <i class="fa fa-cogs"> </i> Tons of HTML Elements </a> </li>
+                                    <li> <a href="feature-gallery.html" title=""> <i class="fa fa-picture-o"> </i> Different Portfolio Columns </a> </li>
+                                    <li class="last"> <a href="feature-fonts.html" title=""> <i class="fa fa-wrench"> </i> Google Web Fonts </a> </li>*@
+                    </ul>
+                </div>
+                <!-- **Side Navigation Ends** -->
+            </div>
+
+            <div class="column dt-sc-two-third" id="dvAU">
+                <div class="side-nav-content">
+                    <h2>About Us</h2>
+                    @*<div class="dt-sc-hr-invisible"></div>*@
+                    <div style="text-align: justify;">
+                        @*<img src="/Content/images/features-host1.png" alt="feature-image"> *@
+                        <p>TechFlow is a leading carrier and cloud neutral data centre services provider in Australia. We operate in highly secure and reliable data centre environments across the country with a core presence in key capital cities including Sydney, Melbourne and Brisbane. With over 10 years experience offering data centre services to customers from all market segments while working with some of the largest and well known data centre partners in the country, we understand what you need and have solutions to meet every customer’s evolving IT requirement smoothly, efficiently and cost effectively.</p>
+                        <p>The facilities in which we operate are the best built and most connected in the country. We only partner with providers who can prove a track record for operational excellence and consistent commitment to uptime. Our cloud-ready environments offer highly reliable, scalable, secure and high-density solutions to match business’s ever-evolving technological demands.</p>
+                    </div>
+                </div>
+            </div>
+
+       @*     <div class="column dt-sc-two-third" id="dvPP">
+                <div class="side-nav-content">
+                    <h2>Partner Program</h2>
+                    
+                    <div style="text-align: justify;">
+
+                        <p>TECHFLOW'S NETWORK SERVICES PROVIDE YOU WITH UNPARALLELED CONNECTIVITY TO SUPPORT YOUR COMMUNICATIONS, DATA, APPLICATIONS AND MONITORING IN ORDER TO OPTIMISE YOUR BUSINESS RESULTS.</p>
+                        <p>From accelerating the performance of your applications and reducing communication costs to leasing high-quality global connectivity and Ethernet services, choose from a range of network solutions to support your business.</p>
+                        <p>Techflow Regional Manager, Wholesale and Carriers, Ankur Puri explains why it's important to have the right Network Service partner to assist with business growth.</p>
+                        <a class="dt-sc-button" href="/About/PartnerProgram" title="Partner Program">Read More...</a>
+                    </div>
+                </div>
+            </div>*@
+
+            <div class="column dt-sc-two-third" id="dvL">
+                <div class="side-nav-content">
+                    <h2>Locations</h2>
+                    @*<div class="dt-sc-hr-invisible"></div>*@
+                    <div style="text-align: justify;">
+
+                        <p>
+                           TechFlow is a leading carrier and cloud neutral data Centre services provider in Australia. We operate in highly secure and reliable data Centre facilities in Sydney, Melbourne and Brisbane. 
+                        </p>
+                        <p>Below map has information of all our partner facilities in Australia.</p>
+                     
+
+                                   <div id="map"></div>
+@*    <script>
+        function initMap() {
+            var uluru = { lat: -25.363, lng: 131.044 };
+            
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+                title:'Australia'
+            });            
+        }
+    </script>
+                         <script>
+
+                             // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+                             // Australia.
+                             function initMap() {
+                                 var map = new google.maps.Map(document.getElementById('map'), {
+                                     zoom: 4,
+                                     center: { lat: -33, lng: 151 }
+                                 });
+
+                                 var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+                                 var beachMarker = new google.maps.Marker({
+                                     position: { lat: -33.890, lng: 151.274 },
+                                     map: map,
+                                     icon: image
+                                 });
+                             }
+    </script>*@
+
+                            <script>
+
+                                // The following example creates complex markers to indicate beaches near
+                                // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+                                // to the base of the flagpole.
+
+                                function initMap() {
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                        zoom: 4,
+                                        center: { lat: -31.4, lng: 151.4 }
+                                    });
+                              
+                                    setMarkers(map);
+                                }
+
+                                // Data for the markers consisting of a name, a LatLng and a zIndex for the
+                                // order in which these markers should display on top of each other.
+                                var beaches = [
+                                  ['Sydney Global Switch', -33.875520, 151.197762, 4],
+                                  ['Sydney NextDC S1', -33.784861, 151.131416, 5],
+                                  ['Brisbane NextDC B1', -27.465524, 153.029671, 3],
+                                  ['Melbourne NextDC M1', -37.822155, 144.932233, 2]
+                                  //['Maroubra Beach', -33.950198, 151.259302, 1]
+                                ];
+
+                                function setMarkers(map) {
+                                    // Adds markers to the map.
+
+                                    // Marker sizes are expressed as a Size of X,Y where the origin of the image
+                                    // (0,0) is located in the top left of the image.
+
+                                    // Origins, anchor positions and coordinates of the marker increase in the X
+                                    // direction to the right and in the Y direction down.
+                                    var image = {
+                                        url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                                        // This marker is 20 pixels wide by 32 pixels high.
+                                        size: new google.maps.Size(20, 32),
+                                        // The origin for this image is (0, 0).
+                                        origin: new google.maps.Point(0, 0),
+                                        // The anchor for this image is the base of the flagpole at (0, 32).
+                                        anchor: new google.maps.Point(0, 32)
+                                    };
+                                    // Shapes define the clickable region of the icon. The type defines an HTML
+                                    // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+                                    // The final coordinate closes the poly by connecting to the first coordinate.
+                                    var shape = {
+                                        coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                                        type: 'poly'
+                                    };
+                                    for (var i = 0; i < beaches.length; i++) {
+                                        var beach = beaches[i];
+                                        var marker = new google.maps.Marker({
+                                            position: { lat: beach[1], lng: beach[2] },
+                                            map: map,
+                                            icon: image,
+                                            shape: shape,
+                                            title: beach[0],
+                                            zIndex: beach[3]
+                                            
+                                        });
+                                   
+                                    }
+
+                                }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6Wed3b50sIBbmDit4FpY1KdGMwfgdfjA&callback=initMap">
+    </script>
+
+                     @*    <div class="dt-sc-hr-invisible"></div>
+                        <div class="dt-sc-clear"></div>*@
+                        
+                        <div class="column dt-sc-two-third first">
+
+                            <div class="dt-sc-toggle-set">
+                               @* <div class="dt-sc-toggle">
+                                    <h5 class="dt-sc-toggle-accordion active"><a href="#" title="">COLOCATION</a></h5>
+                                    <div class="dt-sc-toggle-content">
+                                        <div class="dt-sc-block">
+                                            <p>Colocate your data centre at NTT ICT’s world-class facilities, offering security, performance, quality and flexibility.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dt-sc-toggle">
+                                    <h5 class="dt-sc-toggle-accordion"><a href="#" title="">DATA CENTRE MIGRATION</a></h5>
+                                    <div class="dt-sc-toggle-content">
+                                        <div class="dt-sc-block">
+                                            <p>Migrate your data to an NTT location, easily, seamlessly and effectively.</p>
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                                @*        <div class="dt-sc-toggle">
+                                            <h5 class="dt-sc-toggle-accordion"><a href="#" title="">What can I use to build my website?</a></h5>	
+                                            <div class="dt-sc-toggle-content">
+                                                <div class="dt-sc-block">
+                                                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                                    <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis. Nunc at pretium est curabitur commodo leac est venenatis egestas sed aliquet auguevelit sem nibh id elit. </p>                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="dt-sc-toggle">
+                                            <h5 class="dt-sc-toggle-accordion"><a href="#" title="">How do I transfer my Web pages to your server?</a></h5>	
+                                            <div class="dt-sc-toggle-content">
+                                                <div class="dt-sc-block">
+                                                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                                    <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis. Nunc at pretium est curabitur commodo leac est venenatis egestas sed aliquet auguevelit sem nibh id elit. </p>                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="dt-sc-toggle last">
+                                            <h5 class="dt-sc-toggle-accordion"><a href="#" title="">How do I make a Backup of all my data</a></h5>	
+                                            <div class="dt-sc-toggle-content">
+                                                <div class="dt-sc-block">
+                                                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                                    <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis. Nunc at pretium est curabitur commodo leac est venenatis egestas sed aliquet auguevelit sem nibh id elit. </p>                                                </div>
+                                            </div>
+                                        </div> *@
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column dt-sc-two-third" id="dvN">
+                <div class="side-nav-content">
+                    <h2>News</h2>
+                    @*<div class="dt-sc-hr-invisible"></div>*@
+                    <div style="text-align: justify;">
+                        @*<img src="/Content/images/features-host1.png" alt="feature-image">*@
+                         <div style="height:100px;"><span class="aligncenter" style="padding-top:20px;"><h3><i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+<span class="sr-only"><b>Coming soon...</b></span></h3></span></div>
+                            <a href="#">
+                            <div class="column dt-sc-one-colunm first" style="padding-right: 10px; padding-bottom: 10px;">
+                                <div class="ico-content-wrapper type2">
+                                    <div class="ico-content">
+                                        <span class="fa fa-newspaper-o"></span>
+                                        <h3>Click Here for More News</h3>
+                                      @*  <ol class="dt-sc-fancy-list lower-roman">
+                                            <li class="">Global Switch</li>
+                                            <li class="">NexIDC S1</li>
+                                        </ol>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="column dt-sc-two-third" id="dvC">
+                <div class="side-nav-content">
+                    <h2>Careers</h2>
+                    @*<div class="dt-sc-hr-invisible"></div>*@
+                    <div style="text-align: justify;">
+                        @*<img src="/Content/images/features-host1.png" alt="feature-image">*@
+                        <p>We are always on the lookout for talented, innovative and passionate people to join our team.</p>
+                        <p>Think you would be a great fit with TechFlow?</p>
+                        <p>There is no open vacancies currently however send us your resume with a cover letter at <a href="mailto:admin@techflow.com.au">admin@techflow.com.au</a> and we will contact you as soon as position becomes available suitable to your needs.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column dt-sc-two-third" id="dvP">
+                <div class="side-nav-content">
+                    <h2>Partners</h2>
+                    @*<div class="dt-sc-hr-invisible"></div>*@
+                    <div style="text-align: justify;">
+                        @*<img src="/Content/images/features-host1.png" alt="feature-image">*@
+                        <p>We have established strategic business partnerships with a number of market leading Data Centre and Service vendors to ensure we support our customers as effectively as possible, while still providing the convenience of dealing with a single, trusted supplier. </p>
+                        <h2>Our business partners include </h2>
+                        <span style="float:left;width: 30%;">
+                        <img src="~/Content/images/post-images/client1.jpg"/>
+                            </span>
+                          <span style="float:right;width: 70%;height:135px;margin-top:16px;">
+                            <p>Global Switch is a market leading, international data centre provider with an internationally renowned customer base from government organisations, financial institutions and telecommunication carriers.</p>
+                              <hr />
+                       </span>
+                        
+                         <span style="float: left;width: 25%;margin-top: 27px;">
+                        <img src="~/Content/images/post-images/client3.png"/>
+                            </span>
+                          <span style="float:right;width: 70%;">
+                        <p>NEXTDC is an ASX200-listed technology company enabling business transformation through innovative data centre outsourcing solutions, connectivity services and infrastructure management software.</p>
+                        <hr />
+                        </span>
+                        <span style="float:left;width: 24%;margin-top: 40px;">
+                        <img src="~/Content/images/post-images/client2.png"/>
+                            </span>
+                          <span style="float:right;width: 70%;">
+                        <p>AC3 – With over 15 years of success behind them, AC3 is trusted technology partner and provider of innovative IT solutions. </p>
+                              <hr />
+                        </span>
+                          <span style="float:left;width: 24%;margin-top: 70px;">
+                        <img src="~/Content/images/post-images/client4.png"/>
+                            </span>
+                          <span style="float:right;width: 70%;">
+                        <p>Pitek is an Australian owned and operated company focused on delivering premium data centre infrastructure products including cabinets, intelligent power rails, electrical busway distribution systems, communications cabling, power and environmental monitoring and asset management solutions.
+                              <hr />
+                        </p>
+                        </span>
+                         
+                          <span style="float:left;width: 24%;margin-top: 70px;">
+                              <img src="~/Content/images/post-images/Equinixogo.png" />
+                            </span>
+                          <span style="float:right;width: 70%;">
+                        <p>
+                            Equinix is the interconnection leader, strategically positioned as world's most connected data centre provider bringing together market leaders and innovators on a single, global interconnection platform, accelerating business performance and fostering endless opportunities.
+                          <hr />
+                        </p>
+                        </span>
+
+                            <span style="float:left;width: 24%;margin-top: 70px;">
+                                <img src="~/Content/images/post-images/FourierLogo.png" />
+                            </span>
+                          <span style="float:right;width: 70%;">
+                        <p>
+                           Fourier Technologies was founded in 1998 by Adrian Sheedy. The business name is drawn from the theory of Fourier Transforms, which Adrian had studied during his time at the University of Technology in Sydney, where he was completing his degree in Computer Science.
+                          <hr />
+                        </p>
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- **Primary Ends** -->
+
+    </div>
+    <!-- **Container Ends** -->
+</section>
+<!-- **Content Main Ends** -->
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+
+<script>
+
+    function getQueryStrings() {
+        var assoc = {};
+        var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
+        var queryString = location.search.substring(1);
+        var keyValues = queryString.split('&');
+
+        for (var i in keyValues) {
+            var key = keyValues[i].split('=');
+            if (key.length > 1) {
+                assoc[decode(key[0])] = decode(key[1]);
+            }
+        }
+        return assoc;
+    }
+
+    $(document).ready(function () {
+
+        debugger;
+
+        //$("#dvAU").hide();
+        $("#dvPP").hide();
+        $("#dvL").hide();
+        $("#dvN").hide();
+        $("#dvC").hide();
+        $("#dvP").hide();
+
+        var qs = getQueryStrings();
+        var myParam = qs["about"];
+        if (myParam == "AU") {
+            $("#aAU").parent("li").addClass("current_page_item");
+            $("#dvAU").show();
+            $("#dvPP").hide();
+            $("#dvL").hide();
+            $("#dvN").hide();
+            $("#dvC").hide();
+            $("#dvP").hide();
+        }
+        else if (myParam == "PP") {
+            $("#aPP").parent("li").addClass("current_page_item");
+            $("#dvAU").hide();
+            $("#dvPP").show();
+            $("#dvL").hide();
+            $("#dvN").hide();
+            $("#dvC").hide();
+            $("#dvP").hide();
+        }
+        else if (myParam == "L") {
+            $("#aL").parent("li").addClass("current_page_item");
+
+            $("#dvAU").hide();
+            $("#dvPP").hide();
+            $("#dvL").show();
+            $("#dvN").hide();
+            $("#dvC").hide();
+            $("#dvP").hide();
+        }
+        else if(myParam=="N") {
+            $("#aN").parent("li").addClass("current_page_item");
+
+            $("#dvAU").hide();
+            $("#dvPP").hide();
+            $("#dvL").hide();
+            $("#dvN").show();
+            $("#dvC").hide();
+            $("#dvP").hide();
+        }
+        else if (myParam == "C") {
+            $("#aC").parent("li").addClass("current_page_item");
+
+            $("#dvAU").hide();
+            $("#dvPP").hide();
+            $("#dvL").hide();
+            $("#dvN").hide();
+            $("#dvC").show();
+            $("#dvP").hide();
+        }
+        else {
+            $("#aP").parent("li").addClass("current_page_item");
+
+            $("#dvAU").hide();
+            $("#dvPP").hide();
+            $("#dvL").hide();
+            $("#dvN").hide();
+            $("#dvC").hide();
+            $("#dvP").show();
+        }
+
+        $("#aAU").click(function () {
+            $(".side-nav-container>ul>li.current_page_item").removeClass("current_page_item");
+            $(this).parent("li").addClass("current_page_item");
+            $("#dvAU").show(1000);
+            $("#dvPP").hide(1000);
+            $("#dvL").hide(1000);
+            $("#dvN").hide(1000);
+            $("#dvC").hide(1000);
+            $("#dvP").hide(1000);
+        });
+        $("#aPP").click(function () {
+            $(".side-nav-container>ul>li.current_page_item").removeClass("current_page_item");
+            $(this).parent("li").addClass("current_page_item");
+            $("#dvAU").hide(1000);
+            $("#dvPP").show(1000);
+            $("#dvL").hide(1000);
+            $("#dvN").hide(1000);
+            $("#dvC").hide(1000);
+            $("#dvP").hide(1000);
+        });
+        $("#aL").click(function () {
+            $(".side-nav-container>ul>li.current_page_item").removeClass("current_page_item");
+            $(this).parent("li").addClass("current_page_item");
+            $("#dvAU").hide(1000);
+            $("#dvPP").hide(1000);
+            $("#dvL").show(1000);
+            $("#dvN").hide(1000);
+            $("#dvC").hide(1000);
+            $("#dvP").hide(1000);
+        });
+        $("#aN").click(function () {
+            $(".side-nav-container>ul>li.current_page_item").removeClass("current_page_item");
+            $(this).parent("li").addClass("current_page_item");
+            $("#dvAU").hide(1000);
+            $("#dvPP").hide(1000);
+            $("#dvL").hide(1000);
+            $("#dvN").show(1000);
+            $("#dvC").hide(1000);
+            $("#dvP").hide(1000);
+        });
+        $("#aC").click(function () {
+            $(".side-nav-container>ul>li.current_page_item").removeClass("current_page_item");
+            $(this).parent("li").addClass("current_page_item");
+            $("#dvAU").hide(1000);
+            $("#dvPP").hide(1000);
+            $("#dvL").hide(1000);
+            $("#dvN").hide(1000);
+            $("#dvC").show(1000);
+            $("#dvP").hide(1000);
+        });
+        $("#aP").click(function () {
+            $(".side-nav-container>ul>li.current_page_item").removeClass("current_page_item");
+            $(this).parent("li").addClass("current_page_item");
+            $("#dvAU").hide(1000);
+            $("#dvPP").hide(1000);
+            $("#dvL").hide(1000);
+            $("#dvN").hide(1000);
+            $("#dvC").hide(1000);
+            $("#dvP").show(1000);
+        });
+
+    });
+</script>

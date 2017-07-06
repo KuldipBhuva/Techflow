@@ -1,0 +1,347 @@
+﻿body
+{
+}
+
+.widget
+{
+    margin-bottom: 20px;
+    border: 0;
+}
+
+    .widget.panel, .widget .panel
+    {
+        overflow: hidden;
+    }
+
+    .widget .lateral-picture
+    {
+        position: relative;
+        display: block;
+        height: 240px;
+        width: auto;
+        overflow: hidden;
+    }
+
+        .widget .lateral-picture > img
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            max-height: 100%;
+            width: auto;
+        }
+
+.bg-primary
+{
+    background-color: #5d9cec;
+    color: #fff!important;
+}
+.bg-primary-light
+{
+    background-color: #8bb8f1;
+    color: #fff!important;
+}
+
+.bg-primary-dark
+{
+    background-color: #2f80e7;
+    color: #fff!important;
+}
+
+.bg-primary small
+{
+    color: inherit;
+}
+
+.bg-success
+{
+    background-color: #27c24c;
+    color: #fff!important;
+}
+
+.bg-success-light
+{
+    background-color: #43d967;
+    color: #fff!important;
+}
+
+.bg-success-dark
+{
+    background-color: #1e983b;
+    color: #fff!important;
+}
+
+.bg-success small
+{
+    color: inherit;
+}
+
+.bg-info
+{
+    background-color: #23b7e5;
+    color: #fff!important;
+}
+
+.bg-info-light
+{
+    background-color: #51c6ea;
+    color: #fff!important;
+}
+
+.bg-info-dark
+{
+    background-color: #1797be;
+    color: #fff!important;
+}
+
+.bg-info small
+{
+    color: inherit;
+}
+
+.bg-warning
+{
+    background-color: #ff902b;
+    color: #fff!important;
+}
+
+.bg-warning-light
+{
+    background-color: #ffab5e;
+    color: #fff!important;
+}
+
+.bg-warning-dark
+{
+    background-color: #f77600;
+    color: #fff!important;
+}
+
+.bg-warning small
+{
+    color: inherit;
+}
+
+.bg-danger
+{
+    background-color: #f05050;
+    color: #fff!important;
+}
+
+.bg-danger-light
+{
+    background-color: #f47f7f;
+    color: #fff!important;
+}
+
+.bg-danger-dark
+{
+    background-color: #ec2121;
+    color: #fff!important;
+}
+
+.bg-danger small
+{
+    color: inherit;
+}
+
+.bg-green
+{
+    background-color: #37bc9b;
+    color: #fff!important;
+}
+
+.bg-green-light
+{
+    background-color: #58ceb1;
+    color: #fff!important;
+}
+
+.bg-green-dark
+{
+    background-color: #2b957a;
+    color: #fff!important;
+}
+
+.bg-green small
+{
+    color: inherit;
+}
+
+.bg-pink
+{
+    background-color: #f532e5;
+    color: #fff!important;
+}
+
+.bg-pink-light
+{
+    background-color: #f763eb;
+    color: #fff!important;
+}
+
+.bg-pink-dark
+{
+    background-color: #e90bd6;
+    color: #fff!important;
+}
+
+.bg-pink small
+{
+    color: inherit;
+}
+
+.bg-purple
+{
+    background-color: #7266ba;
+    color: #fff!important;
+}
+
+.bg-purple-light
+{
+    background-color: #9289ca;
+    color: #fff!important;
+}
+
+.bg-purple-dark
+{
+    background-color: #564aa3;
+    color: #fff!important;
+}
+
+.bg-purple small
+{
+    color: inherit;
+}
+
+.bg-inverse
+{
+    background-color: #0e3856;
+    color: #fff!important;
+}
+
+.bg-inverse-light
+{
+    background-color: #243948;
+    color: #fff!important;
+}
+
+.bg-inverse-dark
+{
+    background-color: #41bd73;
+    color: #fff!important;
+}
+
+.bg-inverse small
+{
+    color: inherit;
+}
+
+.bg-yellow
+{
+    background-color: #fad732;
+    color: #fff!important;
+}
+
+.bg-yellow-light
+{
+    background-color: #fbe164;
+    color: #fff!important;
+}
+
+.bg-yellow-dark
+{
+    background-color: #f3ca06;
+    color: #fff!important;
+}
+
+.bg-yellow small
+{
+    color: inherit;
+}
+
+.bg-white
+{
+    background-color: #fff;
+    color: inherit!important;
+}
+
+.bg-gray-darker
+{
+    background-color: #232735;
+    color: #fff!important;
+}
+
+.bg-gray-dark
+{
+    background-color: #3a3f51;
+    color: #fff!important;
+}
+
+.bg-gray
+{
+    background-color: #dde6e9;
+    color: #515253!important;
+}
+
+.bg-gray-light
+{
+    background-color: #e4eaec;
+    color: #515253!important;
+}
+
+.bg-gray-lighter
+{
+    background-color: #edf1f2;
+    color: #515253!important;
+}
+
+.bg-transparent
+{
+    background-color: transparent!important;
+}
+
+.bg-cover
+{
+    background-size: cover;
+}
+
+
+
+.pv-lg
+{
+    padding-top: 15px!important;
+    padding-bottom: 15px!important;
+}
+
+.row-table
+{
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+    .row-table > [class*=col-]
+    {
+        display: table-cell;
+        float: none;
+        table-layout: fixed;
+        vertical-align: middle;
+    }
+
+    .panel .dataTables_wrapper
+{
+    overflow: auto;
+}
+
+    .panel .dataTables_wrapper .row
+    {
+        margin: 10px 0;
+    }
+
+.panel .dataTable
+{
+    width: 100%!important;
+}

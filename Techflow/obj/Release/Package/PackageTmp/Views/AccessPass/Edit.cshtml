@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Access Pass Log";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@model AccessPassModel
+@using (@Html.BeginForm("Edit", "AccessPass", FormMethod.Post, new { @id = "frmAP", enctype = "multipart/form-data" }))
+{    
+    @Html.HiddenFor(m=>m.APID)
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Access Pass Log</h1>
+            @*<div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Access Pass Log</span>
+            </div>*@
+        </div>
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">
+
+
+            <div class="panel panel-info" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    Access Pass Log Details
+                  
+                </div>
+                <div class="panel-body">
+
+                      @Html.Label("* Company", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.CompID, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.CompID)
+                            </div>
+                    <div class="col-sm-12" style="height: 5px;"></div>
+                    @Html.Label("* First Name", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.FirstName)
+
+                            </div>
+                    @Html.Label("Last Name", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control"})
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                           @Html.Label("* Access Pass ID", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.AccessPassID, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.AccessPassID)
+
+                            </div>
+                           @Html.Label("Door ID", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.DoorID, new { @class = "form-control"})
+                                @Html.ValidationMessageFor(m => m.DoorID)
+
+                            </div>
+                    <div class="col-sm-12" style="height: 5px;"></div>
+                    @Html.Label("Swipe Date", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.SwipeDate,"{0:dd/MM/yyyy}", new { @class = "form-control datepicker"})
+                                @Html.ValidationMessageFor(m => m.SwipeDate)
+
+                            </div>
+                     @Html.Label("Swipe Time", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.SwipeTime,@Convert.ToDateTime(Model.SwipeTime).ToString("HH:mm"),new { @class = "form-control timepicker"})                        
+                                @Html.ValidationMessageFor(m => m.SwipeTime)
+
+                            </div>
+                    <div class="col-sm-12" style="height: 5px;"></div>
+                    <div class="col-sm-3">
+                        <input type="Submit" value="Update" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </section>
+}
+
+@*<link href="/Content/TimePicker/CSS/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+<link href="/Content/Site.css" rel="stylesheet" />
+<script src="/Content/TimePicker/JS/jquery.datetimepicker.js"></script>
+<script src="/Content/TimePicker/JS/jquery-ui-timepicker-addon.js"></script>
+<script>
+    $(function () { // will trigger when the document is ready
+        $('.timepicker').timepicker(); //Initialise any date pickers
+    });
+</script>*@

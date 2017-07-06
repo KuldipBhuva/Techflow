@@ -1,0 +1,209 @@
+﻿@using Models.ViewModel
+@model AccessPassModel
+@{
+    //ViewBag.Title = "Access Pass Log "+@Model.ListAP[0].SwipeDate.Value.ToString("MMMM yyyy");
+    ViewBag.Title = "Access Pass Log";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- **Breadcrumb Section** -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <h1>Access Pass Log</h1>
+        <div class="breadcrumb">
+            <a href="/Dashboard/Index" title="">Home</a> / <span>Access Pass Log</span>
+        </div>
+    </div>
+</div>
+<!-- **Breadcrumb Section Ends** -->
+
+<!-- **Content Main** -->
+<section class="content-main">
+    <!-- **Container** -->
+    <div class="container">
+
+
+        <div class="panel panel-info" id="dvAdd" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+            <div class="panel-heading" style="position: relative;">
+                Access Pass Log Details
+                  <input type="button" id="btnBack" value="Back" class="btnAdd btn btn-primary" />
+            </div>
+            <div class="panel-body">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Upload Data Sheet</legend>
+                    <div class="alert alert-danger">
+                        <strong>Note : </strong>
+                        <p>1. Excel sheet colunm structure must be as sample sheet.&nbsp;<a target="_blank" href="/DataFiles/AccessPassSampleSheet.xlsx"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Download Sample Sheet</a></p>
+                        <p>2. Upload single sheet excel file. Sheet name must be 'Sheet1', remember this is sheet name not a file name.</p>
+                        <p>3. In Sheet first colunm 'APID' keep blank.</p>
+                    </div>
+                    @using (Html.BeginForm("addFile", "AccessPass", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.Label("Select Excel File", new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            @*<input type="file" id="file" name="files" multiple="multiple" value="" class="btn btn-info" />*@
+                            <input type="file" value="" id="fle" name="file" class="btn btn-info" />
+
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="Submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    }
+                </fieldset>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Delete Data</legend>
+                    <form method="post" action="/AccessPass/DelData">
+                        <lable class="col-sm-2">Company</lable>
+                        <div class="col-sm-4">
+
+                            @Html.DropDownListFor(m => m.CompID, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control", @id = "ddlComp" })
+                        </div>
+                        <div class="col-sm-12" style="height: 5px;"></div>
+                        <lable class="col-sm-2">* Year/Month</lable>
+                        <div class="col-sm-4">
+
+                            @Html.DropDownListFor(m => m.year, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Year--", Value = "" }, new SelectListItem() { Text = "2013", Value = "2013" }, new SelectListItem() { Text = "2014", Value = "2014" }, new SelectListItem() { Text = "2015", Value = "2015" }, new SelectListItem() { Text = "2016", Value = "2016" }, new SelectListItem() { Text = "2017", Value = "2017" }, new SelectListItem() { Text = "2018", Value = "2018" }, new SelectListItem() { Text = "2019", Value = "2019" }, new SelectListItem() { Text = "2020", Value = "2020" } }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.year)
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                @* @{var mm = Model.ListPowerData[0].LastReading.Value.Month;}*@
+                                @Html.DropDownListFor(m => m.month, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Month--", Value = "" }, new SelectListItem() { Text = "January", Value = "1" }, new SelectListItem() { Text = "February", Value = "2" }, new SelectListItem() { Text = "March", Value = "3" }, new SelectListItem() { Text = "April", Value = "4" }, new SelectListItem() { Text = "May", Value = "5" }, new SelectListItem() { Text = "June", Value = "6" }, new SelectListItem() { Text = "July", Value = "7" }, new SelectListItem() { Text = "August", Value = "8" }, new SelectListItem() { Text = "September", Value = "9" }, new SelectListItem() { Text = "October", Value = "10" }, new SelectListItem() { Text = "November", Value = "11" }, new SelectListItem() { Text = "December", Value = "12" } }, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.month)
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" onclick="return confirm('Do you really want to delete?')" id="btnDel" type="submit">Delete!</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+
+                </fieldset>
+            </div>
+        </div>
+        <div class="panel panel-info" id="dvGrid" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+            <div class="panel-heading" style="position: relative;">
+                Access Pass Log List
+                <form method="post" action="/AccessPass/Index">
+                    <div class="col-sm-4" style="display: block; float: right; right: 620px; margin-top: -29px;">
+
+                        @Html.DropDownListFor(m => m.year, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Year--", Value = "" }, new SelectListItem() { Text = "2013", Value = "2013" }, new SelectListItem() { Text = "2014", Value = "2014" }, new SelectListItem() { Text = "2015", Value = "2015" }, new SelectListItem() { Text = "2016", Value = "2016" }, new SelectListItem() { Text = "2017", Value = "2017" }, new SelectListItem() { Text = "2018", Value = "2018" }, new SelectListItem() { Text = "2019", Value = "2019" }, new SelectListItem() { Text = "2020", Value = "2020" } }, new { @class = "form-control" })
+                    </div>
+                    <div class="col-sm-4" style="display: block; float: right; right: -100px; margin-top: -29px;">
+                        <div class="input-group">
+                            @* @{var mm = Model.ListPowerData[0].LastReading.Value.Month;}*@
+                            @Html.DropDownListFor(m => m.month, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Month--", Value = "" }, new SelectListItem() { Text = "January", Value = "1" }, new SelectListItem() { Text = "February", Value = "2" }, new SelectListItem() { Text = "March", Value = "3" }, new SelectListItem() { Text = "April", Value = "4" }, new SelectListItem() { Text = "May", Value = "5" }, new SelectListItem() { Text = "June", Value = "6" }, new SelectListItem() { Text = "July", Value = "7" }, new SelectListItem() { Text = "August", Value = "8" }, new SelectListItem() { Text = "September", Value = "9" }, new SelectListItem() { Text = "October", Value = "10" }, new SelectListItem() { Text = "November", Value = "11" }, new SelectListItem() { Text = "December", Value = "12" } }, new { @class = "form-control" })
+                            <span class="input-group-btn">
+
+                                <button class="btn btn-success" type="submit">Go!</button>
+                            </span>
+                        </div>
+                    </div>
+
+                </form>
+                @{if (Session["Role"] != null)
+                  {
+                      if (Session["Role"].ToString() == "1")
+                      {<input type="button" id="btnAdd" value="Add/Delete Data" class="btnAdd btn btn-primary" />}
+                  }
+                }
+            </div>
+            <div class="panel-body table-responsive">
+                <table class="table" id="tblAP">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Access Pass ID</th>
+                            <th>Swipe Date</th>
+                            <th>Swipe Time</th>
+                            <th>Door ID</th>
+                            @{
+                                if (Session["Role"] != null)
+                                {
+                                    if (Session["Role"].ToString() == "1")
+                                    {
+                                <th class="action">Action</th>                                    }
+                                }   
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var i in Model.ListAP)
+                        {
+                            <tr>
+                                <td>@i.CompDetails.Name</td>
+                                <td>@i.FirstName</td>
+                                <td>@i.LastName</td>
+                                <td>@i.AccessPassID</td>
+                                @if (@i.SwipeDate != null)
+                                {
+                                    <td>@i.SwipeDate.Value.ToString("dd/MM/yyyy")</td>
+                                }
+                                @if (@i.SwipeTime != null)
+                                {
+                                    <td>@i.SwipeTime.Value.ToString("HH:mm")</td>
+                                }
+                                else
+                                {<td></td>}
+                                <td>@i.DoorID</td>
+                                @{
+                                if (Session["Role"] != null)
+                                {
+                                    if (Session["Role"].ToString() == "1")
+                                    {
+                                    <td class="action">@Html.ActionLink(" ", "Edit", new { @id = i.APID }, new { @class = "fa fa-pencil-square fa-lg" })
+                                        @*&nbsp;@Html.ActionLink(" ", "Delete", new { @id = @i.APID }, new { onclick = "return confirm('Do you really want to delete Access Pass ID : " + @i.AccessPassID + "?')", @class = "fa fa-trash fa-lg" })*@
+                                    </td>
+                                    }
+                                }
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        var table = $('#tblAP').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                //'copy', 'csv', 'excel', 'pdf', 'print'
+                'pdf'
+            ]
+            //"bPaginate": true,
+            //"bLengthChange": true,
+            //"bFilter": true,
+            //"bInfo": true,
+            //"bAutoWidth": true
+        });
+
+    });
+
+
+</script>
+<script>
+    $(document).ready(function () {
+        debugger;
+        $('#year option[value="' + @if (Model.ListAP.Count() > 0 && Model.ListAP[0].SwipeDate != null)
+                                   {@Html.Raw(Model.ListAP[0].SwipeDate.Value.Year)} + '"]').prop('selected', true);
+        $('#month option[value="' + @if (Model.ListAP.Count() > 0 && Model.ListAP[0].SwipeDate != null)
+                                    {@Html.Raw(Model.ListAP[0].SwipeDate.Value.Month)} + '"]').prop('selected', true);
+
+
+
+
+    });
+</script>

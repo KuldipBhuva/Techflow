@@ -1,0 +1,1075 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 11.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="11.0">
+ <Namespaces>
+  <Namespace Name="Techflow">
+   <Messages>
+    <Message Id="Techflow" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Techflow' in namespace name 'Techflow'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="Techflow.Controllers">
+   <Messages>
+    <Message Id="Techflow" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Techflow' in namespace name 'Techflow.Controllers'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+ </Namespaces>
+ <Targets>
+  <Target Name="E:\Projects\Other_Projects\Techflow\Techflow\bin\Techflow.dll">
+   <Modules>
+    <Module Name="techflow.dll">
+     <Messages>
+      <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+       <Issue Name="NoStrongName" Certainty="95" Level="CriticalError">Sign 'Techflow.dll' with a strong name key.</Issue>
+      </Message>
+      <Message Id="Techflow" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+       <Issue Name="Assembly" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Techflow' in assembly name 'Techflow.dll'.</Issue>
+      </Message>
+      <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+       <Issue Certainty="95" Level="Error">Mark 'Techflow.dll' with CLSCompliant(true) because it exposes externally visible types.</Issue>
+      </Message>
+     </Messages>
+     <Namespaces>
+      <Namespace Name="Techflow">
+       <Types>
+        <Type Name="BundleConfig" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+           <Issue Name="CSharp2_0" Certainty="90" Level="Error">Because type 'BundleConfig' contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#RegisterBundles(System.Web.Optimization.BundleCollection)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\App_Start" File="BundleConfig.cs" Line="11">In externally visible method 'BundleConfig.RegisterBundles(BundleCollection)', validate parameter 'bundles' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="FilterConfig" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+           <Issue Name="CSharp2_0" Certainty="90" Level="Error">Because type 'FilterConfig' contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#RegisterGlobalFilters(System.Web.Mvc.GlobalFilterCollection)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\App_Start" File="FilterConfig.cs" Line="10">In externally visible method 'FilterConfig.RegisterGlobalFilters(GlobalFilterCollection)', validate parameter 'filters' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="MvcApplication" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in type name 'MvcApplication'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#Application_Start()" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow" File="Global.asax.cs" Line="18">The 'this' parameter (or 'Me' in Visual Basic) of 'MvcApplication.Application_Start()' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="RouteConfig" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+           <Issue Name="CSharp2_0" Certainty="90" Level="Error">Because type 'RouteConfig' contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="WebApiConfig" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Api" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Api' in type name 'WebApiConfig'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#Register(System.Web.Http.HttpConfiguration)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\App_Start" File="WebApiConfig.cs" Line="12">In externally visible method 'WebApiConfig.Register(HttpConfiguration)', validate parameter 'config' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Techflow.Controllers">
+       <Types>
+        <Type Name="AccessPassController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#addFile(System.Web.HttpPostedFileBase[])" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="63">In method 'AccessPassController.addFile(HttpPostedFileBase[])', object 'excelConnection' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'excelConnection' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="66">In method 'AccessPassController.addFile(HttpPostedFileBase[])', call System.IDisposable.Dispose on object 'cmd' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="72">In method 'AccessPassController.addFile(HttpPostedFileBase[])', call System.IDisposable.Dispose on object 'sqlBulk' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message Id="add" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="43">Correct the casing of 'add' in member name 'AccessPassController.addFile(HttpPostedFileBase[])' by changing it to 'Add'.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="50">Because the behavior of 'string.Format(string, object, object)' could vary based on the current user's locale settings, replace this call in 'AccessPassController.addFile(HttpPostedFileBase[])' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IsNullOrEmpty" Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="48">Replace the call to 'string.operator !=(string, string)' in 'AccessPassController.addFile(HttpPostedFileBase[])' with a call to 'String.IsNullOrEmpty'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="44">In externally visible method 'AccessPassController.addFile(HttpPostedFileBase[])', validate parameter 'file' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DelData(Models.ViewModel.AccessPassModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="198">Modify 'AccessPassController.DelData(AccessPassModel)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="178">Because the behavior of 'Convert.ToInt32(object)' could vary based on the current user's locale settings, replace this call in 'AccessPassController.DelData(AccessPassModel)' with a call to 'Convert.ToInt32(object, IFormatProvider)'. If the result of 'Convert.ToInt32(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="173">In externally visible method 'AccessPassController.DelData(AccessPassModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Delete(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="161">Modify 'AccessPassController.Delete(int)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="161">'AccessPassController.Delete(int)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="objModel" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="155">'AccessPassController.Delete(int)' declares a variable, 'objModel', of type 'AccessPassModel', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Edit(Models.ViewModel.AccessPassModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToDateTime(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="145">Because the behavior of 'Convert.ToDateTime(object)' could vary based on the current user's locale settings, replace this call in 'AccessPassController.Edit(AccessPassModel)' with a call to 'Convert.ToDateTime(object, IFormatProvider)'. If the result of 'Convert.ToDateTime(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="145">In externally visible method 'AccessPassController.Edit(AccessPassModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="27">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'AccessPassController.Index()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index(Models.ViewModel.AccessPassModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="108">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'AccessPassController.Index(AccessPassModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="AccessPassController.cs" Line="110">In externally visible method 'AccessPassController.Index(AccessPassModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CompanyController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Index(Models.ViewModel.CompanyModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="CompanyController.cs" Line="31">In externally visible method 'CompanyController.Index(CompanyModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ContactController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Dbcontext" Kind="Field" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning">It appears that field 'ContactController.Dbcontext' is never used or is only ever assigned to. Use this field or remove it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index(System.Web.Mvc.FormCollection)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="49">In method 'ContactController.Index(FormCollection)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal0' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="64">In method 'ContactController.Index(FormCollection)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal1' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="76">Modify 'ContactController.Index(FormCollection)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="All" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="24">In member 'ContactController.Index(FormCollection)', correct the casing of 'All' in parameter name 'All' by changing it to 'all'.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="76">'ContactController.Index(FormCollection)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToString(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="25">Because the behavior of 'Convert.ToString(string)' could vary based on the current user's locale settings, replace this call in 'ContactController.Index(FormCollection)' with a call to 'Convert.ToString(string, IFormatProvider)'. If the result of 'Convert.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="26">Because the behavior of 'Convert.ToString(string)' could vary based on the current user's locale settings, replace this call in 'ContactController.Index(FormCollection)' with a call to 'Convert.ToString(string, IFormatProvider)'. If the result of 'Convert.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="27">Because the behavior of 'Convert.ToString(string)' could vary based on the current user's locale settings, replace this call in 'ContactController.Index(FormCollection)' with a call to 'Convert.ToString(string, IFormatProvider)'. If the result of 'Convert.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="28">Because the behavior of 'Convert.ToString(string)' could vary based on the current user's locale settings, replace this call in 'ContactController.Index(FormCollection)' with a call to 'Convert.ToString(string, IFormatProvider)'. If the result of 'Convert.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="29">Because the behavior of 'Convert.ToString(string)' could vary based on the current user's locale settings, replace this call in 'ContactController.Index(FormCollection)' with a call to 'Convert.ToString(string, IFormatProvider)'. If the result of 'Convert.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="25">In externally visible method 'ContactController.Index(FormCollection)', validate parameter 'All' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#NewsLetter(System.Web.Mvc.FormCollection)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="NewsLetter" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="MemberShouldBeDiscreteTerm" Certainty="80" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="83">The compound word 'NewsLetter' in member name 'ContactController.NewsLetter(FormCollection)' exists as a discrete term. If your usage is intended to be single word, case it as 'Newsletter' or strip the first token entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="102">In method 'ContactController.NewsLetter(FormCollection)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal2' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="117">In method 'ContactController.NewsLetter(FormCollection)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal3' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="132">Modify 'ContactController.NewsLetter(FormCollection)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="All" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="83">In member 'ContactController.NewsLetter(FormCollection)', correct the casing of 'All' in parameter name 'All' by changing it to 'all'.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="132">'ContactController.NewsLetter(FormCollection)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToString(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="90">Because the behavior of 'Convert.ToString(string)' could vary based on the current user's locale settings, replace this call in 'ContactController.NewsLetter(FormCollection)' with a call to 'Convert.ToString(string, IFormatProvider)'. If the result of 'Convert.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ContactController.cs" Line="90">In externally visible method 'ContactController.NewsLetter(FormCollection)', validate parameter 'All' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="DashboardController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ChangePwd(System.Web.Mvc.FormCollection)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="All" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="DashboardController.cs" Line="63">In member 'DashboardController.ChangePwd(FormCollection)', correct the casing of 'All' in parameter name 'All' by changing it to 'all'.</Issue>
+            </Message>
+            <Message Id="Pwd" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="DashboardController.cs" Line="63">Correct the spelling of 'Pwd' in member name 'DashboardController.ChangePwd(FormCollection)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="DashboardController.cs" Line="71">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'DashboardController.ChangePwd(FormCollection)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="DashboardController.cs" Line="65">In externally visible method 'DashboardController.ChangePwd(FormCollection)', validate parameter 'All' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index(Models.ViewModel.TicketModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="DashboardController.cs" Line="54">Modify 'DashboardController.Index(TicketModel)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="DashboardController.cs" Line="54">'DashboardController.Index(TicketModel)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="DashboardController.cs" Line="45">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'DashboardController.Index(TicketModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="InvoiceController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Delete(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="InvoiceController.cs" Line="184">Modify 'InvoiceController.Delete(int)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="InvoiceController.cs" Line="184">'InvoiceController.Delete(int)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="objModel" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="InvoiceController.cs" Line="178">'InvoiceController.Delete(int)' declares a variable, 'objModel', of type 'InvoiceModel', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Edit(Models.ViewModel.InvoiceModel,System.Web.HttpPostedFileBase[])" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="filename" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="InvoiceController.cs" Line="127">'InvoiceController.Edit(InvoiceModel, HttpPostedFileBase[])' declares a variable, 'filename', of type 'string', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="InvoiceController.cs" Line="158">In externally visible method 'InvoiceController.Edit(InvoiceModel, HttpPostedFileBase[])', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="InvoiceController.cs" Line="27">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'InvoiceController.Index()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="InvoiceController.cs" Line="28">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'InvoiceController.Index()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index(Models.ViewModel.InvoiceModel,System.Web.HttpPostedFileBase[])" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="filename" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="InvoiceController.cs" Line="57">'InvoiceController.Index(InvoiceModel, HttpPostedFileBase[])' declares a variable, 'filename', of type 'string', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="InvoiceController.cs" Line="88">In externally visible method 'InvoiceController.Index(InvoiceModel, HttpPostedFileBase[])', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="LoginController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Login" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="95" Level="Error">Replace the term 'Login' in type name 'LoginController' with the preferred alternate 'LogOn'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#Index(Models.ViewModel.UserModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="LoginController.cs" Line="37">In externally visible method 'LoginController.Index(UserModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ResetPwd(System.Web.Mvc.FormCollection)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="All" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="LoginController.cs" Line="70">In member 'LoginController.ResetPwd(FormCollection)', correct the casing of 'All' in parameter name 'All' by changing it to 'all'.</Issue>
+            </Message>
+            <Message Id="Pwd" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="LoginController.cs" Line="70">Correct the spelling of 'Pwd' in member name 'LoginController.ResetPwd(FormCollection)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="LoginController.cs" Line="72">In externally visible method 'LoginController.ResetPwd(FormCollection)', validate parameter 'All' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="PalakController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Palak" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Palak' in type name 'PalakController'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="PowerUsageController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#addFile(System.Web.HttpPostedFileBase[],System.Web.Mvc.FormCollection)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="44">In method 'PowerUsageController.addFile(HttpPostedFileBase[], FormCollection)', object 'excelConnection' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'excelConnection' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="47">In method 'PowerUsageController.addFile(HttpPostedFileBase[], FormCollection)', call System.IDisposable.Dispose on object 'cmd' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="53">In method 'PowerUsageController.addFile(HttpPostedFileBase[], FormCollection)', call System.IDisposable.Dispose on object 'sqlBulk' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message Id="All" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="22">In member 'PowerUsageController.addFile(HttpPostedFileBase[], FormCollection)', correct the casing of 'All' in parameter name 'All' by changing it to 'all'.</Issue>
+            </Message>
+            <Message Id="add" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="22">Correct the casing of 'add' in member name 'PowerUsageController.addFile(HttpPostedFileBase[], FormCollection)' by changing it to 'Add'.</Issue>
+            </Message>
+            <Message Id="objService" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="24">'PowerUsageController.addFile(HttpPostedFileBase[], FormCollection)' declares a variable, 'objService', of type 'PowerUsageService', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="All" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="22">Parameter 'All' of 'PowerUsageController.addFile(HttpPostedFileBase[], FormCollection)' is never used. Remove the parameter or use it in the method body.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="31">Because the behavior of 'string.Format(string, object, object)' could vary based on the current user's locale settings, replace this call in 'PowerUsageController.addFile(HttpPostedFileBase[], FormCollection)' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IsNullOrEmpty" Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="29">Replace the call to 'string.operator !=(string, string)' in 'PowerUsageController.addFile(HttpPostedFileBase[], FormCollection)' with a call to 'String.IsNullOrEmpty'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="25">In externally visible method 'PowerUsageController.addFile(HttpPostedFileBase[], FormCollection)', validate parameter 'file' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DelData(Models.ViewModel.PowerUsageModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="363">Modify 'PowerUsageController.DelData(PowerUsageModel)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="343">Because the behavior of 'Convert.ToInt32(object)' could vary based on the current user's locale settings, replace this call in 'PowerUsageController.DelData(PowerUsageModel)' with a call to 'Convert.ToInt32(object, IFormatProvider)'. If the result of 'Convert.ToInt32(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="338">In externally visible method 'PowerUsageController.DelData(PowerUsageModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="objAppoint" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="96">'PowerUsageController.Index()' declares a variable, 'objAppoint', of type 'PowerUsageModel', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="88">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'PowerUsageController.Index()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.DateTime.ToString(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="103">Because the behavior of 'DateTime.ToString(string)' could vary based on the current user's locale settings, replace this call in 'PowerUsageController.Index()' with a call to 'DateTime.ToString(string, IFormatProvider)'. If the result of 'DateTime.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="143">Because the behavior of 'DateTime.ToString(string)' could vary based on the current user's locale settings, replace this call in 'PowerUsageController.Index()' with a call to 'DateTime.ToString(string, IFormatProvider)'. If the result of 'DateTime.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index(System.Web.HttpPostedFileBase[],Models.ViewModel.PowerUsageModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="objAppoint" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="213">'PowerUsageController.Index(HttpPostedFileBase[], PowerUsageModel)' declares a variable, 'objAppoint', of type 'PowerUsageModel', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="file" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="194">Parameter 'file' of 'PowerUsageController.Index(HttpPostedFileBase[], PowerUsageModel)' is never used. Remove the parameter or use it in the method body.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="203">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'PowerUsageController.Index(HttpPostedFileBase[], PowerUsageModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToString(System.Int32)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="258">Because the behavior of 'Convert.ToString(int)' could vary based on the current user's locale settings, replace this call in 'PowerUsageController.Index(HttpPostedFileBase[], PowerUsageModel)' with a call to 'Convert.ToString(int, IFormatProvider)'. If the result of 'Convert.ToString(int, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.DateTime.ToString(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="237">Because the behavior of 'DateTime.ToString(string)' could vary based on the current user's locale settings, replace this call in 'PowerUsageController.Index(HttpPostedFileBase[], PowerUsageModel)' with a call to 'DateTime.ToString(string, IFormatProvider)'. If the result of 'DateTime.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="PowerUsageController.cs" Line="197">In externally visible method 'PowerUsageController.Index(HttpPostedFileBase[], PowerUsageModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ReportController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Index(Models.ViewModel.TicketModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToDateTime(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ReportController.cs" Line="39">Because the behavior of 'Convert.ToDateTime(object)' could vary based on the current user's locale settings, replace this call in 'ReportController.Index(TicketModel)' with a call to 'Convert.ToDateTime(object, IFormatProvider)'. If the result of 'Convert.ToDateTime(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ReportController.cs" Line="40">Because the behavior of 'Convert.ToDateTime(object)' could vary based on the current user's locale settings, replace this call in 'ReportController.Index(TicketModel)' with a call to 'Convert.ToDateTime(object, IFormatProvider)'. If the result of 'Convert.ToDateTime(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ReportController.cs" Line="41">Because the behavior of 'Convert.ToInt32(object)' could vary based on the current user's locale settings, replace this call in 'ReportController.Index(TicketModel)' with a call to 'Convert.ToInt32(object, IFormatProvider)'. If the result of 'Convert.ToInt32(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ReportController.cs" Line="42">Because the behavior of 'Convert.ToInt32(object)' could vary based on the current user's locale settings, replace this call in 'ReportController.Index(TicketModel)' with a call to 'Convert.ToInt32(object, IFormatProvider)'. If the result of 'Convert.ToInt32(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ReportController.cs" Line="39">In externally visible method 'ReportController.Index(TicketModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TicketLog(Models.ViewModel.TicketModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToDateTime(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ReportController.cs" Line="82">Because the behavior of 'Convert.ToDateTime(object)' could vary based on the current user's locale settings, replace this call in 'ReportController.TicketLog(TicketModel)' with a call to 'Convert.ToDateTime(object, IFormatProvider)'. If the result of 'Convert.ToDateTime(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ReportController.cs" Line="83">Because the behavior of 'Convert.ToDateTime(object)' could vary based on the current user's locale settings, replace this call in 'ReportController.TicketLog(TicketModel)' with a call to 'Convert.ToDateTime(object, IFormatProvider)'. If the result of 'Convert.ToDateTime(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ReportController.cs" Line="84">Because the behavior of 'Convert.ToInt32(object)' could vary based on the current user's locale settings, replace this call in 'ReportController.TicketLog(TicketModel)' with a call to 'Convert.ToInt32(object, IFormatProvider)'. If the result of 'Convert.ToInt32(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ReportController.cs" Line="85">Because the behavior of 'Convert.ToInt32(object)' could vary based on the current user's locale settings, replace this call in 'ReportController.TicketLog(TicketModel)' with a call to 'Convert.ToInt32(object, IFormatProvider)'. If the result of 'Convert.ToInt32(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ReportController.cs" Line="82">In externally visible method 'ReportController.TicketLog(TicketModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="RequestController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Access()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="role" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="309">'RequestController.Access()' declares a variable, 'role', of type 'int', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="uid" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="307">'RequestController.Access()' declares a variable, 'uid', of type 'int', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="312">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Access()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="316">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Access()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="317">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Access()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Access(Models.ViewModel.AccessModel,Models.ViewModel.TicketModel,Models.ViewModel.TicketTranModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="AvoidExcessiveClassCoupling" Category="Microsoft.Maintainability" CheckId="CA1506" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Method" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="345">'RequestController.Access(AccessModel, TicketModel, TicketTranModel)' is coupled with 35 different types from 14 different namespaces. Rewrite or refactor the method to decrease its class coupling, or consider moving the method to one of the other types it is tightly coupled with. A class coupling above 40 indicates poor maintainability, a class coupling between 40 and 30 indicates moderate maintainability, and a class coupling below 30 indicates good maintainability.</Issue>
+            </Message>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="431">In method 'RequestController.Access(AccessModel, TicketModel, TicketTranModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocala' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="441">In method 'RequestController.Access(AccessModel, TicketModel, TicketTranModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocalb' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="453">Modify 'RequestController.Access(AccessModel, TicketModel, TicketTranModel)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="453">'RequestController.Access(AccessModel, TicketModel, TicketTranModel)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="355">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Access(AccessModel, TicketModel, TicketTranModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.DateTime.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="381">Because the behavior of 'DateTime.Parse(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Access(AccessModel, TicketModel, TicketTranModel)' with a call to 'DateTime.Parse(string, IFormatProvider)'. If the result of 'DateTime.Parse(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="353">In externally visible method 'RequestController.Access(AccessModel, TicketModel, TicketTranModel)', validate parameter 'model1' before using it.</Issue>
+            </Message>
+            <Message Id="2" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="354">In externally visible method 'RequestController.Access(AccessModel, TicketModel, TicketTranModel)', validate parameter 'model2' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ADelete(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="502">Modify 'RequestController.ADelete(int)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="502">'RequestController.ADelete(int)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="objModel" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="496">'RequestController.ADelete(int)' declares a variable, 'objModel', of type 'AccessModel', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#AEdit(Models.ViewModel.AccessModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="547">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.AEdit(AccessModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="550">In externally visible method 'RequestController.AEdit(AccessModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DDelete(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="774">Modify 'RequestController.DDelete(int)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="774">'RequestController.DDelete(int)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="objModel" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="768">'RequestController.DDelete(int)' declares a variable, 'objModel', of type 'DeliveryModel', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DEdit(Models.ViewModel.DeliveryModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="uid" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="816">'RequestController.DEdit(DeliveryModel)' declares a variable, 'uid', of type 'int', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="819">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.DEdit(DeliveryModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Delivery()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="579">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Delivery()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Delivery(Models.ViewModel.DeliveryModel,Models.ViewModel.TicketModel,Models.ViewModel.TicketTranModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="AvoidExcessiveClassCoupling" Category="Microsoft.Maintainability" CheckId="CA1506" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Method" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="607">'RequestController.Delivery(DeliveryModel, TicketModel, TicketTranModel)' is coupled with 36 different types from 14 different namespaces. Rewrite or refactor the method to decrease its class coupling, or consider moving the method to one of the other types it is tightly coupled with. A class coupling above 40 indicates poor maintainability, a class coupling between 40 and 30 indicates moderate maintainability, and a class coupling below 30 indicates good maintainability.</Issue>
+            </Message>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="693">In method 'RequestController.Delivery(DeliveryModel, TicketModel, TicketTranModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal14' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="708">In method 'RequestController.Delivery(DeliveryModel, TicketModel, TicketTranModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal15' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="723">Modify 'RequestController.Delivery(DeliveryModel, TicketModel, TicketTranModel)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="723">'RequestController.Delivery(DeliveryModel, TicketModel, TicketTranModel)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="617">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Delivery(DeliveryModel, TicketModel, TicketTranModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.DateTime.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="643">Because the behavior of 'DateTime.Parse(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Delivery(DeliveryModel, TicketModel, TicketTranModel)' with a call to 'DateTime.Parse(string, IFormatProvider)'. If the result of 'DateTime.Parse(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="615">In externally visible method 'RequestController.Delivery(DeliveryModel, TicketModel, TicketTranModel)', validate parameter 'model1' before using it.</Issue>
+            </Message>
+            <Message Id="2" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="616">In externally visible method 'RequestController.Delivery(DeliveryModel, TicketModel, TicketTranModel)', validate parameter 'model2' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#QDelete(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="251">Modify 'RequestController.QDelete(int)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="251">'RequestController.QDelete(int)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="objModel" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="245">'RequestController.QDelete(int)' declares a variable, 'objModel', of type 'QuotationModel', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#QEdit(Models.ViewModel.QuotationModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="292">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.QEdit(QuotationModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="295">In externally visible method 'RequestController.QEdit(QuotationModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Quotation()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="29">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Quotation()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Quotation(Models.ViewModel.QuotationModel,Models.ViewModel.TicketModel,Models.ViewModel.TicketTranModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="AvoidExcessiveClassCoupling" Category="Microsoft.Maintainability" CheckId="CA1506" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Method" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="54">'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)' is coupled with 35 different types from 14 different namespaces. Rewrite or refactor the method to decrease its class coupling, or consider moving the method to one of the other types it is tightly coupled with. A class coupling above 40 indicates poor maintainability, a class coupling between 40 and 30 indicates moderate maintainability, and a class coupling below 30 indicates good maintainability.</Issue>
+            </Message>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="171">In method 'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal0' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="186">In method 'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal1' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="201">Modify 'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="dc" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="153">'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)' declares a variable, 'dc', of type 'DataCenterMaster', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="201">'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="66">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.DateTime.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="114">Because the behavior of 'DateTime.Parse(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)' with a call to 'DateTime.Parse(string, IFormatProvider)'. If the result of 'DateTime.Parse(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.DateTime.ToString(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="159">Because the behavior of 'DateTime.ToString(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)' with a call to 'DateTime.ToString(string, IFormatProvider)'. If the result of 'DateTime.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="160">Because the behavior of 'DateTime.ToString(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)' with a call to 'DateTime.ToString(string, IFormatProvider)'. If the result of 'DateTime.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="161">Because the behavior of 'DateTime.ToString(string)' could vary based on the current user's locale settings, replace this call in 'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)' with a call to 'DateTime.ToString(string, IFormatProvider)'. If the result of 'DateTime.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="64">In externally visible method 'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)', validate parameter 'model1' before using it.</Issue>
+            </Message>
+            <Message Id="2" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="RequestController.cs" Line="65">In externally visible method 'RequestController.Quotation(QuotationModel, TicketModel, TicketTranModel)', validate parameter 'model2' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ServicesController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#DataCenter()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="DataCenter" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="MemberShouldBeDiscreteTerm" Certainty="80" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ServicesController.cs" Line="23">The compound word 'DataCenter' in member name 'ServicesController.DataCenter()' exists as a discrete term. If your usage is intended to be single word, case it as 'Datacenter' or strip the first token entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DCM()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="DCM" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="ServicesController.cs" Line="51">Correct the casing of 'DCM' in member name 'ServicesController.DCM()' by changing it to 'Dcm'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="TestingDemoController+DDLOptions" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="DDL" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="85" Level="Error">Correct the casing of 'DDL' in type name 'TestingDemoController.DDLOptions' by changing it to 'Ddl'.</Issue>
+          </Message>
+          <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Error">Do not nest type 'TestingDemoController.DDLOptions'. Alternatively, change its accessibility so that it is not externally visible.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#stateID" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="MemberAbbreviation" Certainty="85" Level="Error">Correct the casing of 'ID' in member name 'TestingDemoController.DDLOptions.stateID' by changing it to 'Id'. 'Id' is an abbreviation and therefore is not subject to acronym casing guidelines.</Issue>
+            </Message>
+            <Message Id="state" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Correct the casing of 'state' in member name 'TestingDemoController.DDLOptions.stateID' by changing it to 'State'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="TicketController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Index()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="32">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'TicketController.Index()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="33">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'TicketController.Index()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index(System.Web.HttpPostedFileBase[],Models.ViewModel.TicketModel,Models.ViewModel.TicketTranModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="AvoidExcessiveClassCoupling" Category="Microsoft.Maintainability" CheckId="CA1506" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Method" Certainty="90" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="64">'TicketController.Index(HttpPostedFileBase[], TicketModel, TicketTranModel)' is coupled with 40 different types from 16 different namespaces. Rewrite or refactor the method to decrease its class coupling, or consider moving the method to one of the other types it is tightly coupled with. A class coupling above 40 indicates poor maintainability, a class coupling between 40 and 30 indicates moderate maintainability, and a class coupling below 30 indicates good maintainability.</Issue>
+            </Message>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="222">In method 'TicketController.Index(HttpPostedFileBase[], TicketModel, TicketTranModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal0' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="237">In method 'TicketController.Index(HttpPostedFileBase[], TicketModel, TicketTranModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal1' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="259">Modify 'TicketController.Index(HttpPostedFileBase[], TicketModel, TicketTranModel)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="259">'TicketController.Index(HttpPostedFileBase[], TicketModel, TicketTranModel)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="filename" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="133">'TicketController.Index(HttpPostedFileBase[], TicketModel, TicketTranModel)' declares a variable, 'filename', of type 'string', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="74">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'TicketController.Index(HttpPostedFileBase[], TicketModel, TicketTranModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.DateTime.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="107">Because the behavior of 'DateTime.Parse(string)' could vary based on the current user's locale settings, replace this call in 'TicketController.Index(HttpPostedFileBase[], TicketModel, TicketTranModel)' with a call to 'DateTime.Parse(string, IFormatProvider)'. If the result of 'DateTime.Parse(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="244">In externally visible method 'TicketController.Index(HttpPostedFileBase[], TicketModel, TicketTranModel)', validate parameter 'files' before using it.</Issue>
+            </Message>
+            <Message Id="2" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="89">In externally visible method 'TicketController.Index(HttpPostedFileBase[], TicketModel, TicketTranModel)', validate parameter 'model1' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Replay(System.Int32,System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="uid" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="270">In method 'TicketController.Replay(int, int)', correct the spelling of 'uid' in parameter name 'uid' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="279">Because the behavior of 'Convert.ToInt32(object)' could vary based on the current user's locale settings, replace this call in 'TicketController.Replay(int, int)' with a call to 'Convert.ToInt32(object, IFormatProvider)'. If the result of 'Convert.ToInt32(object, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="284">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'TicketController.Replay(int, int)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Replay(System.Web.HttpPostedFileBase[],Models.ViewModel.TicketTranModel,Models.ViewModel.TicketModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="AvoidExcessiveClassCoupling" Category="Microsoft.Maintainability" CheckId="CA1506" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="Breaking">
+             <Issue Name="Method" Certainty="90" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="314">'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)' is coupled with 42 different types from 16 different namespaces. Rewrite or refactor the method to decrease its class coupling, or consider moving the method to one of the other types it is tightly coupled with. A class coupling above 40 indicates poor maintainability, a class coupling between 40 and 30 indicates moderate maintainability, and a class coupling below 30 indicates good maintainability.</Issue>
+            </Message>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="426">In method 'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal6' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="441">In method 'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal7' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="484">In method 'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal8' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="495">In method 'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)', call System.IDisposable.Dispose on object '&lt;&gt;g__initLocal9' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="519">Modify 'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="519">'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)' declares a variable, 'ex', of type 'Exception', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="filename" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="337">'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)' declares a variable, 'filename', of type 'string', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="ticket" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="415">'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)' declares a variable, 'ticket', of type 'TicketMaster', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="320">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="321">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="TicketController.cs" Line="401">In externally visible method 'TicketController.Replay(HttpPostedFileBase[], TicketTranModel, TicketModel)', validate parameter 'files' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="UserController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Edit(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="UserController.cs" Line="75">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'UserController.Edit(int)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="UserController.cs" Line="76">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'UserController.Edit(int)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="UserController.cs" Line="26">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'UserController.Index()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="UserController.cs" Line="27">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'UserController.Index()' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Index(Models.ViewModel.UserModel)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="UserController.cs" Line="54">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'UserController.Index(UserModel)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2017-06-28 10:03:52Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\Projects\Other_Projects\Techflow\Techflow\Controllers" File="UserController.cs" Line="44">In externally visible method 'UserController.Index(UserModel)', validate parameter 'model' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+   <Name>Assemblies should have valid strong names</Name>
+   <Description>Either the assembly has no strong name, an invalid one, or the strong name is valid only because of the computer configuration. The assembly should not be deployed in this state. The most common causes of this are: 1) The assembly's contents were modified after it was signed. 2) The signing process failed. 3) The assembly was delay-signed. 4) A registry key existed that allowed the check to pass (where it would not have otherwise).</Description>
+   <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182127(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidExcessiveClassCoupling" Category="Microsoft.Maintainability" CheckId="CA1506">
+   <Name>Avoid excessive class coupling</Name>
+   <Description>Types and methods with a high degree of class coupling can be difficult to maintain.</Description>
+   <Resolution Name="Method">{0} is coupled with {1} different types from {2} different namespaces. Rewrite or refactor the method to decrease its class coupling, or consider moving the method to one of the other types it is tightly coupled with. A class coupling above {3} indicates poor maintainability, a class coupling between {3} and {4} indicates moderate maintainability, and a class coupling below {4} indicates good maintainability.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb397994(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Warning</MessageLevel>
+   <File Name="maintainabilityrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823">
+   <Name>Avoid unused private fields</Name>
+   <Description>Private fields were detected that do not appear to be accessed within the assembly. If this violation fires in error, please send a problem report to the Visual Studio Code Analysis team.</Description>
+   <Resolution Name="Default">It appears that field {0} is never used or is only ever assigned to. Use this field or remove it.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms245042(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702">
+   <Name>Compound words should be cased correctly</Name>
+   <Description>Avoid creating compound words from terms which exist in the dictionary as discrete terms. Do not create a compound word such as 'StopWatch' or 'PopUp'. These terms are recognized in the dictionary and should be cased as 'Stopwatch' and 'Popup'.</Description>
+   <Resolution Name="MemberShouldBeDiscreteTerm">The compound word '{0}' in member name {1} exists as a discrete term. If your usage is intended to be single word, case it as '{2}' or strip the first token entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264474(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="80">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000">
+   <Name>Dispose objects before losing scope</Name>
+   <Description>If a disposable object is not explicitly disposed before all references to it are out of scope, the object will be disposed at some indeterminate time when the garbage collector runs the finalizer of the object. Because an exceptional event might occur that will prevent the finalizer of the object from running, the object should be explicitly disposed instead.</Description>
+   <Resolution Name="ExceptionEdge">In method {0}, object {1} is not disposed along all exception paths. Call System.IDisposable.Dispose on object {1} before all references to it are out of scope.</Resolution>
+   <Resolution Name="NonExceptionEdge">In method {0}, call System.IDisposable.Dispose on object {1} before all references to it are out of scope.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182289(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+   <Name>Do not catch general exception types</Name>
+   <Description>You should not catch Exception or SystemException. Catching generic exception types can hide run-time problems from the library user, and can complicate debugging. You should catch only those exceptions that you can handle gracefully.</Description>
+   <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182137(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+   <Name>Identifiers should be cased correctly</Name>
+   <Description>Type, namespace, and member identifiers are Pascal-cased. Parameter identifiers are camel-cased. Two letter acronyms within these identifiers should be upper-cased, for example, use System.IO instead of System.Io. Acronyms of three or more letters should be Pascal-cased, for example, use System.Xml instead of System.XML. The pascal-casing convention capitalizes the first letter of each word, as in BackColor. The camel-casing convention formats the first letter of the first word in lowercase and capitalizes the first letter of all subsequent words, as in backgroundColor. Although it may be common practice for some two letter acronyms to not be fully capitalized, violations of this rule should not be excluded for this reason. For example, 'DbConnection', is common but incorrect; use DBConnection. A violation of this rule might be required for compatibility with existing, non-managed symbol schemes. In general, however, these symbols should not be visible outside the assembly that uses them.</Description>
+   <Resolution Name="Member">Correct the casing of '{0}' in member name {1} by changing it to '{2}'.</Resolution>
+   <Resolution Name="MemberAbbreviation">Correct the casing of '{0}' in member name {1} by changing it to '{2}'. '{2}' is an abbreviation and therefore is not subject to acronym casing guidelines.</Resolution>
+   <Resolution Name="MemberParameter">In member {0}, correct the casing of '{1}' in parameter name {2} by changing it to '{3}'.</Resolution>
+   <Resolution Name="Type">Correct the casing of '{0}' in type name {1} by changing it to '{2}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182240(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="85">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+   <Name>Identifiers should be spelled correctly</Name>
+   <Description>The individual words that make up an identifier should not be abbreviated and should be spelled correctly. If this rule generates a false positive on a term that should be recognized, add the word to the FxCop custom dictionary.</Description>
+   <Resolution Name="Assembly">Correct the spelling of '{0}' in assembly name {1}.</Resolution>
+   <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Resolution Name="Namespace">Correct the spelling of '{0}' in namespace name '{1}'.</Resolution>
+   <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264492(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
+   <File Name="namingrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
+   <Name>Mark assemblies with CLSCompliantAttribute</Name>
+   <Description>Assemblies should explicitly state their CLS compliance using the CLSCompliant attribute. An assembly without this attribute is not CLS-compliant. Assemblies, modules, and types can be CLS-compliant even if some parts of the assembly, module, or type are not CLS-compliant. The following rules apply: 1) If the element is marked CLSCompliant, any noncompliant members must have the CLSCompliant attribute present with its argument set to false. 2) A comparable CLS-compliant alternative member must be supplied for each member that is not CLS-compliant.</Description>
+   <Resolution Name="Default">Mark {0} with CLSCompliant(true) because it exposes externally visible types.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182156(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
+   <Name>Mark members as static</Name>
+   <Description>Methods which do not access instance data or call instance methods can be marked as static (Shared in Visual Basic). After doing so, the compiler will emit non-virtual call sites to these members which will prevent a check at runtime for each call that ensures the current object pointer is non-null. This can result in a measurable performance gain for performance-sensitive code. In some cases, the failure to access the current object instance represents a correctness issue.</Description>
+   <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms245046(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034">
+   <Name>Nested types should not be visible</Name>
+   <Description>Do not use public, protected or protected internal (Protected Friend) nested types as a way of grouping types. Use namespaces for this purpose. There are very limited scenarios where nested types are the best design. Also, nested type member accessibility is not clearly understood by all audiences. Enumerators are exempt from this rule.</Description>
+   <Resolution Name="Default">Do not nest type {0}. Alternatively, change its accessibility so that it is not externally visible.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182162(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Error</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804">
+   <Name>Remove unused locals</Name>
+   <Description>Remove locals that are not used or are only assigned to in method implementations.</Description>
+   <Resolution Name="Default">{0} declares a variable, {1}, of type {2}, which is never used or is only assigned to. Use this variable or remove it.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182278(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801">
+   <Name>Review unused parameters</Name>
+   <Description>Review parameters in non-virtual methods that are not used in the method body to ensure no correctness exists around failure to access them. Unused parameters incur maintenance and performance costs. Sometimes a violation of this rule can point to an implementation bug in the method (i.e. the parameter should actually have been used in the method body). Exclude warnings of this rule if the parameter has to exist because of backward compatibility.</Description>
+   <Resolution Name="Default">Parameter {0} of {1} is never used. Remove the parameter or use it in the method body.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182268(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="usagerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+   <Name>Specify IFormatProvider</Name>
+   <Description>If an overload exists that takes an IFormatProvider argument, it should always be called in favor of an overload that does not. Some methods in the runtime convert a value to or from a string representation and take a string parameter that contains one or more characters, called format specifiers, which indicate how the value is to be converted. If the meaning of the format specifier varies by culture, a formatting object supplies the actual characters used in the string representation. In scenarios where sorting and comparison behavior should never change between cultures, specify CultureInfo.InvariantCulture, otherwise, specify CultureInfo.CurrentCulture.</Description>
+   <Resolution Name="IFormatProviderAlternate">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be based on input from the user, specify {3} as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify {4}.</Resolution>
+   <Resolution Name="IFormatProviderAlternateString">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify {3} as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify {4}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182190(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053">
+   <Name>Static holder types should not have constructors</Name>
+   <Description>Instances of types that define only static members do not need to be created. Many compilers will automatically add a public default constructor if no constructor is specified. To prevent this, adding an empty private constructor may be required.</Description>
+   <Resolution Name="CSharp2_0">Because type {0} contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182169(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Error</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820">
+   <Name>Test for empty strings using string length</Name>
+   <Description>To test for empty strings, check if String.Length is equal to zero. Constructs such as "".Equals(someString) and String.Empty.Equals(someString) are less efficient than testing the string length. Replace these with checks for someString.Length == 0.</Description>
+   <Resolution Name="IsNullOrEmpty">Replace the call to {0} in {1} with a call to 'String.IsNullOrEmpty'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182279(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726">
+   <Name>Use preferred terms</Name>
+   <Description>Use preferred terms over deprecated alternates.</Description>
+   <Resolution Name="Type">Replace the term '{0}' in type name {1} with the preferred alternate '{2}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182258(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062">
+   <Name>Validate arguments of public methods</Name>
+   <Description>All reference arguments passed to externally visible methods should be checked against null (Nothing in VB). If appropriate, throw a System.ArgumentNullException when the argument is null.</Description>
+   <Resolution Name="Default">In externally visible method {0}, validate parameter '{1}' before using it.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182182(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="11.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Category</String>
+  <String Key="Certainty">Certainty</String>
+  <String Key="CollapseAll">Collapse All</String>
+  <String Key="CheckId">Check Id</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">error(s)</String>
+  <String Key="ExpandAll">Expand All</String>
+  <String Key="Help">Help</String>
+  <String Key="Line">Line</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Location not stored in Pdb]</String>
+  <String Key="Project">Project</String>
+  <String Key="Resolution">Resolution</String>
+  <String Key="Rule">Rule</String>
+  <String Key="RuleFile">Rule File</String>
+  <String Key="RuleDescription">Rule Description</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Target</String>
+  <String Key="Warning">Warning</String>
+  <String Key="Warnings">warning(s)</String>
+  <String Key="ReportTitle">Code Analysis Report</String>
+ </Localized>
+</FxCopReport>

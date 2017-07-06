@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "Login";
+    }
+
+@using Models.ViewModel
+@model UserModel
+<style>
+
+    	input[type="text"], input[type="email"], input[type="password"], input[type="tel"], textarea { background:#fff; border: 1px solid; color:#666666; padding: 15px; display:block; font-size: 14px; margin:10px 0 0; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -o-box-sizing: border-box; width: 100%; }
+	input[type="text"], input[type="email"], input[type="password"], input[type="tel"] { }
+	textarea { height: 190px; margin: 20px 0 0; overflow:auto; resize: none; }
+</style>
+   <link href="/content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <script src="/content/bootstrap/jquery.min.js"></script>
+    <script src="/content/bootstrap/bootstrap.min.js"></script>
+@*@using (@Html.BeginForm("Index", "Login", FormMethod.Post, new {@id="loginform", enctype = "multipart/form-data" }))
+{    
+
+*@<!-- **Breadcrumb Section** -->
+            <div class="breadcrumb-section">
+                  <div class="container">
+	                   <h1>Log-in</h1>
+                      <div class="breadcrumb">
+                      	<a href="/Home/Index" title="">Home</a> / <span>Login</span>
+                      </div>
+                  </div>
+            </div> <!-- **Breadcrumb Section Ends** -->
+
+
+       <!-- **Content Main** -->
+            <section class="content-main">    
+
+            	<!-- **Primary** -->
+            	<div class="content-full-width" id="primary"> 
+                @*    
+                    <div class="fullwidth-section">
+                        <div class="fullwidth-bg">	  
+                        	<div class="container">  
+                                              
+                   				<div class="page_info">
+                                	<h3 class="title center"><span> <i class="fa fa-user"></i></span> Account Center - Member Login Area </h3>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>    *@                 
+                    
+                    <div class="fullwidth-section dt-sc-parallax" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg);">
+                        <div class="fullwidth-bg">	  
+                        	<div class="container">
+                            
+                                @*<div class="dt-sc-hr-invisible-medium"></div>
+                                <div class="dt-sc-clear"></div>*@
+                                <div style="height:30px;"></div>
+                                
+                                <div class="form-wrapper login">
+                                    <form method="post" action="/Login/Index" id="loginform" name="frmLogin" style="box-shadow: 1px 2px 2px 2px;">
+                                        <p>
+                                           @* <input type="text" placeholder="Username" id="user_name" name="user" autocomplete="off">*@
+                                            @Html.TextBoxFor(m => m.UserName, new { @placeholder="Username",@id="user_name",@name="Username",@autocomplete="off"})
+                                            @Html.ValidationMessageFor(m=>m.UserName)
+                                        </p>
+                                        
+                                        <p>
+                                            @*<input type="password" placeholder="Password" id="user_pwd" name="pwd">*@
+                                            @Html.TextBoxFor(m => m.Password, new { @placeholder="Password",@type="password",@id="user_pwd",@name="Password",@autocomplete="off"})
+                                            @Html.ValidationMessageFor(m=>m.Password)
+                                        </p>
+                                        
+                                        <label><input type="checkbox" value="forever" id="rememberme" name="rememberme"> Remember Me</label><label style="float:right;color:red;">@if (TempData["EMsg"] != null) { @TempData["EMsg"].ToString()}</label>
+                                        <input type="submit" class="dt-sc-button small" value="Log-In">     
+                                    </form>   
+                                </div>                                
+                                
+                                <div class="dt-sc-hr-invisible-medium"></div>
+                                <div class="dt-sc-clear"></div>
+                                                            
+                            </div>
+                        </div>
+                    </div>         
+                    
+                    <div class="fullwidth-section">
+                        <div class="fullwidth-bg">	  
+                        	<div class="container">  
+                            
+                                <div class="dt-sc-hr-invisible"></div>
+                                <div class="dt-sc-hr-invisible-small"></div>
+                                <div class="dt-sc-clear"></div>  
+                                                                            
+                   				<div class="page_info aligncenter">
+                                	<h4 class="title">Need help logging-in?</h4>
+                                    @*<p>If you don't have an account yet, <a href="register.html" title="">Register here</a> and get started..*@
+                                    <p>Lost or Forgot your password? You can change it with <a data-toggle="modal" data-target="#ModalRP" href="#" title="">Reset Password</a> here..
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>                                                               	
+
+            	</div><!-- **Primary - End** -->         
+                
+    <!-- Modal -->
+    <div class="modal fade" id="ModalRP" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Change Password</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <form method="post" action="/Login/ResetPwd">
+                            @*@Html.Label("* Old Password", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <input type="password" name="txtOpwd" class="form-control" required />
+                            </div>*@
+                            @Html.Label("* Email", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <input type="email" name="txtEmail" class="form-control" required />
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @*@Html.Label("* New Password", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <input type="password" name="txtNpwd" class="form-control" required />
+                            </div>
+                            @Html.Label("* Confirm New Password", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <input type="password" name="txtNCpwd" class="form-control" required />
+                            </div>*@
+                            <input type="submit" value="Reset Password" class="btn btn-primary" onclick = "return confirm('Do you really want to reset password?')"/>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border: none;">
+
+                    @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                </div>
+            </div>
+
+        </div>
+    </div>                                           
+            </section> <!-- **Content Main Ends** -->
+

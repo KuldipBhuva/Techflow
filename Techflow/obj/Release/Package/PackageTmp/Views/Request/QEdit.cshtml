@@ -1,0 +1,194 @@
+﻿@{
+    ViewBag.Title = "Quotation Request";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@model QuotationModel
+@using (@Html.BeginForm("QEdit", "Request", FormMethod.Post, new { @id = "frmQ", enctype = "multipart/form-data" }))
+{    
+    @Html.HiddenFor(m=>m.QID)
+    @Html.HiddenFor(m=>m.CreatedBy)
+    @Html.HiddenFor(m=>m.CreatedDate)
+    @Html.HiddenFor(m=>m.TicketID)
+    @Html.HiddenFor(m=>m.Prefix)
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Quotation Request</h1>
+            <div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Quotation</span>
+            </div>
+        </div>
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">            
+
+              @{int role = 0;
+                          if(Session["Role"]!=null)
+                          {
+                           role=Convert.ToInt32(Session["Role"].ToString());   
+                          }
+                          }
+                @if(role==1)
+                {
+                    <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">User Detail</legend>
+
+                        @Html.Label("* Company", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+
+                                    @*@Html.DropDownListFor(m => m.DataCenter, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Data Center--", Value = "" }, new SelectListItem() { Text = "Global Switch", Value = "1" }, new SelectListItem() { Text = "NextDC S1", Value = "2" }, new SelectListItem() { Text = "NextDC M1", Value = "3" }, new SelectListItem() { Text = "NextDC B1", Value = "4" } }, new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.comp, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.comp)
+                                </div>
+                        @Html.Label("* User", new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-4">
+                        @Html.DropDownListFor(m => m.CreatedBy, new SelectList(Model.UserList, "UID", "FirstName"), "--Select User--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CreatedBy)
+                            </div>
+                        </fieldset>
+                }
+            
+                <ul class="nav nav-tabs" style="position: relative; font-size: 20px; font-weight: bold;">
+                    <li class="active"><a data-toggle="tab" href="#home">Cable</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Other</a></li>
+                    <a href="/Request/Quotation"><input type="button" id="btnBack" value="Back" class="btnAdd btn btn-primary" /></a>
+                    @*<a href="/Request/Quotation" style="top:10px;" class="btnAdd btn btn-primary">Back</a>*@
+                </ul>
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Cable Quotation</legend>
+                            <div class="form-group">
+                                @Html.Label("* Data Centre", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+
+                                    @*@Html.DropDownListFor(m => m.DataCenter, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Data Center--", Value = "" }, new SelectListItem() { Text = "Global Switch", Value = "1" }, new SelectListItem() { Text = "NextDC S1", Value = "2" }, new SelectListItem() { Text = "NextDC M1", Value = "3" }, new SelectListItem() { Text = "NextDC B1", Value = "4" } }, new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.DataCenter, new SelectList(Model.ListDC, "DCID", "DataCenter"), "--Select Data Centre--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.DataCenter)
+                                </div>
+                                @Html.Label("* Source of Cable", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.CableSource, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CableSource)
+
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                @Html.Label("* Destination of Cable", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.CableDest, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CableDest)
+
+                                </div>
+                                @Html.Label("* Type of Cable Required", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.CableType, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CableType)
+
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                @Html.Label("* Termination at Source", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.TerminationSource, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TerminationSource)
+
+                                </div>
+                                @Html.Label("* Termination at Destination", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.TerminationDest, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TerminationDest)
+
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                @Html.Label("* Rquested Delivery Date", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.ReqDelDate,"{0:dd/MM/yyyy}", new { @class = "form-control datepicker" })
+                                    @Html.ValidationMessageFor(m => m.ReqDelDate)
+
+                                </div>
+                                @Html.Label("Premium Service Required?", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.RadioButtonFor(m => m.IsPremium, "True")Yes
+                        @Html.RadioButtonFor(m => m.IsPremium, "False")No
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                @Html.Label("Patch Panel", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.PatchPanel, new { @class = "form-control" })
+                                </div>
+                                @Html.Label("Media Converter", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.MediaConverter, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                @Html.Label("Addittional Comment", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextAreaFor(m => m.Comments, new { @class = "form-control" })
+                                </div>
+                                                    @Html.Label("Status", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.RadioButtonFor(m => m.IsActive, "True")Pending
+                        @Html.RadioButtonFor(m => m.IsActive, "False")Quoted
+                    </div>
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            <div class="col-sm-3">
+                                <input type="submit" name="btnsend" value="Save" class="dt-sc-button small" />
+                            </div>
+                        </fieldset>
+
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Other</legend>
+                            <div class="form-group">
+                                @Html.Label("* Data Centre", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+
+                                    @Html.DropDownListFor(m => m.DataCenter, new SelectList(Model.ListDC, "DCID", "DataCenter"), "--Select Data Centre--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.DataCenter)
+                                </div>
+                                @Html.Label("* Details of Service", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.ServiceReq, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.ServiceReq)
+
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                @Html.Label("* Requested Date for Quote", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.DateForQuote,"{0:dd/MM/yyyy}", new { @class = "form-control datepicker" })
+                                    @Html.ValidationMessageFor(m => m.DateForQuote)
+
+                                </div>
+                                @Html.Label("* Requested Date for Service", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.DateForService,"{0:dd/MM/yyyy}", new { @class = "form-control datepicker" })
+                                    @Html.ValidationMessageFor(m => m.DateForService)
+
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                                              @Html.Label("Status", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.RadioButtonFor(m => m.IsActive, "True")Pending
+                        @Html.RadioButtonFor(m => m.IsActive, "False")Quoted
+                    </div>
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            <div class="col-sm-3">
+                                <input type="submit" name="btnsend" value="Update" class="dt-sc-button small" />
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </div>
+
+
+    </section>
+}

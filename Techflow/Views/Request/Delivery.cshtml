@@ -1,0 +1,304 @@
+﻿@{
+    ViewBag.Title = "Delivery Request";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@model DeliveryModel
+@using (@Html.BeginForm("Delivery", "Request", FormMethod.Post, new { @id = "frmAC", enctype = "multipart/form-data" }))
+{    
+
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Delivery Request</h1>
+            <div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Delivery</span>
+            </div>
+        </div>
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">
+            <div class="panel panel-info" id="dvGrid" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    Delivery Request List
+                    <input type="button" id="btnAdd" value="Add New" class="btnAdd btn btn-primary" />
+                </div>
+                <div class="panel-body table-responsive">
+                    @{int role = 0;
+                      if (Session["Role"] != null)
+                      {
+                          role = Convert.ToInt32(Session["Role"].ToString());
+                      }
+                    }
+                    <table class="table" id="tbl">
+                        <thead>
+                            <tr>
+                                <th>Data Centre</th>
+                                <th>TicketID</th>
+                                <th>Created By</th>
+                         @*       @if (role == 1)
+                                {
+                                    <th>Company</th>
+                                    <th>Reason</th>
+                                }*@
+                                <th>Start</th>
+                                <th>End</th>
+
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model.ListDelivery)
+                            {
+                                <tr>
+                                    <td>@i.DCDetails.DataCenter</td>
+                                    <td>@i.Prefix@i.TicketID</td>
+                                    <td>@i.UserDetails.Title @i.UserDetails.FirstName @i.UserDetails.LastName</td>
+                                 @*   @if (role == 1)
+                                    {
+                                        <td>@i.Company</td>
+                                        <td>@i.Reason</td>
+                                    }*@
+                                    @if (@i.StDateTime != null)
+                                    {
+                                        <td>@i.StDateTime.Value.ToString("dd/MM/yyyy HH:mm")</td>
+                                    }
+                                    else
+                                    {<td></td>}
+
+                                    @if (@i.EndDateTime != null)
+                                    {
+                                        <td>@i.EndDateTime.Value.ToString("dd/MM/yyyy HH:mm")</td>
+                                    }
+                                    else
+                                    {<td></td>}
+
+                                    <td>
+                                        @Html.ActionLink(" ", "DEdit", new { @id = @i.BDID }, new { @class = "fa fa-pencil-square fa-lg" })
+                                        @Html.ActionLink(" ", "DDelete", new { @id = @i.BDID }, new { onclick = "return confirm('Do you really want to delete?')", @class = "fa fa-trash fa-lg" })
+                                        @Html.ActionLink(" ", "DView", new { @id = i.BDID }, new { @class = "fa fa-eye fa-lg" })
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="panel panel-info" id="dvAdd" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    Delivery Request Details
+                    <input type="button" id="btnBack" value="Back" class="btnAdd btn btn-primary" />
+                </div>
+                <div class="panel-body">
+                    @*  <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse1">General</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <ul class="list-group">
+                                <li class="list-group-item">One</li>
+                                <li class="list-group-item">Two</li>
+                                <li class="list-group-item">Three</li>
+                            </ul>
+                            <div class="panel-footer">Footer</div>
+                        </div>
+                    </div>
+                </div>*@
+                    
+                @if(role==1)
+                {
+                    <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">User Detail</legend>
+
+                        @Html.Label("* Company", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+
+                                    @*@Html.DropDownListFor(m => m.DataCenter, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Data Center--", Value = "" }, new SelectListItem() { Text = "Global Switch", Value = "1" }, new SelectListItem() { Text = "NextDC S1", Value = "2" }, new SelectListItem() { Text = "NextDC M1", Value = "3" }, new SelectListItem() { Text = "NextDC B1", Value = "4" } }, new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.comp, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.comp)
+                                </div>
+                        @Html.Label("* User", new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-4">
+                        @Html.DropDownListFor(m => m.CreatedBy, new SelectList(Model.UserList, "UID", "FirstName"), "--Select User--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CreatedBy)
+                            </div>
+                        </fieldset>
+                }
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Data Centre</legend>
+                        <div class="form-group">
+                            @Html.Label("* Data Centre", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+
+                                @*@Html.DropDownListFor(m => m.DataCenter, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Data Center--", Value = "" }, new SelectListItem() { Text = "Global Switch", Value = "1" }, new SelectListItem() { Text = "NextDC S1", Value = "2" }, new SelectListItem() { Text = "NextDC M1", Value = "3" }, new SelectListItem() { Text = "NextDC B1", Value = "4" } }, new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.DataCenter, new SelectList(Model.ListDC, "DCID", "DataCenter"), "--Select Data Centre--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.DataCenter)
+                            </div>
+
+
+
+
+
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Visitor Details</legend>
+                        <div class="form-group">
+
+                            @Html.Label("* First Name", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.FirstName)
+
+                            </div>
+                            @Html.Label("* Last Name", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.LastName)
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("* Company", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.Company, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Company)
+
+                            </div>               
+
+                        </div>
+                        
+                    </fieldset>
+                     
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Date and Time</legend>
+                        <div class="form-group">
+                            @Html.Label("* Start Date/Time", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <div class='input-group date datetimepicker'>
+                                    @Html.TextBoxFor(m => m.StDateTime, "{0:MM/dd/yyyy HH:mm}", new { @class = "form-control", @placeholder = "mm/dd/yyyy hh:mm" })
+                                    @Html.ValidationMessageFor(m => m.StDateTime)
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+
+                                    @*                                    @Html.TextBoxFor(m => m.StTime, new { @class = "form-control timepicker", @placeholder = "HH:MM" })
+                                    @Html.ValidationMessageFor(m => m.StTime)*@
+
+                                </div>
+
+                            </div>
+                            @Html.Label("* End Date/Time", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <div class='input-group date datetimepicker'>
+                                    @Html.TextBoxFor(m => m.EndDateTime, "{0:MM/dd/yyyy HH:mm}", new { @class = "form-control", @placeholder = "mm/dd/yyyy hh:mm" })
+                                    @Html.ValidationMessageFor(m => m.EndDateTime)
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                    @*      @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control", @placeholder = "HH:MM" })
+                                    @Html.ValidationMessageFor(m => m.EndTime)*@
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </fieldset>
+                 <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Goods Details</legend>
+                        <div class="form-group">
+
+                            @Html.Label("* Boxes", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.Boxes, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Boxes)
+
+                            </div>
+                            @Html.Label("* Tracking#", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.TrackingNo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.TrackingNo)
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("* Project Reference", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.ProjectRef, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.ProjectRef)
+
+                            </div>  
+                              @Html.Label("* Storage", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                            @Html.RadioButtonFor(m => m.Storage, "True")Yes
+                        @Html.RadioButtonFor(m => m.Storage, "False")No
+                        </div>            
+                               <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("* Remote Hands", new { @class = "col-sm-2 control-label" })
+                           <div class="col-sm-4">
+                            @Html.RadioButtonFor(m => m.RemoteHands, "True")Yes
+                        @Html.RadioButtonFor(m => m.RemoteHands, "False")No
+                        </div>
+                        </div>
+                        
+                    </fieldset>
+
+                    <div class="col-sm-3">
+                        <input type="submit" name="btnsend" value="Save" class="dt-sc-button small" />
+                    </div>
+                </div>
+            </div>   
+
+        </div>
+    </section>
+}
+
+<script lang="javascript" type="text/javascript">
+    $(document).ready(function () {
+        //Get Plotno by schemeID
+        $("#comp").change(function () {
+            $("#divLoading").show();
+            debugger;
+            
+            var CompIds = $('#comp').val();
+            $.ajax(
+            {
+                url: '@Url.Action("FillUser", "Request")',
+                type: "GET",
+                datatype: "JSON",
+                data: { cid: CompIds },
+
+                success: function (user) {
+                    debugger;
+
+                    $("#CreatedBy").html("");  // clear before appending new list 
+                    $("#CreatedBy").append("<option value='0'>--Select User--</option>");
+                    $.each(user, function (i, CreatedBy) {
+
+                        $("#CreatedBy").append(
+
+                            $('<option></option>').val(CreatedBy.UID).html(CreatedBy.Title+' '+CreatedBy.FirstName+' '+CreatedBy.LastName));
+                        $("#divLoading").hide();
+                    });
+                    
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                    $("#divLoading").hide();
+                }
+
+            });
+
+        });
+    });
+        </script>

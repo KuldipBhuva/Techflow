@@ -1,0 +1,798 @@
+﻿@{
+    ViewBag.Title = "Reply";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .right {
+        position: relative;
+        background: #ebebeb;
+        text-align: left;
+        min-width: 45%;
+        padding: 10px 15px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        float: right;
+        right: 20px;
+    }
+
+        .right::before {
+            content: '';
+            position: absolute;
+            visibility: visible;
+            top: -1px;
+            right: -10px;
+            border: 10px solid transparent;
+            border-top: 10px solid #ccc;
+        }
+
+        .right::after {
+            content: '';
+            position: absolute;
+            visibility: visible;
+            top: 0px;
+            right: -8px;
+            border: 10px solid transparent;
+            border-top: 10px solid #ebebeb;
+            clear: both;
+        }
+
+    .left {
+        position: relative;
+        background: #ebebeb;
+        text-align: left;
+        min-width: 45%;
+        padding: 10px 15px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        float: left;
+        right: 20px;
+    }
+
+        .left::before {
+            content: '';
+            position: absolute;
+            visibility: visible;
+            top: -1px;
+            left: -10px;
+            border: 10px solid transparent;
+            border-top: 10px solid #ccc;
+        }
+
+        .left::after {
+            content: '';
+            position: absolute;
+            visibility: visible;
+            top: 0px;
+            left: -8px;
+            border: 10px solid transparent;
+            border-top: 10px solid #ebebeb;
+            clear: both;
+        }
+</style>
+<style type="text/css">
+    .thumb-image {
+        float: left;
+        width: 250px;
+        height: 200px;
+        border: 1px solid #5bc0de;
+        position: relative;
+        padding: 5px;
+    }
+</style>
+@using Models.ViewModel
+@using Models;
+@model TicketModel
+@using (@Html.BeginForm("Replay", "Ticket", FormMethod.Post, new { @id = "frmComp", enctype = "multipart/form-data" }))
+{  
+
+    @Html.HiddenFor(m => m.TicketID)
+    @Html.HiddenFor(m => m.CreatedBy)
+    @Html.HiddenFor(m => m.CreatedDate)
+    @Html.HiddenFor(m => m.IsActive)   
+    @Html.HiddenFor(m => m.Prefix)
+
+
+    
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Ticket</h1>
+            <div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Ticket</span>
+            </div>
+        </div>
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+    
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">
+            @{int rid = 0;
+              if (Session["Role"] != null)
+              {
+                  rid = Convert.ToInt32(Session["Role"].ToString());
+              }
+
+              if (rid == 1)
+              {              
+@*<div class="panel panel-info col-sm-3" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                    <div class="panel-heading">
+                        <i class="fa fa-user"></i>&nbsp;@Model.UserDetails.Title @Model.UserDetails.FirstName @Model.UserDetails.LastName
+                    </div>
+                    <div class="panel-body" style="padding: 0px;">
+
+
+                        <b>Company :</b>@if (Model.CompDetails != null)
+                                        { @Model.CompDetails.Name}<br />
+                        <b>Ticket ID : </b>@Model.Prefix@Model.TicketID<br />
+                        <b>Ticket Type : </b>@Model.TTypeDetails.TicketType
+                        <b>Priority : </b>@if (Model.Priority == 1)
+                                          { <span>P1</span>}
+                                          else if (Model.Priority == 2)
+                                          { <span>P2</span>}
+                                          else if (Model.Priority == 3)
+                                          { <span>P3</span>}
+                                          else
+                                          {<span>P4</span>}<br />
+                        <b>Phone :</b> @Model.UserDetails.Phone<br />
+                        <b>Email :</b>@Model.UserDetails.Email<br />
+                        <b>City : </b>@Model.UserDetails.City
+                    </div>
+                </div>*@
+                <div class="panel panel-info col-sm-12" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                    <div class="panel-heading" style="position: relative;">
+                        @*<i class="fa fa-comments-o" aria-hidden="true"></i>&nbsp;Ticket Conversation*@.
+                        <div class="dropdown" style="color: white; top: -5px; float: left;">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <i class="fa fa-user"></i>&nbsp;@Model.UserDetails.Title @Model.UserDetails.FirstName @Model.UserDetails.LastName
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-left" style="color: black; min-width: 350px; padding-left: 15px;">
+                                <li>
+                                    <b>Company :</b>@if (Model.CompDetails != null)
+                                                    { @Model.CompDetails.Name}<br />
+                                    <b>Ticket ID : </b>@Model.Prefix@Model.TicketID<br />
+                                    <b>Ticket Type : </b>@Model.TTypeDetails.TicketType
+                                    <b>Priority : </b>@if (Model.Priority == 1)
+                                                      { <span>P1</span>}
+                                                      else if (Model.Priority == 2)
+                                                      { <span>P2</span>}
+                                                      else if (Model.Priority == 3)
+                                                      { <span>P3</span>}
+                                                      else
+                                                      {<span>P4</span>}<br />
+                                    <b>Phone :</b> @Model.UserDetails.Phone<br />
+                                    <b>Email :</b>@Model.UserDetails.Email<br />
+                                    <b>City : </b>@Model.UserDetails.City
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="~/Ticket/Index">
+                            <input type="button" id="btnBack" value="Back" class="btnAdd btn btn-primary" /></a>
+
+                    </div>
+                    <div class="panel-body">
+                        @if (Model.Quotedetails != null || Model.Deldetails != null || Model.Accessdetails != null)
+                        {
+                            <div>
+                                <a href="#" data-toggle="modal" data-target="#myModal">View Detail</a>
+                            </div>
+                        }
+@* <div class="left col-sm-10">
+                            <span class="label label-success">@Model.UserDetails.Title @Model.UserDetails.FirstName @Model.UserDetails.LastName </span>
+                            <br />
+                            <pre style="border: none; color: black; background-color: inherit; margin-bottom: -10px;">@Model.Description</pre>
+                            <p style="font-size: smaller; margin-left: 10px;">@Convert.ToDateTime(Model.CreatedDate).ToString("dd/MM/yyyy HH:mm")</p>
+                        </div>*@
+                        <div class="col-sm-10" style="height: 5px;"></div>
+                        @{int uid = 0;
+                          if (Session["UID"] != null)
+                          {
+                              uid = Convert.ToInt32(Session["UID"].ToString());
+                          }
+                        }
+                        @foreach (var i in Model.ListTicketTran)
+                        {
+
+                            if (i.UserDetails.Role == 1)
+                            {
+                            <div class="right col-sm-10" style="padding: 5px; margin: 5px;">
+                                <span class="label label-primary">You</span><br />
+                                @if (@i.Comment != null)
+                                {
+                                    <pre style="border: none; color: black; background-color: inherit; margin-bottom: -10px; white-space: pre-wrap;">@i.Comment</pre>
+                                }
+                                @if (@i.FileName != null)
+                                {
+                                    <a href="@i.FileURL" target="_blank">
+                                        <img alt="attachment" style="margin-top:5px;" src="@i.FileURL" height="200px" width="250px" onError="this.onerror=null;this.src='/Content/images/File_Download.png';" class="img-rounded">
+                                    </a>
+                                    <span style="margin-left: 15px;">@i.FileName</span>
+                                }
+                                <p style="font-size: smaller; margin-left: 10px;">
+                                    @if (@i.ReplayDate != null)
+                                    {@Convert.ToDateTime(@i.ReplayDate).ToString("dd/MM/yyyy HH:mm")}
+                                    else
+                                    {@Convert.ToDateTime(@i.CreatedDate).ToString("dd/MM/yyyy HH:mm")}
+                                </p>
+                            </div>
+                    
+                            }
+                            else
+                            {
+                            <div class="left col-sm-10" style="padding: 5px; margin: 5px;">
+                                <span class="label label-success">@Model.UserDetails.Title @Model.UserDetails.FirstName @Model.UserDetails.LastName </span>
+                                <br />
+                                @if (@i.Comment != null)
+                                {
+                                    <pre style="border: none; color: black; background-color: inherit; margin-bottom: -10px; white-space: pre-wrap;">@i.Comment</pre>
+                                }
+                                @if (@i.FileName != null)
+                                {
+                                    <a href="@i.FileURL" target="_blank">
+                                        <img alt="attachment" style="margin-top:5px;" src="@i.FileURL" height="200px" width="250px" onError="this.onerror=null;this.src='/Content/images/File_Download.png';" class="img-rounded">
+                                    </a>
+                                    <span style="margin-left: 15px;">@i.FileName</span>
+                                }
+                                <p style="font-size: smaller; margin-left: 10px;">
+                                    @if (@i.ReplayDate != null)
+                                    {@Convert.ToDateTime(@i.ReplayDate).ToString("dd/MM/yyyy HH:mm")}
+                                    else
+                                    {@Convert.ToDateTime(@i.CreatedDate).ToString("dd/MM/yyyy HH:mm")}
+                                </p>
+                            </div>
+                               
+                            }
+@*foreach (var at in Model.ListTA)
+                            {
+
+                            if (uid == @at.ReplayBy)
+                            {
+                            <div class="right col-sm-10" style="padding: 5px; margin: 5px;">
+                                <span class="label label-success">@Model.UserDetails.Title @Model.UserDetails.FirstName @Model.UserDetails.LastName </span>
+                                <br />
+                                <a href="@at.FileURL" target="_blank">
+                                    
+
+                                    <img alt="product" src="@at.FileURL" height="200px" width="250px" onError="this.onerror=null;this.src='/Content/images/File_Download.png';" class="img-rounded">
+                                </a>
+                                <span style="margin-left: 15px;">@at.FileName</span>
+                                <p style="font-size: smaller; margin-left: 10px;">@Convert.ToDateTime(@i.ReplayDate).ToString("dd/MM/yyyy HH:mm")</p>
+
+                            </div>   
+                            }
+                            else
+                            {
+                            <div class="left col-sm-10" style="padding: 5px; margin: 5px;">
+                                <span class="label label-success">@Model.UserDetails.Title @Model.UserDetails.FirstName @Model.UserDetails.LastName </span>
+                                <br />
+                                <a href="@at.FileURL" target="_blank">
+                                    <img alt="product" src="@at.FileURL" height="200px" width="250px" onError="this.onerror=null;this.src='/Content/images/File_Download.png';" class="img-rounded"></a>
+                                <span style="margin-left: 15px;">@at.FileName</span>
+                                <p style="font-size: smaller; margin-left: 10px;">@Convert.ToDateTime(@i.ReplayDate).ToString("dd/MM/yyyy HH:mm")</p>
+                            </div>         
+                            }
+
+                            }*@
+
+                        }
+
+                        <div class="right col-lg-1" id="dvImg1" style="padding: 5px; margin: 5px;">
+
+                            <div id="image-holder" style="float: right;" class="img-rounded"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+                        if (@Model.TicketStatusID != 2)
+                        {
+                <div class="panel panel-default col-sm-12">
+                    <div class="panel-body">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+
+                                @Html.TextAreaFor(m => m.Comment, new { @class = "form-control", @placeholder = "Add note to the ticket" })
+                                @*@Html.ValidationMessageFor(m=>m.Comment)*@
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" style="margin-left: 6px;" type="submit">Send</button>
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-12" style="height: 10px;"></div>
+                        <div class="col-sm-6" style="display: block; position: relative; float: left; top: -5px;">
+
+                            @*<div class="input-group">*@
+                            @Html.DropDownListFor(m => m.TicketStatusID, new SelectList(Model.ListTstatus, "TicketStatusID", "TicketStatus"), "--Select Status--", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.TicketStatusID)
+                            @*<span class="input-group-btn">
+                                    <button class="btn btn-danger" type="submit">Change Status</button>
+                                </span>
+                                </div>*@
+
+                        </div>
+                        <div class="col-sm-6" style="display: block; position: relative; float: right; top: -5px; margin-right: -63px;">
+
+                            @*<input type="file" class="form-control btn btn-primary"/>*@
+                            <input type="file" id="file" multiple="multiple" name="files" class="btn btn-info" />
+
+                        </div>
+                    </div>
+
+
+                </div>
+                        }
+              }
+              else
+              {
+@*<div class="panel panel-info col-sm-3" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                    <div class="panel-heading">
+                        <i class="fa fa-user"></i>&nbsp;@Model.UserDetails.Title @Model.UserDetails.FirstName @Model.UserDetails.LastName
+                    </div>
+                    <div class="panel-body" style="padding: 0px;">
+                        <b>Company :</b>@if (Model.CompDetails != null)
+                                        { @Model.CompDetails.Name}<br />
+                        <b>Ticket ID : </b>@Model.Prefix@Model.TicketID<br />
+                        <b>Ticket Type : </b>@Model.TTypeDetails.TicketType
+                        <b>Priority : </b>@if (Model.Priority == 1)
+                                          { <span>P1</span>}
+                                          else if (Model.Priority == 2)
+                                          { <span>P2</span>}
+                                          else if (Model.Priority == 3)
+                                          { <span>P3</span>}
+                                          else
+                                          {<span>P4</span>}<br />
+                        <b>Phone :</b> @Model.UserDetails.Phone<br />
+                        <b>Email :</b>@Model.UserDetails.Email<br />
+                        <b>City : </b>@Model.UserDetails.City
+                    </div>
+                </div>*@
+               
+                <div class="panel panel-info col-sm-12" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                    @Html.HiddenFor(m => m.TicketStatusID)
+                    <div class="panel-heading">
+                        .
+                         <div class="dropdown" style="color: white; top: -5px; float: left;">
+                             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                 <i class="fa fa-user"></i>&nbsp;@Model.UserDetails.Title @Model.UserDetails.FirstName @Model.UserDetails.LastName
+                                 <span class="caret"></span>
+                             </button>
+                             <ul class="dropdown-menu dropdown-menu-left" style="color: black; min-width: 350px; padding-left: 15px;">
+                                 <li>
+                                     <b>Company :</b>@if (Model.CompDetails != null)
+                                                     { @Model.CompDetails.Name}<br />
+                                     <b>Ticket ID : </b>@Model.Prefix@Model.TicketID<br />
+                                     <b>Ticket Type : </b>@Model.TTypeDetails.TicketType
+                                     <b>Priority : </b>@if (Model.Priority == 1)
+                                                       { <span>P1</span>}
+                                                       else if (Model.Priority == 2)
+                                                       { <span>P2</span>}
+                                                       else if (Model.Priority == 3)
+                                                       { <span>P3</span>}
+                                                       else
+                                                       {<span>P4</span>}<br />
+                                     <b>Phone :</b> @Model.UserDetails.Phone<br />
+                                     <b>Email :</b>@Model.UserDetails.Email<br />
+                                     <b>City : </b>@Model.UserDetails.City
+                                 </li>
+                             </ul>
+                         </div>
+
+                        <a href="~/Ticket/Index">
+                            <input type="button" id="btnBack" value="Back" class="btnAdd btn btn-primary" /></a>
+                    </div>
+                    <div class="panel-body">
+
+                        @* <div class="right col-sm-10" style="padding: 5px; margin: 5px;">
+                            <span class="label label-primary">You</span><br />
+                            <pre style="border: none; color: black; background-color: inherit; margin-bottom: -10px;">@Model.Description</pre>
+                            <p style="font-size: smaller; margin-left: 10px;">@Convert.ToDateTime(Model.CreatedDate).ToString("dd/MM/yyyy HH:mm")</p>
+                        </div>*@
+                        <div class="col-sm-10" style="height: 5px;"></div>
+                        @foreach (var i in Model.ListTicketTran)
+                        {
+                            if (i.UserDetails.Role == 1)
+                            {
+                            <div class="left col-sm-10" style="padding: 5px; margin: 5px;">
+                                <span class="label label-success">Techflow</span><br />
+                                @if (@i.Comment != null)
+                                {
+                                    <pre style="border: none; color: black; background-color: inherit; margin-bottom: -10px; white-space: pre-wrap;">@i.Comment</pre>
+                                }
+                                @if (@i.FileName != null)
+                                {
+                                    <a href="@i.FileURL" target="_blank">
+                                        <img alt="attachment" style="margin-top:5px;" src="@i.FileURL" height="200px" width="250px" onError="this.onerror=null;this.src='/Content/images/File_Download.png';" class="img-rounded">
+                                    </a>
+                                    <span style="margin-left: 15px;">@i.FileName</span>
+                                }
+                                <p style="font-size: smaller; margin-left: 10px;">
+                                    @if (@i.ReplayDate != null)
+                                    {@Convert.ToDateTime(@i.ReplayDate).ToString("dd/MM/yyyy HH:mm")}
+                                    else
+                                    {@Convert.ToDateTime(@i.CreatedDate).ToString("dd/MM/yyyy HH:mm")}
+                                </p>
+                            </div>
+                    
+                            }
+                            else
+                            {
+                            <div class="right col-sm-10" style="padding: 5px; margin: 5px;">
+                                <span class="label label-primary">You</span><br />
+                                @if (@i.Comment != null)
+                                {
+                                    <pre style="border: none; color: black; background-color: inherit; margin-bottom: -10px; white-space: pre-wrap;">@i.Comment</pre>
+                                }
+                                @if (@i.FileName != null)
+                                {
+                                    <a href="@i.FileURL" target="_blank">
+                                        <img alt="attachment" style="margin-top:5px;" src="@i.FileURL" height="200px" width="250px" onError="this.onerror=null;this.src='/Content/images/File_Download.png';" class="img-rounded">
+                                    </a>
+                                    <span style="margin-left: 15px;">@i.FileName</span>
+                                }
+                                <p style="font-size: smaller; margin-left: 10px;">
+                                    @if (@i.ReplayDate != null)
+                                    {@Convert.ToDateTime(@i.ReplayDate).ToString("dd/MM/yyyy HH:mm")}
+                                    else
+                                    {@Convert.ToDateTime(@i.CreatedDate).ToString("dd/MM/yyyy HH:mm")}
+                                </p>
+                            </div>   
+                            }
+@*foreach (var at in Model.ListTA)
+                            {
+                                int uid = 0;
+                                if (Session["UID"] != null)
+                                {
+                                    uid = Convert.ToInt32(Session["UID"].ToString());
+                                }
+
+                                if (uid == @at.ReplayBy)
+                                {
+                            <div class="right col-sm-10" style="padding: 5px; margin: 5px;">
+                                <span class="label label-primary">You@ </span>
+                                <br />
+                                <a href="@at.FileURL" target="_blank">
+                                    <img alt="product" src="@at.FileURL" height="200px" width="250px" onError="this.onerror=null;this.src='/Content/images/File_Download.png';" class="img-rounded"></a>
+                                <span style="margin-left: 15px;">@at.FileName</span>
+                                <p style="font-size: smaller; margin-left: 10px;">@Convert.ToDateTime(@i.ReplayDate).ToString("dd/MM/yyyy HH:mm")</p>
+                            </div>   
+                                }
+                                else
+                                {
+                            <div class="left col-sm-10" style="padding: 5px; margin: 5px;">
+                                <span class="label label-success">Techflow</span>
+                                <br />
+                                <a href="@at.FileURL" target="_blank">
+                                    <img alt="product" src="@at.FileURL" height="200px" width="250px" onError="this.onerror=null;this.src='/Content/images/File_Download.png';" class="img-rounded"></a>
+                                <span style="margin-left: 15px;">@at.FileName</span>
+                                <p style="font-size: smaller; margin-left: 10px;">@Convert.ToDateTime(@i.ReplayDate).ToString("dd/MM/yyyy HH:mm")</p>
+                            </div>         
+                                }
+                            }*@
+
+                        }
+
+                        <div class="right col-lg-1" id="dvImg2" style="padding: 5px; margin: 5px;">
+
+                            <div id="image-holder1" style="float: right;" class="img-rounded"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+                        if (@Model.TicketStatusID != 2)
+                        {
+                <div class="panel panel-default col-sm-12">
+                    <div class="panel-body">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+
+                                @Html.TextAreaFor(m => m.Comment, new { @class = "form-control" })
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="submit" style="left: 5px;">Send</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="height: 10px;"></div>
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6">
+
+                            @*<input type="file" class="form-control btn btn-primary"/>*@
+                            <input type="file" id="file" multiple="multiple" name="files" class="btn btn-info" />
+
+
+                        </div>
+                    </div>
+
+
+                </div>  
+                        }
+              }
+            }
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Quotation Detail</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            @if (Model.Quotedetails != null)
+                            {
+                                <table class="">
+                                    <tr>
+                                        <td><b>Cable Source : </b></td>
+                                        <td>@Model.Quotedetails.CableSource</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Cable Destination : </b></td>
+                                        <td>@Model.Quotedetails.CableDest</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Cable Type :</b></td>
+                                        <td>@Model.Quotedetails.CableType</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Termination Source : </b></td>
+                                        <td>@Model.Quotedetails.TerminationSource</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Termination Destination : </b></td>
+                                        <td>@Model.Quotedetails.TerminationDest</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Requested Delivery Date : </b></td>
+                                        <td>@if (Model.Quotedetails.ReqDelDate != null)
+                                            {@Model.Quotedetails.ReqDelDate.Value.ToString("dd/MM/yyyy")}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Premium Service : </b></td>
+                                        <td>@Model.Quotedetails.IsPremium</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Patch Panel? : </b></td>
+                                        <td>@Model.Quotedetails.IsPatchPanel</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Patch Panel : </b></td>
+                                        <td>@Model.Quotedetails.PatchPanel</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Media Converter : </b></td>
+                                        <td>@Model.Quotedetails.MediaConverter</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Comments : </b></td>
+                                        <td>@Model.Quotedetails.Comments</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Details of Service : </b></td>
+                                        <td>@Model.Quotedetails.ServiceReq</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Date of Quote : </b></td>
+                                        @if (@Model.Quotedetails.DateForQuote != null)
+                                        {<td>@Model.Quotedetails.DateForQuote.Value.ToString("dd/MM/yyyy")</td>}
+                                        else
+                                        {<td></td>}
+                                    </tr>
+                                    <tr>
+                                        <td><b>Date of Service : </b></td>
+                                        <td>@if (@Model.Quotedetails.DateForService != null)
+                                            {@Model.Quotedetails.DateForService.Value.ToString("dd/MM/yyyy")}</td>
+                                    </tr>
+                                </table>
+                          
+                            }
+                            else if (Model.Accessdetails != null)
+                            {
+
+                                techflowEntities Dbcontext = new techflowEntities();
+                                var dc = Dbcontext.DataCenterMasters.Where(m => m.DCID == @Model.Accessdetails.DataCenter).SingleOrDefault();
+                                <table class="">
+                                    <tr>
+                                        <td><b>Data Centre : </b></td>
+                                        <td>@dc.DataCenter</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>First Name : </b></td>
+                                        <td>@Model.Accessdetails.FirstName</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Last Name :</b></td>
+                                        <td>@Model.Accessdetails.LastName</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Phone : </b></td>
+                                        <td>@Model.Accessdetails.phone</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Company : </b></td>
+                                        <td>@Model.Accessdetails.Company</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Start Date Time : </b></td>
+                                        <td>@if (@Model.Accessdetails.StDateTime != null)
+                                            {@Model.Accessdetails.StDateTime.Value.ToString("dd/MM/yyyy HH:mm")}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>End Date Time : </b></td>
+                                        <td>@if (@Model.Accessdetails.EndDateTime != null)
+                                            {@Model.Accessdetails.EndDateTime.Value.ToString("dd/MM/yyyy HH:mm")}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Reason : </b></td>
+                                        <td>@Model.Accessdetails.Reason</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Second Visitor : </b></td>
+                                        <td>@Model.Accessdetails.SFirstName @Model.Accessdetails.SLastName</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Phone : </b></td>
+                                        <td>@Model.Accessdetails.SPhone</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Company : </b></td>
+                                        <td>@Model.Accessdetails.SCompany</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Third Visitor : </b></td>
+                                        <td>@Model.Accessdetails.TFirstName @Model.Accessdetails.TLastName</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Phone : </b></td>
+                                        <td>@Model.Accessdetails.TPhone</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Company : </b></td>
+                                        <td>@Model.Accessdetails.TCompany</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Fourth Visitor : </b></td>
+                                        <td>@Model.Accessdetails.FFirstName @Model.Accessdetails.FLastName</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Phone : </b></td>
+                                        <td>@Model.Accessdetails.FPhone</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Company : </b></td>
+                                        <td>@Model.Accessdetails.FCompany</td>
+                                    </tr>
+                                </table>
+                            }
+                            else if (Model.Deldetails != null)
+                            {
+                                techflowEntities Dbcontext = new techflowEntities();
+                                var dc = Dbcontext.DataCenterMasters.Where(m => m.DCID == @Model.Deldetails.DataCenter).SingleOrDefault();
+                                <table class="">
+                                    <tr>
+                                        <td><b>Data Centre : </b></td>
+                                        <td>@dc.DataCenter</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>First Name : </b></td>
+                                        <td>@Model.Deldetails.FirstName</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Last Name :</b></td>
+                                        <td>@Model.Deldetails.LastName</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Company : </b></td>
+                                        <td>@Model.Deldetails.Company</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Start Date Time : </b></td>
+                                        @if (@Model.Deldetails.StDateTime != null)
+                                        {
+                                            <td>@Model.Deldetails.StDateTime.Value.ToString("dd/MM/yyyy HH:mm")</td>
+                                        }
+                                        else
+                                        {
+                                            <td></td>   
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td><b>End Date Time : </b></td>
+                                        @if (@Model.Deldetails.EndDateTime != null)
+                                        {
+                                            <td>@Model.Deldetails.EndDateTime.Value.ToString("dd/MM/yyyy HH:mm")</td>
+                                        }
+                                        else
+                                        {
+                                            <td></td>   
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td><b>Boxes : </b></td>
+                                        <td>@Model.Deldetails.Boxes</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Tracking No. : </b></td>
+                                        <td>@Model.Deldetails.TrackingNo</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Project Ref. : </b></td>
+                                        <td>@Model.Deldetails.ProjectRef</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Storage : </b></td>
+                                        <td>@Model.Deldetails.Storage</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Remote Hands : </b></td>
+                                        <td>@Model.Deldetails.RemoteHands</td>
+                                    </tr>
+                                </table>
+                            }
+                        </div>
+                        <div class="modal-footer" style="border: none;">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+}
+
+
+<script>
+    $(document).ready(function () {
+        $("#dvImg1").hide();
+        $("#dvImg2").hide();
+    });
+    $("#file").on('change', function () {
+
+        //Get count of selected files
+        var countFiles = $(this)[0].files.length;
+
+        var imgPath = $(this)[0].value;
+        var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+        var image_holder = $(".img-rounded");
+        image_holder.empty();
+
+        if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg" || extn == "pdf" || extn == "xlsx" || extn == "zip" || extn == "rar" || extn == "doc" || extn == "xls" || extn == "txt") {
+            if (typeof (FileReader) != "undefined") {
+                $("#dvImg1").show();
+                $("#dvImg2").show();
+                //loop for each file selected for uploaded.
+                for (var i = 0; i < countFiles; i++) {
+
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("<img />", {
+                            "src": e.target.result,
+                            "class": "img-rounded thumb-image",
+                            "alt": "Document"
+                        }).appendTo(image_holder);
+                    }
+
+                    image_holder.show();
+                    reader.readAsDataURL($(this)[0].files[i]);
+                }
+
+            } else {
+                alert("This browser does not support FileReader.");
+            }
+        } else {
+            alert("Please select valid document type");
+        }
+    });
+</script>
+
+

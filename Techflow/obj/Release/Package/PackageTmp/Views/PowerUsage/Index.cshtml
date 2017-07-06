@@ -1,0 +1,535 @@
+﻿@{
+    ViewBag.Title = "Power Usage Master " + @System.DateTime.Now;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@model PowerUsageModel
+@*@using (@Html.BeginForm("Index", "PowerUsage", FormMethod.Post, new { @id = "frmPU", enctype = "multipart/form-data" }))
+{    
+
+    *@<!-- **Breadcrumb Section** -->
+
+<div class="breadcrumb-section">
+    <div class="container">
+        <h1>Power Usage</h1>
+        <div class="breadcrumb">
+            <a href="/Dashboard/Index" title="">Home</a> / <span>Power Usage</span>
+        </div>
+    </div>
+</div>
+<!-- **Breadcrumb Section Ends** -->
+
+<!-- **Content Main** -->
+<section class="content-main">
+    <!-- **Container** -->
+    <div class="container">
+
+        <div class="panel panel-info" id="dvAdd" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+            <div class="panel-heading" style="position: relative;">
+                Power Usage Details
+                  <input type="button" id="btnBack" value="Back" class="btnAdd btn btn-primary" />
+            </div>
+            <div class="panel-body">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Upload Data Sheet</legend>
+                    <div class="alert alert-danger">
+                        <strong>Note : </strong>
+                        <p>1. Excel sheet colunm structure must be as sample sheet.&nbsp;<a target="_blank" href="/DataFiles/PowerUsageSamleSheet.xlsx"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Download Sample Sheet</a></p>
+                        <p>2. Upload single sheet excel file. Sheet name must be 'Sheet1', remember this is sheet name not a file name.</p>
+                        <p>3. In Sheet first colunm 'PUID' and ninth colunm 'Over/Under(kW)' keep blank.</p>
+                    </div>
+                    @*<form method="post" action="/PowerUsage/addFile">*@
+                    @using (Html.BeginForm("addFile", "PowerUsage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.Label("Select Excel File", new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            @*<input type="file" id="file" name="files" multiple="multiple" value="" class="btn btn-info" />*@
+                            <input type="file" value="" id="fle" name="file" class="btn btn-info" />
+
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="Submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    }
+                </fieldset>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Delete Data</legend>
+                    <form method="post" action="/PowerUsage/DelData">
+                        <lable class="col-sm-2">Company</lable>
+                        <div class="col-sm-4">
+
+                            @Html.DropDownListFor(m => m.CompID, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control", @id = "ddlComp" })
+                        </div>
+                        <div class="col-sm-12" style="height: 5px;"></div>
+                        <lable class="col-sm-2">* Year/Month</lable>
+                        <div class="col-sm-4">
+
+                            @Html.DropDownListFor(m => m.year, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Year--", Value = "" }, new SelectListItem() { Text = "2014", Value = "2014" }, new SelectListItem() { Text = "2015", Value = "2015" }, new SelectListItem() { Text = "2016", Value = "2016" }, new SelectListItem() { Text = "2017", Value = "2017" }, new SelectListItem() { Text = "2018", Value = "2018" }, new SelectListItem() { Text = "2019", Value = "2019" }, new SelectListItem() { Text = "2020", Value = "2020" } }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.year)
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                @* @{var mm = Model.ListPowerData[0].LastReading.Value.Month;}*@
+                                @Html.DropDownListFor(m => m.month, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Month--", Value = "" }, new SelectListItem() { Text = "January", Value = "1" }, new SelectListItem() { Text = "February", Value = "2" }, new SelectListItem() { Text = "March", Value = "3" }, new SelectListItem() { Text = "April", Value = "4" }, new SelectListItem() { Text = "May", Value = "5" }, new SelectListItem() { Text = "June", Value = "6" }, new SelectListItem() { Text = "July", Value = "7" }, new SelectListItem() { Text = "August", Value = "8" }, new SelectListItem() { Text = "September", Value = "9" }, new SelectListItem() { Text = "October", Value = "10" }, new SelectListItem() { Text = "November", Value = "11" }, new SelectListItem() { Text = "December", Value = "12" } }, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.month)
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" onclick="return confirm('Do you really want to delete?')" id="btnDel" type="submit">Delete!</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+
+                </fieldset>
+            </div>
+        </div>
+
+        @*Line for github source control testing by kuldip*@
+        @*Other line added for testing*@
+
+        <div class="panel panel-info" id="dvGrid" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+            <div class="panel-heading" style="position: relative;">
+                Power Usage List
+
+                       <form method="post" action="/PowerUsage/Index">
+                           <div class="col-sm-4" style="display: block; float: right; right: 620px; margin-top: -29px;">
+
+                               @Html.DropDownListFor(m => m.year, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Year--", Value = "" }, new SelectListItem() { Text = "2013", Value = "2013" }, new SelectListItem() { Text = "2014", Value = "2014" }, new SelectListItem() { Text = "2015", Value = "2015" }, new SelectListItem() { Text = "2016", Value = "2016" }, new SelectListItem() { Text = "2017", Value = "2017" }, new SelectListItem() { Text = "2018", Value = "2018" }, new SelectListItem() { Text = "2019", Value = "2019" }, new SelectListItem() { Text = "2020", Value = "2020" } }, new { @class = "form-control" })
+                           </div>
+                           <div class="col-sm-4" style="display: block; float: right; right: -100px; margin-top: -29px;">
+                               <div class="input-group">
+                                   @* @{var mm = Model.ListPowerData[0].LastReading.Value.Month;}*@
+                                   @Html.DropDownListFor(m => m.month, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Month--", Value = "" }, new SelectListItem() { Text = "January", Value = "1" }, new SelectListItem() { Text = "February", Value = "2" }, new SelectListItem() { Text = "March", Value = "3" }, new SelectListItem() { Text = "April", Value = "4" }, new SelectListItem() { Text = "May", Value = "5" }, new SelectListItem() { Text = "June", Value = "6" }, new SelectListItem() { Text = "July", Value = "7" }, new SelectListItem() { Text = "August", Value = "8" }, new SelectListItem() { Text = "September", Value = "9" }, new SelectListItem() { Text = "October", Value = "10" }, new SelectListItem() { Text = "November", Value = "11" }, new SelectListItem() { Text = "December", Value = "12" } }, new { @class = "form-control" })
+                                   <span class="input-group-btn">
+
+                                       <button class="btn btn-success" type="submit">Go!</button>
+                                   </span>
+                               </div>
+                           </div>
+
+                       </form>
+                @{if (Session["Role"] != null)
+                  {
+                      if (Session["Role"].ToString() == "1")
+                      {<input type="button" id="btnAdd" value="Add/Delete Data" class="btnAdd btn btn-primary" />}
+                  }
+                }
+            </div>
+            @*   <div id="div1">
+                    @{Html.RenderPartial("_Data", Model);
+                    
+                    }
+                </div>*@
+
+            <div class="panel-body table-responsive">
+                <input type="hidden" id="hdnPC" />
+                <input type="hidden" id="hdnPU" />
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Graphical Representation of Last Uploaded Data</legend>
+                    @if (Model.ListPowerData.Count > 0 && Model.ListPowerData != null)
+                    {
+                        <div id="chartContainer" style="height: 300px; width: 100%;">
+                        </div>
+                    }
+                    else
+                    {
+                        <center><div><span class="label label-danger">No Data Available</span></div>   </center>
+                    }
+                </fieldset>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Data</legend>
+                    <table class="table" id="tblPU">
+                        <tfoot style="background-color: none;">
+                            <tr>
+
+                                <th colspan="5" style="text-align: left;">Total:</th>
+                                <th style="text-align: left">Total:</th>
+                                <th style="text-align: left">Total:</th>
+
+                                <th>
+                                    <label id="lblOU"></label>
+                                </th>
+                                <th></th>
+                                @if (Session["Role"] != null)
+                                {
+                                    if (Session["Role"].ToString() == "1")
+                                    {
+                                    <th></th>
+                                    }
+                                }
+
+                            </tr>
+                        </tfoot>
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Data Suite</th>
+                                <th>Rack ID</th>
+                                <th>Power Feeds</th>
+                                <th>Ampere Rating</th>
+                                <th>Power Contracted(kW)</th>
+                                <th>Power Used(kW)</th>
+                                <th>Over/Under(kW)</th>
+                                <th>Last Reading</th>
+                                @{
+                                    if (Session["Role"] != null)
+                                    {
+                                        if (Session["Role"].ToString() == "1")
+                                        {
+                                    <th class="action">Action</th>
+                                        }
+
+                                    }
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (@Model != null)
+                            {
+                                foreach (var i in Model.ListPowerData)
+                                {
+                                <tr>
+                                    <td>@i.CompDetails.Name</td>
+                                    <td>@i.DataSuite</td>
+                                    <td>@i.RackID</td>
+                                    <td>@i.PowerFeeds</td>
+                                    <td>@i.AmpereRating</td>
+                                    <td>@i.PowerContracted</td>
+                                    <td>@i.PowerUsed</td>
+                                    @{decimal ou = 0;
+                                      ou = Convert.ToDecimal(@i.PowerContracted) - Convert.ToDecimal(@i.PowerUsed);
+                                        }
+                                    @if (ou > 0)
+                                    {
+                                        <td><span class="label label-success">@string.Format("{0:0.00}",@ou)</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="label label-danger">@string.Format("{0:0.00}",@ou)</span></td>    
+                                    }
+                                    <td>@if (@i.LastReading != null)
+                                        {@i.LastReading.Value.ToString("dd/MM/yyyy")}</td>
+                                    @{
+                                        if (Session["Role"] != null)
+                                        {
+                                            if (Session["Role"].ToString() == "1")
+                                            {
+                                        <td class="action">@Html.ActionLink(" ", "Edit", new { @id = i.PUID }, new { @class = "fa fa-pencil-square fa-lg" })
+                                            &nbsp;@Html.ActionLink(" ", "Delete", new { @id = @i.PUID }, new { onclick = "return confirm('Do you really want to delete?')", @class = "fa fa-trash fa-lg" })
+                                        </td>
+                                            }
+                                        }
+                                    }
+
+                                </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Graphical Representation by Month</legend>
+                    @if (Model.ListTotalTickets != null && Model.ListTotalTickets.Count > 0)
+                    {
+                        <div id="chartContainer1" style="height: 300px; width: 100%;">
+                        </div>
+                    }
+                    else
+                    {
+                        <center><div><span class="label label-danger">No Data Available</span></div>   </center>
+                    }
+                </fieldset>
+            </div>
+
+
+
+        </div>
+</section>
+
+
+
+@*<script>
+    $(document).ready(function () {
+        $("#month").change(function () {
+            $("#divLoading").show();
+            var yr = $("#year").val();
+            var mm = $("#month").val();
+
+            debugger;
+            
+            $.ajax({
+                url: "/PowerUsage/getPU",
+                type: "POST",
+                data: { mm: mm, yy: yr },
+                
+
+                
+                success: function (result) {
+                    $("#divLoading").hide();
+                    debugger;
+                    $("#div1").html(result);                    
+                    
+                }
+            });
+            
+            
+        });
+        $("#divLoading").hide();
+    });
+
+
+</script>*@
+
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        $('#year option[value="' + @if (Model.ListPowerData.Count() > 0 && Model.ListPowerData[0].LastReading != null)
+                                   {@Html.Raw(Model.ListPowerData[0].LastReading.Value.Year)} + '"]').prop('selected', true);
+        $('#month option[value="' + @if (Model.ListPowerData.Count() > 0 && Model.ListPowerData[0].LastReading != null)
+                                    {@Html.Raw(Model.ListPowerData[0].LastReading.Value.Month)} + '"]').prop('selected', true);
+
+
+
+
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('#tblPU').DataTable({
+
+            //dom: 'Bfrtip',
+            //buttons: [
+            //    //'copy', 'csv', 'excel', 'pdf', 'print'
+            //    'pdf'            
+            //],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                'colvis'
+            ],
+
+
+            "footerCallback": function (row, data, start, end, display) {
+                var api = this.api(), data;
+
+                // Remove the formatting to get integer data for summation
+                var intVal = function (i) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '') * 1 :
+                        typeof i === 'number' ?
+                        i : 0;
+                };
+
+                // Total over all pages
+                total = api
+                    .column(6)
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                // Total over this page
+                pageTotal = api
+                    .column(6, { page: 'current' })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                // Update footer
+                $(api.column(6).footer()).html(
+                    //+pageTotal +'kw'+ ('+ total +'kw' total)'
+                    total.toFixed(2) + ' kw',
+                    $("#hdnPU").val(total)
+                );
+
+
+
+                // Total over all pages
+                total = api
+                    .column(5)
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                // Total over this page
+                pageTotal = api
+                    .column(5, { page: 'current' })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                // Update footer
+                $(api.column(5).footer()).html(
+                     total.toFixed(2) + ' kw',
+                $("#hdnPC").val(total)
+                );
+
+
+
+
+
+                // Total over all pages
+                total = api
+                    .column(7)
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                // Total over this page
+                pageTotal = api
+                    .column(7, { page: 'current' })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                // Update footer
+                var pc = $("#hdnPC").val();
+                var pu = $("#hdnPU").val();
+                var ou = pc - pu;
+                $(api.column(7).footer()).html(
+                      +ou.toFixed(2) + ' kw'
+
+                );
+
+            }
+        });
+    });
+</script>
+
+<script src="/Content/js/canvasjs.min.js"></script>
+
+<script type="text/javascript">
+    window.onload = function () {
+        debugger;
+
+        var chart1 = new CanvasJS.Chart("chartContainer1",
+           {
+
+               theme: "theme2",
+               exportEnabled: true,
+               animationEnabled: true,
+               title: {
+                   text: "Power Contracted Vs Used , @Html.Raw(ViewBag.Year)",
+                   fontSize: 30
+               },
+               toolTip: {
+                   shared: true
+               },
+               axisY: {
+                   title: "Power-kw"
+               },
+               axisY2: {
+                   title: "million barrels/day"
+               },
+               data: [
+               {
+                   type: "column",
+                   name: "Power contracted (kw)",
+                   legendText: "Total Power Contracted",
+                   showInLegend: true,
+                   dataPoints: [@Html.Raw(ViewBag.TTPC)]
+               },
+			{
+			    type: "column",
+			    name: "Power Used (kw)",
+			    legendText: "Total Power Used",
+			    //axisYType: "secondary",
+			    showInLegend: true,
+			    dataPoints: [@Html.Raw(ViewBag.TTPU)]
+			}
+
+               ],
+               legend: {
+                   cursor: "pointer",
+                   itemclick: function (e) {
+                       if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                           e.dataSeries.visible = false;
+                       }
+                       else {
+                           e.dataSeries.visible = true;
+                       }
+                       chart1.render();
+                   }
+               },
+           });
+
+        chart1.render();
+
+        var chart = new CanvasJS.Chart("chartContainer",
+		{
+
+		    theme: "theme2",
+		    exportEnabled: true,
+		    animationEnabled: true,
+		    title: {
+		        text: "Power Contracted Vs Used , @Html.Raw(ViewBag.last)",
+		        fontSize: 30
+		    },
+		    toolTip: {
+		        shared: true
+		    },
+		    axisY: {
+		        title: "Power-kw"
+		    },
+		    axisY2: {
+		        title: "million barrels/day"
+		    },
+		    data: [
+			{
+			    type: "column",
+			    name: "Power contracted (kw)",
+			    legendText: "Power Contracted",
+			    showInLegend: true,
+			    dataPoints: [@Html.Raw(ViewBag.DataPointsPC)]
+			},
+
+			{
+			    type: "column",
+			    name: "Power Used (kw)",
+			    legendText: "Power Used",
+			    //axisYType: "secondary",
+			    showInLegend: true,
+			    dataPoints: [@Html.Raw(ViewBag.DataPointsPU)]
+			}
+
+		    ],
+		    legend: {
+		        cursor: "pointer",
+		        itemclick: function (e) {
+		            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		                e.dataSeries.visible = false;
+		            }
+		            else {
+		                e.dataSeries.visible = true;
+		            }
+		            chart.render();
+		        }
+		    },
+		});
+
+        chart.render();
+
+
+
+
+    }
+
+
+</script>
+@*<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>*@
+
+

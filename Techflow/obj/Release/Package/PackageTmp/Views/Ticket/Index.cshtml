@@ -1,0 +1,353 @@
+﻿@{
+    ViewBag.Title = "Ticket";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@using Models
+@model TicketModel
+<style type="text/css">
+    .thumb-image
+    {
+        float: left;
+        width: 150px;
+        height: 150px;
+        border: 1px solid #5bc0de;
+        position: relative;
+        padding: 5px;
+    }
+        .panel-heading a:hover{
+    text-decoration: none;
+}
+</style>
+@using (@Html.BeginForm("Index", "Ticket", FormMethod.Post, new { @id = "frmComp", enctype = "multipart/form-data" }))
+{  
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Tickets</h1>
+            <div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Ticket</span>
+            </div>
+        </div>
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+    
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">
+
+            @{int role = 0;
+              if (Session["Role"] != null)
+              {
+                  role = Convert.ToInt32(Session["Role"].ToString());
+              }
+            }
+            <div class="panel panel-info" id="dvAdd" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    New Ticket
+                    <input type="button" id="btnBack" value="Back" class="btnAdd btn btn-primary" />
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @if (role == 1)
+                        {
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border">User Detail</legend>
+
+                                @Html.Label("* Company", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+
+                                    @*@Html.DropDownListFor(m => m.DataCenter, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Data Center--", Value = "" }, new SelectListItem() { Text = "Global Switch", Value = "1" }, new SelectListItem() { Text = "NextDC S1", Value = "2" }, new SelectListItem() { Text = "NextDC M1", Value = "3" }, new SelectListItem() { Text = "NextDC B1", Value = "4" } }, new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.comp, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.comp)
+                                </div>
+                                @Html.Label("* User", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.DropDownListFor(m => m.CreatedBy, new SelectList(Model.UserList, "UID", "FirstName"), "--Select User--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CreatedBy)
+                                </div>
+                            </fieldset>
+                        }
+                        @Html.Label("Ticket Type", new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.TicketTypeID, new SelectList(Model.ListTT, "TicketTypeID", "TicketType"), "--Select Ticket Type--", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.TicketTypeID)
+                        </div>
+                         <div class="col-sm-4">
+
+                             </div>
+                           <div class="col-sm-12" style="height: 5px;"></div>
+                        @Html.Label("* Priority", new { @class = "col-sm-2 control-label" })
+
+                        <div class="col-sm-6">
+
+                            @Html.DropDownListFor(m => m.Priority, new List<SelectListItem>() { new SelectListItem()
+                       { Text = "--Select Priority--", Value = "" }, 
+                       new SelectListItem() { Text = "P1 - Emergency: systems not responding, service down ", Value = "1" },
+                       new SelectListItem() { Text = "P2 - Important: some systems not responding, service affected", Value = "2" }, 
+                       new SelectListItem() { Text = "P3 - Normal: work request, service not affected", Value = "3" }, 
+                       new SelectListItem() { Text = "P4 - Low: work request, when time permits", Value = "4" ,Selected=true} }, 
+                       new { @class = "form-control" })
+                         
+                        </div>
+                        <div class="col-sm-12" style="height: 5px;"></div>
+                        @Html.Label("* Subject", new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Subject)
+
+                        </div>
+                        <div class="col-sm-12" style="height: 5px;"></div>
+                        @Html.Label("Attachments", new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-4">
+                            <input type="file" id="file" multiple="multiple" name="files" class="btn btn-info" />
+
+                        </div>
+                        <div class="col-sm-12" style="height: 5px;"></div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10">
+                            <div id="image-holder1" class="img-rounded"></div>
+                        </div>
+                        <div class="col-sm-12" style="height: 5px;"></div>
+                        @Html.Label("* Description", new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @style = "height:150px;" })
+                            @Html.ValidationMessageFor(m => m.Description)
+
+                        </div>
+                        <div class="col-sm-12" style="height: 5px;"></div>
+                        <div class="col-sm-3">
+                            <input type="submit" name="btnsend" value="Send" class="dt-sc-button small" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-info" id="dvGrid" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    Ticket History
+                    
+                     <div style="float: right; display: block; margin-right: 94px;"><span class="label label-primary">UNREPLIED</span>&nbsp;<span class="label label-info">REPLIED</span>&nbsp;</div>
+                    <input type="button" id="btnAdd" value="New Ticket" class="btnAdd btn btn-primary" />
+                </div>
+                <div class="panel-body table-responsive">
+                    <div class="panel-group" id="accordion">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tickets</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <span style="float: right; color: red;">* Type Status or Ticket ID to filter those tickets.</span>
+                                @foreach (var i in Model.ListTicket)
+                                {
+                                    techflowEntities Dbcontext = new techflowEntities();
+                                    var IsRead = Dbcontext.TicketTrans.Where(m => m.TicketID == i.TicketID && m.ReplayBy == 1).ToList();
+                                    <tr>
+                                        <td>
+                                            @if (IsRead.Count > 0)
+                                            {
+                                                <div class="panel panel-info">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            @*<a data-toggle="collapse" data-parent="#accordion" href="#@i.TicketID">Ticket ID : <span class="label label-success">@i.TicketID</span>&nbsp; Subject : <span class="label label-info">@i.Subject</span></a>*@
+                                                            <a data-toggle="collapse" data-parent="#accordion" href="#@i.TicketID">ID : <span class="label label-success">@i.Prefix@i.TicketID</span>&nbsp;<span class="badge badge-info">@i.CreatedDate.Value.ToString("dd/MM/yyyy")</span>&nbsp; Subject : <span class="label label-info">@i.Subject </span></a>
+                                                        </h4>
+                                                        <div style="display: block; float: right; Position: relative; top: -20px;">
+                                                            @if (@i.Priority == 1)
+                                                            {
+                                                                <span class="label label-danger">P1</span>
+                                                            }
+                                                            else if (@i.Priority == 2)
+                                                            {
+                                                                <span class="label label-danger">P2</span>
+                                                            }
+                                                            else if (@i.Priority == 3)
+                                                            {
+                                                                <span class="label label-success">P3</span>   
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="label label-info">P4</span>   
+                                                            }
+                                                        </div>
+                                                        <div style="display: block; float: right;right:3px; Position: relative; top: -20px;">
+                                                            @if (@i.TStatusDetails != null)
+                                                            {
+                                                                <span class="label label-success">@i.TStatusDetails.TicketStatus</span>
+                                                            }
+                                                        </div>
+
+                                                    </div>
+                                                    <div id="@i.TicketID" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <p>@i.Description</p>
+                                                            <div class="col-sm-1">
+                                                                <a href="/Ticket/Replay/@i.TicketID?uid=@i.CreatedBy"  class="btn btn-success">
+                                                                    <i class="fa fa-mail-forward" aria-hidden="true"></i>&nbsp;Details
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            @*<a data-toggle="collapse" data-parent="#accordion" href="#@i.TicketID">Ticket ID : <span class="label label-success">@i.TicketID</span>&nbsp; Subject : <span class="label label-info">@i.Subject</span></a>*@
+                                                            <a data-toggle="collapse" data-parent="#accordion" href="#@i.TicketID">ID : <span class="label label-success">@i.Prefix@i.TicketID</span>&nbsp;<span class="badge badge-info">@i.CreatedDate.Value.ToString("dd/MM/yyyy")</span>&nbsp; Subject : <span class="label label-info">@i.Subject </span></a>
+                                                        </h4>
+                                                        <div style="display: block; float: right; Position: relative; top: -20px;">
+                                                            @if (@i.Priority == 1)
+                                                            {
+                                                                <span class="label label-danger">P1</span>
+                                                            }
+                                                            else if (@i.Priority == 2)
+                                                            {
+                                                                <span class="label label-danger">P2</span>
+                                                            }
+                                                            else if (@i.Priority == 3)
+                                                            {
+                                                                <span class="label label-success">P3</span>   
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="label label-info">P4</span>   
+                                                            }
+                                                        </div>
+                                                        <div style="display: block; float: right;right:3px; Position: relative; top: -20px;">
+                                                            @if (@i.TStatusDetails != null)
+                                                            {
+                                                                <span class="label label-success">@i.TStatusDetails.TicketStatus</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div id="@i.TicketID" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <p>@i.Description</p>
+                                                            <div class="col-sm-1">
+                                                                <a href="/Ticket/Replay/@i.TicketID?uid=@i.CreatedBy" class="btn btn-success">
+                                                                    <i class="fa fa-mail-forward" aria-hidden="true"></i>&nbsp;Details
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </td>
+                                        <td>@i.TStatusDetails.TicketStatus</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+}
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        var table = $('.table').DataTable({
+
+            "ordering": false,
+            //"paging": false
+            "aoColumnDefs": [
+        { "bVisible": false, "aTargets": [1] }
+            ]
+        });
+
+    });
+</script>
+
+<script>
+
+    $("#file").on('change', function () {
+
+        //Get count of selected files
+        var countFiles = $(this)[0].files.length;
+
+        var imgPath = $(this)[0].value;
+        var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+        var image_holder = $(".img-rounded");
+        image_holder.empty();
+
+        if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg" || extn == "pdf" || extn == "xlsx" || extn == "zip" || extn == "rar" || extn == "doc" || extn == "xls" || extn == "txt") {
+            if (typeof (FileReader) != "undefined") {
+
+                //loop for each file selected for uploaded.
+                for (var i = 0; i < countFiles; i++) {
+
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("<img />", {
+                            "src": e.target.result,
+                            "class": "img-rounded thumb-image",
+                            "alt": "Document"
+                        }).appendTo(image_holder);
+                    }
+
+                    image_holder.show();
+                    reader.readAsDataURL($(this)[0].files[i]);
+                }
+
+            } else {
+                alert("This browser does not support FileReader.");
+            }
+        } else {
+            alert("Please select valid document type");
+        }
+    });
+</script>
+
+<script lang="javascript" type="text/javascript">
+    $(document).ready(function () {
+        //Get Plotno by schemeID
+        $("#comp").change(function () {
+            $("#divLoading").show();
+            debugger;
+
+            var CompIds = $('#comp').val();
+            $.ajax(
+            {
+                url: '@Url.Action("FillUser", "Request")',
+                type: "GET",
+                datatype: "JSON",
+                data: { cid: CompIds },
+
+                success: function (user) {
+                    debugger;
+
+                    $("#CreatedBy").html("");  // clear before appending new list 
+                    $("#CreatedBy").append("<option value='0'>--Select User--</option>");
+                    $.each(user, function (i, CreatedBy) {
+
+                        $("#CreatedBy").append(
+
+                            $('<option></option>').val(CreatedBy.UID).html(CreatedBy.Title + ' ' + CreatedBy.FirstName + ' ' + CreatedBy.LastName));
+                        $("#divLoading").hide();
+                    });
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                    $("#divLoading").hide();
+                }
+
+            });
+
+        });
+    });
+</script>

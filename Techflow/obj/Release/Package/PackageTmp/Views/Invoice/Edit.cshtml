@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@model InvoiceModel
+@using (@Html.BeginForm("Edit", "Invoice", FormMethod.Post, new { @id = "frmPU", enctype = "multipart/form-data" }))
+{    
+    @Html.HiddenFor(m=>m.IID)
+    @Html.HiddenFor(m=>m.FileURL)
+    @Html.HiddenFor(m=>m.FileName)
+
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Invoice</h1>
+            <div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Invoice</span>
+            </div>
+        </div>
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">
+            <div class="panel panel-info" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    Invoice Details
+                  <a href="/Invoice/Index"><input type="button" id="btnBack" value="Back" class="btnAdd btn btn-primary" /></a>
+                    @*<a href="/Invoice/Index" class="btnAdd btn btn-primary">Back</a>*@
+                </div>
+                <div class="panel-body">
+                    @Html.Label("* Company", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+
+                        @*@Html.DropDownListFor(m => m.DataCenter, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Data Center--", Value = "" }, new SelectListItem() { Text = "Global Switch", Value = "1" }, new SelectListItem() { Text = "NextDC S1", Value = "2" }, new SelectListItem() { Text = "NextDC M1", Value = "3" }, new SelectListItem() { Text = "NextDC B1", Value = "4" } }, new { @class = "form-control" })*@
+                        @Html.DropDownListFor(m => m.CompID, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CompID)
+                    </div>
+                    @Html.Label("* Amount", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Amount)
+
+                    </div>
+                    <div class="col-sm-12" style="height: 5px;"></div>
+                    @Html.Label("* Due Date", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(m => m.DueDate,"{0:dd/MM/yyyy}", new { @class = "form-control datepicker" })
+                        @Html.ValidationMessageFor(m => m.DueDate)
+
+                    </div>
+                    @Html.Label("Invoice File", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        <input type="file" id="file" multiple="multiple" name="files" class="btn btn-info" />
+
+                    </div>
+                    <div class="col-sm-12" style="height: 5px;"></div>
+                    @Html.Label("Status", new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.RadioButtonFor(m => m.Status, 1)UnPaid
+                        @Html.RadioButtonFor(m => m.Status, 2)Paid
+                        @Html.RadioButtonFor(m => m.Status, 3)OverDue
+                    </div>
+                    <div class="col-sm-12" style="height: 5px;"></div>
+                    <div class="col-sm-3">
+                        <input type="Submit" value="Update" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+}
+

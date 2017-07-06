@@ -1,0 +1,676 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>@ViewBag.Title - Techflow</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/Content/favicon.png" type="image/ico">
+
+    <!-- CSS Stylesheets -->
+    <link id="default-css" rel="stylesheet" href="/Content/style.css" type="text/css">
+    <link id="shortcodes-css" rel="stylesheet" href="/Content/css/shortcodes.css" type="text/css">
+    <link id="responsive-css" rel="stylesheet" href="/Content/css/responsive.css" type="text/css">
+    <link id="skin-css" rel="stylesheet" href="/Content/skins/electricblue/style.css" type="text/css">
+
+    <!-- Additional Stylesheets -->
+    <link rel="stylesheet" href="/Content/css/component.css" type="text/css">
+    <link href="/Content/css/pace-theme-loading-bar.css" rel="stylesheet" media="all" />
+
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/Content/css/font-awesome.min.css" type="text/css">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+    <link rel="stylesheet" id="rs-plugin-settings-css" href="/Content/css/settings.css" type="text/css" media="all" />
+
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/3383681.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-100574962-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+
+    <script type="text/javascript" src="/Content/js/modernizr-2.6.2.min.js"></script>
+
+    <script type="text/javascript">
+        var mytheme_urls = {
+            scroll: 'disable'
+        };
+	</script>
+
+
+
+
+</head>
+<body>
+
+
+    <!-- **Wrapper** -->
+    <div class="wrapper">
+
+        <div id="loader-wrapper">
+            <div class="loader">
+                <!-- the component -->
+                <div class="pre-loader"></div>
+            </div>
+        </div>
+
+        <!-- **Header Top Bar** -->
+        <div id="bbar-wrapper">
+            <div class="container">
+                <div class="column dt-sc-one-half first">
+                    <!-- **Logo** -->
+                    <div>
+                        <a href="/Home/Index">
+                            <img src="/Content/images/logo.png" style="margin-top: 20px; margin-bottom: 15px; width: 180px;" alt="logo">
+                        </a>
+                    </div>
+                    <!-- **Logo Ends** -->
+                    @*<p class="contact"> Call-us on : <span>9999999999</span> </p>*@
+                </div>
+
+                <div class="column dt-sc-one-half alignright" style="margin-top: 22px;">
+                    <div class="buttons">
+                        <a href="/Login/Index" title=""><i class="fa fa-sign-in"></i>&nbsp;Login</a>
+
+                        @*<a href="register.html" title="">Register <i class="fa fa-caret-right"></i></a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- **Header Top Bar Ends** -->
+
+        <!-- **Header Wrapper** -->
+        <div id="header-wrapper" >
+            <!-- **Header** -->
+            <header id="header" class="header5">
+                <div class="container">
+                    @*	<!-- **Logo** -->
+                    <div id="logo">
+                        <a href="/Home/Index"> <img src="/Content/images/logo.png" alt="logo"> </a>
+                    </div><!-- **Logo Ends** -->*@
+
+
+                    <!-- **Main-Menu Navigation** -->
+                    <div id="primary-menu">
+                        <div class="dt-menu-toggle" id="dt-menu-toggle">Menu<span class="dt-menu-toggle-icon"></span></div>
+                        <nav id="main-menu">
+
+                            <input type="hidden" id="hdnMenu">
+                            <ul id="menu-main-menu" class="menu">
+                                <li class="current_page_item menu-item-simple-parent menu-item-depth-0"><a id="aHM" href="/Home/Index" title=""><span class="menu-icon fa fa-home"></span>Home </a>
+
+                                </li>
+                                <li id="aSER" class="menu-item-simple-parent menu-item-depth-0"><a href="/Services/Index?service=CL" title=""><span class="menu-icon fa fa-home"></span>Services </a>
+                                    <ul class="sub-menu">
+                                        <li><a href="/Services/Index?service=CL" title="">Colocation </a></li>
+                                        <li><a href="/Services/Index?service=NET" title="">Internet </a></li>
+                                        <li><a href="/Services/Index?service=DCS" title="">Data Centre Services </a></li>
+                                        <li><a href="/Services/Index?service=MS" title="">Managed Services </a></li>
+
+                                    </ul>
+                                    <a class="dt-menu-expand">+</a>
+                                </li>
+                                <li id="aABT" class="menu-item-simple-parent menu-item-depth-0"><a href="/About/Index?about=AU" title=""><span class="menu-icon fa fa-book"></span>About </a>
+                                    <ul class="sub-menu">
+                                        <li><a href="/About/Index?about=AU" title="">About Us </a></li>
+                                        @*<li><a href="/About/Index?about=PP" title="">Partner Program </a></li>*@
+                                        <li><a href="/About/Index?about=L" title="">Locations </a></li>
+                                        <li><a href="/About/Index?about=N" title="">News </a></li>
+                                        <li><a href="/About/Index?about=C" title="">Careers </a></li>
+                                        <li><a href="/About/Index?about=P" title="">Partners </a></li>
+                                    </ul>
+                                    <a class="dt-menu-expand">+</a>
+                                </li>
+                                <li class="menu-item-simple-parent menu-item-depth-0"><a id="aRES" href="/Resources/Index" title=""><span class="menu-icon fa fa-book"></span>Resources </a></li>
+                                <li class="menu-item-simple-parent menu-item-depth-0"><a id="aCON" href="/Contact/Index" title=""><span class="menu-icon fa fa-book"></span>Contact Us </a></li>
+                                @*  <li class="menu-item-megamenu-parent fullwidth megamenu-5-columns-group menu-item-depth-0"><a href="blog-three-column.html">Blog</a>
+                                    <div class="megamenu-child-container">
+                                        <ul class="sub-menu">
+                                            <li class="first"> <a href="blog-three-column.html" title=""> Three Column </a>                             
+                                                <ul class="sub-menu">
+                                                    <li> <a href="blog-three-column.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="blog-three-column-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="blog-three-column-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="blog-two-column.html" title=""> Two Column </a>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="blog-two-column.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="blog-two-column-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="blog-two-column-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="blog-fullwidth.html" title=""> Fullwidth image </a>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="blog-fullwidth.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="blog-fullwidth-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="blog-fullwidth-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="blog-thumb.html" title=""> Thumb image </a>  
+                                                <ul class="sub-menu">
+                                                    <li> <a href="blog-thumb.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="blog-thumb-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="blog-thumb-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>    
+                                            <li> <a href="blog-single.html" title=""> Blog Single </a>  
+                                                <ul class="sub-menu">
+                                                    <li> <a href="blog-single.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="blog-single-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="blog-single-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>                                                                                    
+                                        </ul>
+                                    </div>                                
+                                    <a class="dt-menu-expand">+</a>
+                                </li>                     
+                                
+                                <li class="menu-item-megamenu-parent megamenu-4-columns-group menu-item-depth-0"><a href="portfolio-four-column.html">Portfolio</a>
+                                    <div class="megamenu-child-container">
+                                        <ul class="sub-menu">
+                                            <li class="first"> <a href="portfolio-four-column.html" title=""> Four Column </a>                             
+                                                <ul class="sub-menu">
+                                                    <li> <a href="portfolio-four-column.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="portfolio-four-column-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="portfolio-four-column-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="portfolio-three-column.html" title=""> Three Column </a> 
+                                                <ul class="sub-menu">
+                                                    <li> <a href="portfolio-three-column.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="portfolio-three-column-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="portfolio-three-column-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="portfolio-two-column.html" title=""> Two Column </a>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="portfolio-two-column.html" title=""> Without Sidebar </a> </li>
+                                                    <li> <a href="portfolio-two-column-with-left-sidebar.html" title=""> With Left Sidebar </a> </li>
+                                                    <li> <a href="portfolio-two-column-with-right-sidebar.html" title=""> With Right Sidebar </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="portfolio-single.html" title=""> Portfolio Single </a>   
+                                                <ul class="sub-menu">
+                                                    <li> <a href="portfolio-single.html" title=""> Fullwidth Gallery </a> </li>
+                                                    <li> <a href="portfolio-single-left-gallery.html" title=""> Left Gallery </a> </li>
+                                                    <li> <a href="portfolio-single-right-gallery.html" title=""> Right Gallery </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>                                                                                    
+                                        </ul>
+                                    </div>                                
+                                    <a class="dt-menu-expand">+</a>
+                                </li>                                                  
+                                                                                                                   
+                                <li class="menu-item-megamenu-parent megamenu-3-columns-group menu-item-depth-0 hasImage-bg right-aligned"><a href="#">Websites</a>
+                                    <div class="megamenu-child-container">
+                                        <ul class="sub-menu">
+                                            <li class="first"> <a href="#">Domain Services</a>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="#"> Single user Domains </a> </li>
+                                                    <li> <a href="#"> Multi-user Domains </a> </li>
+                                                    <li> <a href="#"> Reseller Domains </a> </li>
+                                                    <li> <a href="#"> Promos and Services </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <span class="nolink-menu">Web Hosting</span>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="#"> Dedicated Servers </a> </li>
+                                                    <li> <a href="#"> Shared Hosting </a> </li>
+                                                    <li> <a href="#"> Wordpress Hosting </a> </li>
+    
+                                                    <li> <a href="#"> NextGen VPS Hosting </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                            <li> <a href="#">Cloud Servers</a>
+                                                <ul class="sub-menu">
+                                                    <li> <a href="#"> Ensured Speed Plans </a> </li>   
+                                                    <li> <a href="#"> Instant FTP Setup </a> </li>     
+                                                    <li> <a href="#"> Cloud Hosting Objects </a> </li>
+                                                    <li> <a href="#"> Safe & Highly Secured </a> </li>
+                                                </ul>
+                                                <a class="dt-menu-expand">+</a>
+                                            </li>
+                                        </ul>
+                                    </div>                                
+                                    <a class="dt-menu-expand">+</a>
+                                </li>
+                                                                
+                                <li class="menu-item-simple-parent menu-item-depth-0"> <a href="contact.html" title=""> <span class="menu-icon fa fa-envelope"> </span> Contact </a>
+                                    <ul class="sub-menu">
+                                        <li> <a href="contact.html" title=""> Layout 1 </a> </li>
+                                        <li> <a href="contact2.html" title=""> Layout 2 </a> </li>
+                                    </ul>                            
+                                </li>*@
+
+                            </ul>
+                        </nav>
+
+                    </div>
+                    <!-- **Main-Menu Navigation Ends** -->
+                    <div style="float: right;color: white;padding-top: 25px;">
+                        Call-us on :<span>+61 (0) 2 8069 1111 </span>Or <span>1300 954 955</span>
+                       @* Email us :
+                        <br />
+                        <span>Quote Request : <a href="mailto:sales@techflow.com.au" style="color:#2a99d8"> sales@techflow.com.au </a>  </span>
+                        <br />
+                        <span>Support Request :<a href="mailto:support@techflow.com.au" style="color:#2a99d8"> support@techflow.com.au </a> </span>*@
+                    </div>
+
+                </div>
+
+            </header>
+            <!-- **Header Ends** -->
+        </div>
+        <!-- **Header Wrapper Ends** -->
+        <!-- **Main** -->
+
+
+        <div id="main">
+            @RenderBody()
+
+            @Scripts.Render("~/bundles/jquery")
+            @RenderSection("scripts", required: false)
+        </div>
+
+
+        <!-- **Footer** -->
+        <footer id="footer">
+            <div class="container">
+                <div class="column dt-sc-one-fourth first">
+                    <aside class="widget textwidget">
+                        <h3 class="widgettitle">About Techflow<span></span></h3>
+                        <p><strong>Techflow Services Pty Limited</strong> is a premier provider of data centre services to deliver and enhance your cloud based services, while still realising the investment in your existing infrastructure or colocation.</p>
+                    </aside>
+                </div>
+
+                <div class="column dt-sc-one-fourth">
+                    <aside class="widget widget_links">
+                        <h3 class="widgettitle">Services<span></span></h3>
+                        <ul>
+                            <li><a href="/Services/Index?service=CL" title="">Colocation</a></li>
+                            <li><a href="/Services/Index?service=NET" title="">Internet</a></li>
+                            <li><a href="/Services/Index?service=DCS" title="">Data Centre Services</a></li>
+                            <li><a href="/Services/Index?service=MS" title="">Managed Services</a></li>
+                            @*<li><a href="#" title=""></a></li>
+                            <li><a href="#" title="">Theme Help Videos</a></li>  *@
+                        </ul>
+                    </aside>
+                </div>
+                <div class="column dt-sc-one-fourth">
+                    <aside class="widget widget_recent_entries">
+                        <h3 class="widgettitle">Contact Us<span></span></h3>
+                        <div class="dt-sc-one-two column">
+
+                            <div class="contact-info">
+
+
+                                <p>Suite 17, Level 3, Pyrmont Bridge Road, Pyrmont, NSW, Australia – 2009</p>
+                                <p><i class="fa fa-phone"></i><span>Phone :</span></p>
+                                <p>+61 (0) 2 8069 1111 Or </p>
+                                <p>1300 954 955 </p>
+
+                                @*<p><i class="fa fa-print"></i><span>Fax</span> : +1 100 458 2345 </p>*@
+                                <p><i class="fa fa-envelope"></i><span>Email</span> : <a href="mailto:admin@techflow.com.au">admin@techflow.com.au</a> </p>
+                                <p><i class="fa fa-globe"></i><span>Website</span> : <a href="http://www.techflow.com.au/">www.techflow.com.au</a> </p>
+                            </div>
+                        </div>
+                        @*<ul>
+                            <li>
+                                <h4 class="entry-title"><a href="#">Raven's Hello World !</a></h4>
+                                <p class="show-meta">
+                                    <span class="date-info"><i class="fa fa-clock-o"></i>29 Apr 2013</span>
+                                    <a class="comments" href="#"><i class="fa fa-comment"></i>14 Comments</a>
+                                </p>
+                            </li>
+                            
+                            <li>
+                                <h4 class="entry-title"><a href="#">Our Celebration</a></h4>
+                                <p class="show-meta">
+                                    <span class="date-info"><i class="fa fa-clock-o"></i>29 Apr 2013</span>
+                                    <a class="comments" href="#"><i class="fa fa-comment"></i>14 Comments</a>
+                                </p>
+                            </li>
+                            
+                            <li>
+                                <h4 class="entry-title"><a href="#">The Real Steel</a></h4>
+                                <p class="show-meta">
+                                    <span class="date-info"><i class="fa fa-clock-o"></i>29 Apr 2013</span>
+                                    <a class="comments" href="#"><i class="fa fa-comment"></i>14 Comments</a>
+                                </p>
+                            </li>                                                          
+                        </ul>*@
+                    </aside>
+                </div>
+
+                <div class="column dt-sc-one-fourth">
+                    <aside class="widget widget_newsletter">
+                        <h3 class="widgettitle">Newsletter<span></span></h3>
+                        <p>Sign up for the latest news about Australian Data Centres and be notified of any new blogs, press release and much more!</p>
+                        <form name="frmnewsletter" class="newsletter-form" action="/Contact/NewsLetter" method="post">
+                            <input type="email" required="" placeholder="Your Email ID" name="email">
+                            <input type="submit" value="Submit" class="dt-sc-button" name="btnsubscribe">
+                            @*<div class="input-group">
+                                <input type="email" required class="form-control" name="mc_email" placeholder="Your Email ID">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" type="submit">Submit</button>
+                                </span>
+                            </div>*@
+                        </form>
+                        <div id="ajax_subscribe_msg"></div>
+                    </aside>
+
+                    <div class="widget textwidget">
+                        <ul class="dt-sc-social-icons">
+                            @*<li class="twitter"><a class="fa fa-twitter" href="https://twitter.com/ac3ptyltd" target="_blank"></a></li>*@
+                            <li class="linkedin"><a class="fa fa-linkedin" href="https://www.linkedin.com/company/techflow-services-pty-limited?trk=biz-companies-cym" target="_blank"></a></li>
+                            <li class="facebook"><a class="fa fa-facebook" href="https://www.facebook.com/techflowservices/?ref=aymt_homepage_panel" target="_blank"></a></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="copyright">
+                <div class="container">
+                    <p>Copyright &copy; @System.DateTime.Now.Year <a href="#">Techflow Services Pty Limited</a>. All rights reserved. Powered by  <a href="http://newtechinfosoft.com/" target="_blank">Newtech Infosoft Pvt. Ltd.</a></p>
+                </div>
+            </div>
+        </footer>
+        <!-- **Footer Ends** -->
+
+    </div>
+    <!-- **Wrapper Ends** -->
+
+
+    <!-- **jQuery** -->
+
+    <script type="text/javascript" src="/Content/js/jquery.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery-migrate-1.2.1.min.js"></script>
+
+    <script type="text/javascript" src="/Content/js/pace.min.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.dlmenu.js"></script>
+    <script type="text/javascript" src="/Content/js/inview.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.tabs.min.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.tipTip.minified.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.donutchart.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.ui.totop.min.js"></script>
+    <script type="text/javascript" src="/Content/js/twitter/jquery.tweet.min.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery-easing-1.3.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.prettyPhoto.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery.carouFredSel-6.2.0-packed.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.bxslider.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery.animateNumber.min.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.parallax-1.1.3.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery.validate.min.js"></script>
+
+    <script type="text/javascript" src="/Content/js/jquery.cookie.js"></script>
+    @*<script type="text/javascript" src="/Content/js/controlpanel.js"></script>           
+    @*<script src="/Content/js/jquery.gmap.min.js"></script>*@
+    <script type="text/javascript" src="/Content/js/custom.js"></script>
+
+    <script type="text/javascript" src="/Content/js/revslider/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="/Content/js/revslider/jquery.themepunch.revolution.min.js"></script>
+
+    <script type="text/javascript">
+
+        /******************************************
+            -	PREPARE PLACEHOLDER FOR SLIDER	-
+        ******************************************/
+
+
+        var setREVStartSize = function () {
+            var tpopt = new Object();
+            tpopt.startwidth = 1170;
+            tpopt.startheight = 900;
+            tpopt.container = jQuery('#rev_slider_24_1');
+            tpopt.fullScreen = "on";
+            tpopt.forceFullWidth = "off";
+
+            tpopt.container.closest(".rev_slider_wrapper").css({ height: tpopt.container.height() }); tpopt.width = parseInt(tpopt.container.width(), 0); tpopt.height = parseInt(tpopt.container.height(), 0); tpopt.bw = tpopt.width / tpopt.startwidth; tpopt.bh = tpopt.height / tpopt.startheight; if (tpopt.bh > tpopt.bw) tpopt.bh = tpopt.bw; if (tpopt.bh < tpopt.bw) tpopt.bw = tpopt.bh; if (tpopt.bw < tpopt.bh) tpopt.bh = tpopt.bw; if (tpopt.bh > 1) { tpopt.bw = 1; tpopt.bh = 1 } if (tpopt.bw > 1) { tpopt.bw = 1; tpopt.bh = 1 } tpopt.height = Math.round(tpopt.startheight * (tpopt.width / tpopt.startwidth)); if (tpopt.height > tpopt.startheight && tpopt.autoHeight != "on") tpopt.height = tpopt.startheight; if (tpopt.fullScreen == "on") { tpopt.height = tpopt.bw * tpopt.startheight; var cow = tpopt.container.parent().width(); var coh = jQuery(window).height(); if (tpopt.fullScreenOffsetContainer != undefined) { try { var offcontainers = tpopt.fullScreenOffsetContainer.split(","); jQuery.each(offcontainers, function (e, t) { coh = coh - jQuery(t).outerHeight(true); if (coh < tpopt.minFullScreenHeight) coh = tpopt.minFullScreenHeight }) } catch (e) { } } tpopt.container.parent().height(coh); tpopt.container.height(coh); tpopt.container.closest(".rev_slider_wrapper").height(coh); tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(coh); tpopt.container.css({ height: "100%" }); tpopt.height = coh; } else { tpopt.container.height(tpopt.height); tpopt.container.closest(".rev_slider_wrapper").height(tpopt.height); tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(tpopt.height); }
+        };
+
+        /* CALL PLACEHOLDER */
+        setREVStartSize();
+
+
+        var tpj = jQuery;
+        tpj.noConflict();
+        var revapi24;
+
+        tpj(document).ready(function () {
+
+            if (tpj('#rev_slider_24_1').revolution == undefined)
+                revslider_showDoubleJqueryError('#rev_slider_24_1');
+            else
+                revapi24 = tpj('#rev_slider_24_1').show().revolution(
+                 {
+                     dottedOverlay: "none",
+                     delay: 9000,
+                     startwidth: 1170,
+                     startheight: 900,
+                     hideThumbs: 200,
+
+                     thumbWidth: 100,
+                     thumbHeight: 50,
+                     thumbAmount: 3,
+
+                     navigationType: "none",
+                     navigationArrows: "solo",
+                     navigationStyle: "round",
+
+                     touchenabled: "on",
+                     onHoverStop: "off",
+
+                     swipe_velocity: 0.7,
+                     swipe_min_touches: 1,
+                     swipe_max_touches: 1,
+                     drag_block_vertical: false,
+
+                     keyboardNavigation: "off",
+
+                     navigationHAlign: "center",
+                     navigationVAlign: "bottom",
+                     navigationHOffset: 0,
+                     navigationVOffset: 20,
+
+                     soloArrowLeftHalign: "left",
+                     soloArrowLeftValign: "center",
+                     soloArrowLeftHOffset: 20,
+                     soloArrowLeftVOffset: 0,
+
+                     soloArrowRightHalign: "right",
+                     soloArrowRightValign: "center",
+                     soloArrowRightHOffset: 20,
+                     soloArrowRightVOffset: 0,
+
+                     shadow: 0,
+                     fullWidth: "off",
+                     fullScreen: "on",
+
+                     spinner: "spinner0",
+
+                     stopLoop: "off",
+                     stopAfterLoops: -1,
+                     stopAtSlide: -1,
+                     shuffle: "off",
+
+                     forceFullWidth: "off",
+                     fullScreenAlignForce: "off",
+                     minFullScreenHeight: "",
+                     hideTimerBar: "on",
+                     hideThumbsOnMobile: "off",
+                     hideNavDelayOnMobile: 1500,
+                     hideBulletsOnMobile: "off",
+                     hideArrowsOnMobile: "off",
+                     hideThumbsUnderResolution: 0,
+
+                     fullScreenOffsetContainer: "",
+                     fullScreenOffset: "",
+                     hideSliderAtLimit: 0,
+                     hideCaptionAtLimit: 0,
+                     hideAllCaptionAtLilmit: 0,
+                     startWithSlide: 0
+                 });
+
+        });	/*ready*/
+
+    </script>
+
+    <script type="text/javascript">
+
+        jQuery(window).load(function () {
+
+            //PAGE SLIDER...
+            if (jQuery('.right-slide').length) {
+                jQuery('.right-slide').each(function () {
+                    var $this = jQuery(this).find('.page-slider');
+                    $this.carouFredSel({
+                        responsive: true,
+                        auto: false,
+                        width: '100%',
+                        height: 'auto',
+                        scroll: {
+                            fx: "uncover-fade",
+                            duration: 800
+                        },
+                        items: { width: $this.find("li").width(), visible: { min: 1, max: 1 } },
+                        pagination: {
+                            container: ".right-slide-nav-links",
+                            anchorBuilder: false
+                        }
+                    });
+                });
+            }
+
+        });
+
+	</script>
+    @{
+        var message = TempData["UserMsg"] ?? string.Empty;
+    }
+    <script type="text/javascript">
+        var message = '@message';
+        if (message)
+            alert(message);
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".breadcrumb").hide();
+            $(function () {
+                debugger;
+                var url = window.location.pathname;
+                if (url == "/Home/Index" || url == "/") {
+                    $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                    $("#aHM").parent("li").addClass("current_page_item");
+                }
+                else {
+                    var page = sessionStorage.getItem("page");
+                    if (page == "aRES") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aRES").parent("li").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else if (page == "aCON") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aCON").parent("li").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else if (page == "aHM") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aHM").parent("li").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else if (page == "aSER") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aSER").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else if (page == "aABT") {
+                        $("#main-menu>ul>li.current_page_item").removeClass("current_page_item");
+                        $("#aABT").addClass("current_page_item");
+                        //sessionStorage.removeItem("page");
+                    }
+                    else { sessionStorage.removeItem("page"); }
+                }
+
+
+
+                $("#aHM").click(function () {
+                    sessionStorage.setItem("page", "aHM");
+                });
+                $("#aSER>ul>li>a").click(function () {
+                    sessionStorage.setItem("page", "aSER");
+                });
+                $("#aSER").click(function () {
+                    sessionStorage.setItem("page", "aSER");
+                });
+                $("#aABT>ul>li>a").click(function () {
+                    sessionStorage.setItem("page", "aABT");
+                });
+                $("#aABT").click(function () {
+                    sessionStorage.setItem("page", "aABT");
+                });
+                $("#aRES").click(function () {
+                    sessionStorage.setItem("page", "aRES");
+                });
+                $("#aCON").click(function () {
+                    sessionStorage.setItem("page", "aCON");
+                });
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript"> _linkedin_data_partner_id = "38803";</script>
+    <script type="text/javascript">    (function () { var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript"; b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s); })(); </script>
+</body>
+
+
+</html>

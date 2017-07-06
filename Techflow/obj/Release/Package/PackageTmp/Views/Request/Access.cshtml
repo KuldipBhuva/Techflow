@@ -1,0 +1,406 @@
+﻿@{
+    ViewBag.Title = "Access Request";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@model AccessModel
+@using (@Html.BeginForm("Access", "Request", FormMethod.Post, new { @id = "frmAC", enctype = "multipart/form-data" }))
+{    
+
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Access Requests</h1>
+            <div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Access</span>
+            </div>
+        </div>
+
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">
+            <div class="panel panel-info" id="dvGrid" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    Active Access Request List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Note :</b><span style="color:red;">&nbsp;Historical Access Requests report is available <a href="/AccessPass/Index">Here</a>. or under ‘Monitor Usage’ -> ‘Access Monitoring’ section. </span>
+                    <input type="button" id="btnAdd" value="Add New" class="btnAdd btn btn-primary" />
+                </div>
+                @{
+    DateTime? today = System.DateTime.Now;
+    DateTime? tomorrow = System.DateTime.Now.AddDays(+1);
+    DateTime? yesterday = System.DateTime.Now.AddDays(-1);
+                }
+                <div class="panel-body table-responsive">
+                    @{int role = 0;
+                      if (Session["Role"] != null)
+                      {
+                          role = Convert.ToInt32(Session["Role"].ToString());
+                      }
+                    }
+                    <table class="table" id="tbl">
+                        <thead>
+                            <tr>
+                                <th>Data Centre</th>
+                                <th>TicketID</th>
+                                <th>Created By</th>
+                                @if (role == 1)
+                                {
+                                    <th>Company</th>
+                                    <th>Reason</th>
+                                }
+
+                                <th>Start</th>
+                                <th>End</th>
+
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model.ListAccess)
+                            {
+                                //int cdd = today.Value.Day;//16
+                                //int cmm = today.Value.Month;//12
+                                //int cyy = today.Value.Year;//2016
+                                //int Sdd = @i.StDateTime.Value.Day;//14
+                                //int Smm = @i.StDateTime.Value.Month;//12
+                                //int Syy = @i.StDateTime.Value.Year;//2016
+
+                                //int Edd = @i.EndDateTime.Value.Day;//18
+                                //int Emm = @i.EndDateTime.Value.Month;//12
+                                //int Eyy = @i.EndDateTime.Value.Year;//2016
+
+                                //if (cdd >= Sdd && Edd <= cdd && cmm == Smm && cmm == Emm && cyy == Eyy && cyy == Syy)
+                                //{
+       
+                                <tr>
+                                    <td>@i.DCDetails.DataCenter</td>
+                                    <td>@i.Prefix@i.TicketID</td>
+                                    <td>@i.UserDetails.Title @i.UserDetails.FirstName @i.UserDetails.LastName</td>
+                                    @if (role == 1)
+                                    {
+                                        <td>@i.Company</td>
+                                        <td>@i.Reason</td>
+                                    }
+                                    @if (@i.StDateTime != null)
+                                    {
+                                        //if (Convert.ToDateTime(@i.StDateTime.Value.ToString("dd/MM/yyyy")) >= DateTime.Now )
+                                        //{
+                                        <td>@i.StDateTime.Value.ToString("dd/MM/yyyy HH:mm")</td> 
+                                    }
+                                    else
+                                    {<td></td>}
+
+                                    @if (@i.EndDateTime != null)
+                                    {
+                                        <td>@i.EndDateTime.Value.ToString("dd/MM/yyyy HH:mm")</td>
+                                    }
+                                    else
+                                    {<td></td>}
+
+                                    <td>
+                                        @Html.ActionLink(" ", "AEdit", new { @id = @i.BAID }, new { @class = "fa fa-pencil-square fa-lg" })
+                                        @Html.ActionLink(" ", "ADelete", new { @id = @i.BAID }, new { onclick = "return confirm('Do you really want to delete?')", @class = "fa fa-trash fa-lg" })
+                                        @Html.ActionLink(" ", "AView", new { @id = i.BAID }, new { @class = "fa fa-eye fa-lg" })
+
+                                    </td>
+                                </tr>
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="panel panel-info" id="dvAdd" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    New Access Request Details
+                    <input type="button" id="btnBack" value="Back" class="btnAdd btn btn-primary" />
+                </div>
+                <div class="panel-body">
+                    @*  <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse1">General</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <ul class="list-group">
+                                <li class="list-group-item">One</li>
+                                <li class="list-group-item">Two</li>
+                                <li class="list-group-item">Three</li>
+                            </ul>
+                            <div class="panel-footer">Footer</div>
+                        </div>
+                    </div>
+                </div>*@
+
+                    @if (role == 1)
+                    {
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">User Detail</legend>
+
+                            @Html.Label("* Company", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+
+                                @*@Html.DropDownListFor(m => m.DataCenter, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Data Center--", Value = "" }, new SelectListItem() { Text = "Global Switch", Value = "1" }, new SelectListItem() { Text = "NextDC S1", Value = "2" }, new SelectListItem() { Text = "NextDC M1", Value = "3" }, new SelectListItem() { Text = "NextDC B1", Value = "4" } }, new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.comp, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.comp)
+                            </div>
+                            @Html.Label("* User", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.CreatedBy, new SelectList(Model.UserList, "UID", "FirstName"), "--Select User--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.CreatedBy)
+                            </div>
+                        </fieldset>
+                    }
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Data Centre</legend>
+                        <div class="form-group">
+                            @Html.Label("* Data Centre", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+
+                                @*@Html.DropDownListFor(m => m.DataCenter, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Data Center--", Value = "" }, new SelectListItem() { Text = "Global Switch", Value = "1" }, new SelectListItem() { Text = "NextDC S1", Value = "2" }, new SelectListItem() { Text = "NextDC M1", Value = "3" }, new SelectListItem() { Text = "NextDC B1", Value = "4" } }, new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.DataCenter, new SelectList(Model.ListDC, "DCID", "DataCenter"), "--Select Data Centre--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.DataCenter)
+                            </div>
+
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Visitor Details</legend>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home">Visitor 1</a></li>
+                            <li><a data-toggle="tab" href="#menu1">Visitor 2</a></li>
+                            <li><a data-toggle="tab" href="#menu2">Visitor 3</a></li>
+                            <li><a data-toggle="tab" href="#menu3">Visitor 4</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <h3>Visitor-1</h3>
+                                @Html.Label("* First Name", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.FirstName)
+
+                                </div>
+                                @Html.Label("* Last Name", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.LastName)
+
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                @Html.Label("* Company", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.Company, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Company)
+
+                                </div>
+                                @Html.Label("* Phone", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.phone, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.phone)
+
+                                </div>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <h3>Visitor-2</h3>
+                                @Html.Label("First Name", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.SFirstName, new { @class = "form-control" })
+                                </div>
+                                @Html.Label("Last Name", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.SLastName, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                @Html.Label("Company", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.SCompany, new { @class = "form-control" })
+                                </div>
+                                @Html.Label("Phone", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.SPhone, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <h3>Visitor-3</h3>
+                                @Html.Label("First Name", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.TFirstName, new { @class = "form-control" })
+                                </div>
+                                @Html.Label("Last Name", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.TLastName, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                @Html.Label("Company", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.TCompany, new { @class = "form-control" })
+                                </div>
+                                @Html.Label("Phone", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.TPhone, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div id="menu3" class="tab-pane fade">
+                                <h3>Visitor-4</h3>
+                                @Html.Label("First Name", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.FFirstName, new { @class = "form-control" })
+                                </div>
+                                @Html.Label("Last Name", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.FLastName, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-12" style="height: 5px;"></div>
+                                @Html.Label("Company", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.FCompany, new { @class = "form-control" })
+                                </div>
+                                @Html.Label("Phone", new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.FPhone, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </fieldset>
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Date and Time</legend>
+                        <div class="form-group">
+                            @Html.Label("* Start Date/Time", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <div class='input-group date datetimepicker'>
+                                    @Html.TextBoxFor(m => m.StDateTime, "{0:MM/dd/yyyy HH:mm}", new { @class = "form-control", @placeholder = "mm/dd/yyyy hh:mm" })
+                                    @Html.ValidationMessageFor(m => m.StDateTime)
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+
+                                    @*                                    @Html.TextBoxFor(m => m.StTime, new { @class = "form-control timepicker", @placeholder = "HH:MM" })
+                                    @Html.ValidationMessageFor(m => m.StTime)*@
+
+                                </div>
+
+                            </div>
+                            @Html.Label("* End Date/Time", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                <div class='input-group date datetimepicker'>
+                                    @Html.TextBoxFor(m => m.EndDateTime, "{0:MM/dd/yyyy HH:mm}", new { @class = "form-control", @placeholder = "mm/dd/yyyy hh:mm" })
+                                    @Html.ValidationMessageFor(m => m.EndDateTime)
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                    @*      @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control", @placeholder = "HH:MM" })
+                                    @Html.ValidationMessageFor(m => m.EndTime)*@
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Other Information</legend>
+                        <div class="form-group">
+                            @Html.Label("* Reason of Access", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextAreaFor(m => m.Reason, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Reason)
+
+                            </div>
+
+
+                        </div>
+                    </fieldset>
+
+                    <div class="col-sm-3">
+                        <input type="submit" name="btnsend" value="Save" class="dt-sc-button small" />
+                     
+                    </div>
+                    <div class="col-sm-6">
+                           @Html.ValidationMessageFor(m => m.FirstName)<br />
+                        @Html.ValidationMessageFor(m => m.LastName)<br />
+                        @Html.ValidationMessageFor(m => m.phone)
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal1" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+}
+
+<script lang="javascript" type="text/javascript">
+    $(document).ready(function () {
+        //Get Plotno by schemeID
+        $("#comp").change(function () {
+            $("#divLoading").show();
+            debugger;
+
+            var CompIds = $('#comp').val();
+            $.ajax(
+            {
+                url: '@Url.Action("FillUser", "Request")',
+                type: "GET",
+                datatype: "JSON",
+                data: { cid: CompIds },
+
+                success: function (user) {
+                    debugger;
+
+                    $("#CreatedBy").html("");  // clear before appending new list 
+                    $("#CreatedBy").append("<option value='0'>--Select User--</option>");
+                    $.each(user, function (i, CreatedBy) {
+
+                        $("#CreatedBy").append(
+
+                            $('<option></option>').val(CreatedBy.UID).html(CreatedBy.Title + ' ' + CreatedBy.FirstName + ' ' + CreatedBy.LastName));
+                        $("#divLoading").hide();
+                    });
+                    $("#divLoading").hide();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                    $("#divLoading").hide();
+                }
+
+            });
+
+        });
+    });
+</script>

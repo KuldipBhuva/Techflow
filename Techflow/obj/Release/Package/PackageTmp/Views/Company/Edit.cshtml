@@ -1,0 +1,284 @@
+﻿@{
+    ViewBag.Title = "Company Master";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@model CompanyModel
+@using (@Html.BeginForm("Edit", "Company", FormMethod.Post, new { @id = "frmComp", enctype = "multipart/form-data" }))
+{    
+    @Html.HiddenFor(m => m.CompID)
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Company</h1>
+            <div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Company</span>
+            </div>
+        </div>
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+ 
+    
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">
+
+
+            <div class="panel panel-info" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    Company Details
+                </div>
+                <div class="panel-body">
+                    @*  <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse1">General</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <ul class="list-group">
+                                <li class="list-group-item">One</li>
+                                <li class="list-group-item">Two</li>
+                                <li class="list-group-item">Three</li>
+                            </ul>
+                            <div class="panel-footer">Footer</div>
+                        </div>
+                    </div>
+                </div>*@
+
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">General</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Name, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Name)
+
+                            </div>
+                            @Html.Label("* Legal Name", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.LegalName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.LegalName)
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("Account Type", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.ACType, new { @class = "form-control datepicker" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+                            @Html.Label("ABN", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.ABN, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("Rack Combination", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.rackcombination, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Contact</legend>
+                        <div class="form-group">
+                            @Html.Label("* Phone", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Phone)
+
+                            </div>
+                            @Html.Label("Alt Phone", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.AltPhone, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("* Email-1", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.Email1, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email1)
+
+                            </div>
+                            @Html.Label("Email-2", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.Email2, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("Fax", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.Fax, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+                            @Html.Label("Website", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+
+
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Billing Address</legend>
+                        <div class="form-group">
+                            @Html.Label("Street", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.BStreet, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.BStreet)
+
+                            </div>
+                            @Html.Label("City", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.BCity, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("State", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.BState, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.Email1)*@
+
+                            </div>
+                            @Html.Label("Postcode", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.BPostCode, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("Country", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.BCountry, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+
+
+
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Shipping Address</legend>
+                        <div class="form-group">
+                            @Html.Label("Street", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.SStreet, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.SStreet)
+
+                            </div>
+                            @Html.Label("City", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.SCity, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("State", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.SState, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.Email1)*@
+
+                            </div>
+                            @Html.Label("Postcode", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.SPostCode, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+                            <div class="col-sm-12" style="height: 5px;"></div>
+                            @Html.Label("Country", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.SCountry, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.EmpNo)*@
+
+                            </div>
+
+
+
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Business</legend>
+                        <div class="form-group">
+                            @Html.Label("Contact Person", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(m => m.ContactPerson, new { @class = "form-control" })
+                                @*@Html.ValidationMessageFor(m => m.Phone)*@
+
+                            </div>
+                            @Html.Label("Status", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.RadioButtonFor(m => m.Status, 1)Active
+                        @Html.RadioButtonFor(m => m.Status, 0)InActive
+                            </div>
+
+
+
+                        </div>
+                    </fieldset>
+                    <div class="col-sm-3">
+                        <input type="submit" name="btnsend" value="Update" class="dt-sc-button small" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-info" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                <div class="panel-heading" style="position: relative;">
+                    Company List
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table" id="tbl">
+                        <thead>
+                            <tr>
+                                <th>Comp.ID</th>
+                                <th>Name</th>
+                                <th>City</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model.ListComp)
+                            {
+                                <tr>
+                                    <td>@i.CompID</td>
+                                    <td>@i.Name</td>
+                                    <td>@i.BCity</td>
+                                    <td>@i.Email1</td>
+                                    <td>@i.Phone</td>
+                                    <td>
+                                        @Html.ActionLink(" ", "Edit", new { @id = i.CompID }, new { @class = "fa fa-pencil-square fa-lg" })
+                                        @*<a class="fa fa-pencil-square fa-lg" id="aedit" value="@item.CID"></a>*@
+                                        @*&nbsp;@Html.ActionLink(" ", "View", new {@id = Empid, @cid = @item.Id, @menuId = Convert.ToInt32(Request.QueryString["menuid"])}, new { @class="fa fa-eye"})
+                                    &nbsp;@Html.ActionLink(" ", "Delete", new { @id = @item.EmpId, @cid = @item.Id, @menuId = Convert.ToInt32(Request.QueryString["menuid"]) }, new { onclick = "return confirm('Do you really want to delete the contact details of " + @item.EmployeeDetails.Empname + "?')", @class = "fa fa-trash fa-lg" })*@
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+   
+}

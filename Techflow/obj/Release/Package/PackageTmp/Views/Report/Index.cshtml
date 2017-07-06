@@ -1,0 +1,205 @@
+﻿@{
+    ViewBag.Title = "Tickets Report-" + @System.DateTime.Now;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Models.ViewModel
+@model TicketModel
+@using (@Html.BeginForm("Index", "Report", FormMethod.Post, new { @id = "frmComp", enctype = "multipart/form-data" }))
+{
+
+    if (Session["Role"] != null)
+    {
+        int role = Convert.ToInt32(Session["Role"].ToString());
+        if (role == 1)
+        {
+      
+
+    <!-- **Breadcrumb Section** -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <h1>Ticket Report</h1>
+            <div class="breadcrumb">
+                <a href="/Dashboard/Index" title="">Home</a> / <span>Ticket</span>
+            </div>
+        </div>
+    </div>
+    <!-- **Breadcrumb Section Ends** -->
+
+    <!-- **Content Main** -->
+    <section class="content-main">
+        <!-- **Container** -->
+        <div class="container">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Refine</legend>
+                @Html.Label("* From Date", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(m => m.FromDate)
+
+                </div>
+                @Html.Label("* To Date", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(m => m.ToDate)
+
+                </div>
+                <div class="col-sm-12" style="height: 5px;"></div>
+                @Html.Label("Company", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-4">
+                    @*@Html.DropDownListFor(m => m.DataCenter, new List<SelectListItem>() { new SelectListItem() { Text = "--Select Data Center--", Value = "" }, new SelectListItem() { Text = "Global Switch", Value = "1" }, new SelectListItem() { Text = "NextDC S1", Value = "2" }, new SelectListItem() { Text = "NextDC M1", Value = "3" }, new SelectListItem() { Text = "NextDC B1", Value = "4" } }, new { @class = "form-control" })*@
+                    @Html.DropDownListFor(m => m.comp, new SelectList(Model.ListComp, "CompID", "Name"), "--Select Company--", new { @class = "form-control" })
+
+                </div>
+                @Html.Label("User", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-4">
+                    @Html.DropDownListFor(m => m.CreatedBy, new SelectList(Model.UserList, "UID", "FirstName"), "--Select User--", new { @class = "form-control" })
+
+                </div>
+                <div class="col-sm-12" style="height: 5px;"></div>
+                <input type="submit" name="btnsend" value="Go" class="dt-sc-button small" />
+            </fieldset>
+
+            @if (Model.ListTicket != null)
+            {
+                <div class="panel panel-info" style="background-image: url(/Content/images/fullwidth-bg/pattern-bg1.jpg); background-position: 50% 49px; box-shadow: 0px 0px 5px 1px;">
+                    <div class="panel-heading" style="position: relative;">
+                        Ticket Details                    
+                    </div>
+                    <div class="panel-body">
+                        <table class="table" id="tblT">
+                            <thead>
+                                <tr>
+                                    <th>TicketID</th>
+                                    <th>Date of Issue</th>
+                                    <th>Date of Resolved</th>
+                                    <th>Total Days</th>
+                                    <th>Client</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var i in Model.ListTicket)
+                                {
+                                    int days=0;
+                                    DateTime dt1 = new DateTime(2012, 3, 3);
+                                    DateTime dt2 = new DateTime(2011, 3, 3);
+                                    if(@i.CreatedDate!=null)
+                                    {
+                                    dt1 = Convert.ToDateTime(@i.CreatedDate);
+                                    }
+                                    if (@i.UpdatedDate != null && i.TicketStatusID == 2)
+                                    {
+                                    dt2 = Convert.ToDateTime(@i.UpdatedDate);
+                                    days = Convert.ToInt32(dt2.Subtract(dt1).TotalDays);
+                                    }
+                                    else { days = 0; }
+                                    
+                                    
+                                    //int days = 0;
+                                    //DateTime id;
+                                    //DateTime rd;
+
+                                    //if(@i.CreatedDate!=null)
+                                    //{
+                                    //    id = Convert.ToDateTime(@i.CreatedDate);   
+                                    //}
+                                    //if(@i.UpdatedDate!=null)
+                                    //{
+                                    //    rd = Convert.ToDateTime(@i.UpdatedDate);   
+                                    //}
+                                    //days = Convert.ToInt32(id.Subtract(rd).Days.ToString());
+
+                                    //days = @Convert.ToInt32(((id.Value.AddYears(1) - rd).TotalDays));
+                                    <tr>
+                                        <td>@i.Prefix@i.TicketID</td>
+                                        <td>@if (@i.CreatedDate != null)
+                                            {@i.CreatedDate.Value.ToString("dd/MM/yyyy")}</td>
+                                        <td>@if (i.TicketStatusID == 2 && i.UpdatedDate != null)
+                                            {@i.UpdatedDate.Value.ToString("dd/MM/yyyy")}</td>
+                                        <td>@days</td>
+                                        <td>@i.CompDetails.Name</td>
+                                        <td>@i.TStatusDetails.TicketStatus</td>
+                                        <td>P @i.Priority</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+        }
+    }
+
+}
+
+
+<script>
+    $(document).ready(function () {
+
+
+
+        $('#tblT').DataTable({
+
+            //dom: 'Bfrtip',
+            //buttons: [
+            //    //'copy', 'csv', 'excel', 'pdf', 'print'
+            //    'pdf'            
+            //],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                //'colvis'
+            ]
+        });
+    });
+    </script>
+<script lang="javascript" type="text/javascript">
+    $(document).ready(function () {
+
+        //Get Plotno by schemeID
+        $("#comp").change(function () {
+            $("#divLoading").show();
+            debugger;
+
+            var CompIds = $('#comp').val();
+            $.ajax(
+            {
+                url: '@Url.Action("FillUser", "Request")',
+                type: "GET",
+                datatype: "JSON",
+                data: { cid: CompIds },
+
+                success: function (user) {
+                    debugger;
+
+                    $("#CreatedBy").html("");  // clear before appending new list 
+                    $("#CreatedBy").append("<option value='0'>--Select User--</option>");
+                    $.each(user, function (i, CreatedBy) {
+
+                        $("#CreatedBy").append(
+
+                            $('<option></option>').val(CreatedBy.UID).html(CreatedBy.Title + ' ' + CreatedBy.FirstName + ' ' + CreatedBy.LastName));
+                        $("#divLoading").hide();
+
+                    });
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                    $("#divLoading").hide();
+
+                }
+
+            });
+
+        });
+    });
+</script>

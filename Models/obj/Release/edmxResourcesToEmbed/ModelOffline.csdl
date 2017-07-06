@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="techflowModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="techflowEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="AccessMasters" EntityType="techflowModel.AccessMaster" />
+    <EntitySet Name="AccessPassMasters" EntityType="techflowModel.AccessPassMaster" />
+    <EntitySet Name="CompanyMasters" EntityType="techflowModel.CompanyMaster" />
+    <EntitySet Name="DataCenterMasters" EntityType="techflowModel.DataCenterMaster" />
+    <EntitySet Name="QuotationMasters" EntityType="techflowModel.QuotationMaster" />
+    <EntitySet Name="TicketMasters" EntityType="techflowModel.TicketMaster" />
+    <EntitySet Name="TicketStatusMasters" EntityType="techflowModel.TicketStatusMaster" />
+    <EntitySet Name="TicketTypeMasters" EntityType="techflowModel.TicketTypeMaster" />
+    <EntitySet Name="UserMasters" EntityType="techflowModel.UserMaster" />
+    <EntitySet Name="AccessTrans" EntityType="techflowModel.AccessTran" />
+    <EntitySet Name="TicketAttachments" EntityType="techflowModel.TicketAttachment" />
+    <EntitySet Name="TicketTrans" EntityType="techflowModel.TicketTran" />
+    <EntitySet Name="DeliveryMasters" EntityType="techflowModel.DeliveryMaster" />
+    <EntitySet Name="InvoiceMasters" EntityType="techflowModel.InvoiceMaster" />
+    <EntitySet Name="PowerUsageMasters" EntityType="techflowModel.PowerUsageMaster" />
+  </EntityContainer>
+  <EntityType Name="AccessMaster">
+    <Key>
+      <PropertyRef Name="BAID" />
+    </Key>
+    <Property Name="BAID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DataCenter" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="350" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" MaxLength="350" Unicode="false" FixedLength="false" />
+    <Property Name="Company" Type="String" MaxLength="450" Unicode="false" FixedLength="false" />
+    <Property Name="StDateTime" Type="DateTime" Precision="3" />
+    <Property Name="StTime" Type="Time" Precision="7" />
+    <Property Name="EndDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EndTime" Type="Time" Precision="7" />
+    <Property Name="Reason" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="AccessPassMaster">
+    <Key>
+      <PropertyRef Name="APID" />
+    </Key>
+    <Property Name="APID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CompID" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="AccessPassID" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SwipeDate" Type="DateTime" Precision="0" />
+    <Property Name="SwipeTime" Type="DateTime" Precision="3" />
+    <Property Name="DoorID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="CompanyMaster">
+    <Key>
+      <PropertyRef Name="CompID" />
+    </Key>
+    <Property Name="CompID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="LegalName" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="ACType" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="Industry" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AltPhone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Fax" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Email1" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="Email2" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="Website" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="BStreet" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="BCity" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="BState" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="BPostCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="BCountry" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SStreet" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="SCity" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="SState" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="SPostCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SCountry" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ContactPerson" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="ABN" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="BHour" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ServiceStatus" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DataCenterMaster">
+    <Key>
+      <PropertyRef Name="DCID" />
+    </Key>
+    <Property Name="DCID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DataCenter" Type="String" MaxLength="350" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="450" Unicode="false" FixedLength="false" />
+    <Property Name="Location" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="QuotationMaster">
+    <Key>
+      <PropertyRef Name="QID" />
+    </Key>
+    <Property Name="QID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DataCenter" Type="Int32" />
+    <Property Name="CableSource" Type="String" MaxLength="450" Unicode="false" FixedLength="false" />
+    <Property Name="CableDest" Type="String" MaxLength="450" Unicode="false" FixedLength="false" />
+    <Property Name="CableType" Type="String" MaxLength="450" Unicode="false" FixedLength="false" />
+    <Property Name="TerminationSource" Type="String" MaxLength="450" Unicode="false" FixedLength="false" />
+    <Property Name="TerminationDest" Type="String" MaxLength="450" Unicode="false" FixedLength="false" />
+    <Property Name="ReqDelDate" Type="DateTime" Precision="0" />
+    <Property Name="IsPremium" Type="Boolean" />
+    <Property Name="IsPatchPanel" Type="Boolean" />
+    <Property Name="PatchPanel" Type="String" MaxLength="450" Unicode="false" FixedLength="false" />
+    <Property Name="IsMediaConverter" Type="Boolean" />
+    <Property Name="MediaConverter" Type="String" MaxLength="450" Unicode="false" FixedLength="false" />
+    <Property Name="Comments" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="ServiceReq" Type="String" MaxLength="550" Unicode="false" FixedLength="false" />
+    <Property Name="DateForQuote" Type="DateTime" Precision="0" />
+    <Property Name="DateForService" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="TicketMaster">
+    <Key>
+      <PropertyRef Name="TicketID" />
+    </Key>
+    <Property Name="TicketID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="AssignTo" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="SenderEmail" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="TicketTypeID" Type="Int32" />
+    <Property Name="TicketStatusID" Type="Int32" />
+    <Property Name="Priority" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TicketStatusMaster">
+    <Key>
+      <PropertyRef Name="TicketStatusID" />
+    </Key>
+    <Property Name="TicketStatusID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TicketStatus" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TicketTypeMaster">
+    <Key>
+      <PropertyRef Name="TicketTypeID" />
+    </Key>
+    <Property Name="TicketTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TicketType" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="UserMaster">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CompID" Type="Int32" />
+    <Property Name="Role" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FirstName" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="UserName" Type="String" MaxLength="350" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="City" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="PostCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Country" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="ReqQ" Type="Boolean" />
+    <Property Name="Power" Type="Boolean" />
+    <Property Name="Access" Type="Boolean" />
+    <Property Name="Tickets" Type="Boolean" />
+    <Property Name="Portal" Type="Boolean" />
+    <Property Name="Invoice" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="AccessTran">
+    <Key>
+      <PropertyRef Name="BATranID" />
+    </Key>
+    <Property Type="Int32" Name="BATranID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="BAID" />
+    <Property Type="String" Name="FirstName" MaxLength="350" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LastName" MaxLength="350" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TicketAttachment">
+    <Key>
+      <PropertyRef Name="TAID" />
+    </Key>
+    <Property Type="Int32" Name="TAID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="FileName" MaxLength="550" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FileURL" MaxLength="550" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ReplayBy" />
+    <Property Type="DateTime" Name="ReplayDate" Precision="3" />
+    <Property Type="Int32" Name="TTranID" />
+  </EntityType>
+  <EntityType Name="TicketTran">
+    <Key>
+      <PropertyRef Name="TTranID" />
+    </Key>
+    <Property Type="Int32" Name="TTranID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="TicketID" />
+    <Property Type="Int32" Name="AssignTo" />
+    <Property Type="String" Name="Comment" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FileName" MaxLength="550" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FileURL" MaxLength="550" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ReplayBy" />
+    <Property Type="DateTime" Name="ReplayDate" Precision="3" />
+    <Property Type="Int32" Name="CreatedBy" />
+    <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+  </EntityType>
+  <EntityType Name="DeliveryMaster">
+    <Key>
+      <PropertyRef Name="BDID" />
+    </Key>
+    <Property Type="Int32" Name="BDID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="DataCenter" />
+    <Property Type="String" Name="FirstName" MaxLength="450" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LastName" MaxLength="450" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Company" MaxLength="450" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="StDateTime" Precision="3" />
+    <Property Type="DateTime" Name="EndDateTime" Precision="3" />
+    <Property Type="Decimal" Name="Boxes" Precision="18" Scale="2" />
+    <Property Type="String" Name="TrackingNo" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ProjectRef" MaxLength="450" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="Storage" />
+    <Property Type="Boolean" Name="RemoteHands" />
+    <Property Type="Boolean" Name="IsActive" />
+    <Property Type="Int32" Name="CreatedBy" />
+    <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+  </EntityType>
+  <EntityType Name="InvoiceMaster">
+    <Key>
+      <PropertyRef Name="IID" />
+    </Key>
+    <Property Type="Int32" Name="IID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="CompID" />
+    <Property Type="Decimal" Name="Amount" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="DueDate" Precision="0" />
+    <Property Type="Int32" Name="Status" />
+    <Property Type="String" Name="FileName" MaxLength="450" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FileURL" MaxLength="550" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PowerUsageMaster">
+    <Key>
+      <PropertyRef Name="PUID" />
+    </Key>
+    <Property Type="Int32" Name="PUID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="CompID" />
+    <Property Type="String" Name="DataSuite" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RackID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PowerFeeds" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AmpereRating" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PowerContracted" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="PowerUsed" Precision="18" Scale="2" />
+    <Property Type="String" Name="OverUnder" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="LastReading" Precision="0" />
+  </EntityType>
+</Schema>
